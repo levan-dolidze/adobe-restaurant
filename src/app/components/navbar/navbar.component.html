@@ -1,0 +1,29 @@
+<div class="navbar-content">
+    <div class="navbar-inner">
+        <div class="nav-title">
+            Lorem ipsum, dolor sit amet consectetur adipisicing.
+        </div>
+        <div class="nav-inner">
+            <div [routerLink]="['/home']" class="logo">
+                <img src="https://elements-cover-images-0.imgix.net/6359eb8d-2d31-4bea-a137-92baa4b68eb2?auto=compress%2Cformat&fit=max&w=2740&s=478a3e8e28b0c42eb79183d514a9406b"
+                    alt="">
+            </div>
+            <div class="router-links">
+                <button mat-button [routerLink]="['/about']"> about </button>
+                <button mat-button [matMenuTriggerFor]="menu">menu</button>
+                <mat-menu #menu="matMenu">
+                    <div class="product-menu">
+                        <button mat-menu-item [routerLink]="['/about']">menu</button>
+                        <button mat-menu-item [routerLink]="['/wheel']">koo</button>
+                    </div>
+                </mat-menu>
+                <button mat-button [routerLink]="['/about']">private event </button>
+                <button mat-button [routerLink]="['/about']">reserve</button>
+                <button mat-button [routerLink]="['/about']">order online </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
