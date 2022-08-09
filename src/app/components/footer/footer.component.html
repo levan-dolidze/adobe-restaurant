@@ -7,7 +7,7 @@
         <div class="restBtn">
             <button mat-button [routerLink]="['/gallery']"> Gallery </button>
             <button mat-button [routerLink]="['/contact']"> Contact </button>
-            <button mat-flat-button [routerLink]="['/signup']" color="primary">Sign Up</button>
+            <button (click)="openSignup()" mat-flat-button [routerLink]="['/signup']" color="primary">Sign Up</button>
 
         </div>
     </div>

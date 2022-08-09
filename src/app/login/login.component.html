@@ -1,5 +1,5 @@
 <div class="login-content">
-    <form *ngIf="authorizationModal" (ngSubmit)="signIn(signInForm)" #signInForm="ngForm">
+    <form *ngIf="authorizationModal" (ngSubmit)="userSignIn(signInForm)" #signInForm="ngForm">
         <h2 mat-dialog-title>Authorization
             <button style="float:right;" mat-button mat-dialog-close>Close</button>
         </h2>
@@ -142,8 +142,8 @@
                 </div>
             </div>
     
-            <button (click)="registrationModal=true;authorizationModal=false"  type="submit" class="enterBtn" mat-raised-button
-            color="primary">registration</button>
+            <button   type="submit" class="enterBtn" mat-raised-button
+            color="primary">Sign Up</button>
     </form>
 
 

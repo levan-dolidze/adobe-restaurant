@@ -2,6 +2,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/login/login.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,15 +27,48 @@ import { LoginComponent } from 'src/app/login/login.component';
   ]
 })
 export class NavbarComponent implements OnInit {
-  authStatusIsLoggedin: boolean = true
+  authStatusIsLoggedin: boolean;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private http: AuthService) { }
   ngOnInit(): void {
+
+    this.returnToken();
+    this.userIsLoggedIn()
 
   };
 
 
+
+  userIsLoggedIn() {
+    this.http.userLoggedIn$.subscribe((res) => {
+      this.authStatusIsLoggedin = true
+
+    })
+  }
+
+
+  returnToken() {
+    this.http.getToken().subscribe((res) => {
+      if (res) {
+        this.authStatusIsLoggedin = true
+      } else {
+        this.authStatusIsLoggedin = false
+
+      }
+    })
+  }
+
+
   openDialog() {
-    this.dialog.open(LoginComponent)
+    this.http.getToken().subscribe((res) => {
+      if (res) {
+        this.http.logOut()
+        this.authStatusIsLoggedin = false
+      } else {
+        this.dialog.open(LoginComponent)
+
+      }
+    })
+
   };
 };
