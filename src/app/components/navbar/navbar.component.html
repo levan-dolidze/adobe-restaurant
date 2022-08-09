@@ -1,6 +1,6 @@
 <div class="navbar-content">
     <div class="navbar-inner">
-        <div class="nav-title">
+        <div @fade class="nav-title">
             Lorem ipsum, dolor sit amet consectetur adipisicing.
         </div>
         <div class="nav-inner">
@@ -8,22 +8,31 @@
                 <img src="https://elements-cover-images-0.imgix.net/6359eb8d-2d31-4bea-a137-92baa4b68eb2?auto=compress%2Cformat&fit=max&w=2740&s=478a3e8e28b0c42eb79183d514a9406b"
                     alt="">
             </div>
-            <div class="router-links">
-                <button mat-button [routerLink]="['/about']"> about </button>
-                <button mat-button [matMenuTriggerFor]="menu">menu</button>
+            <div  @fadeout class="router-links">
+                <button mat-button [matMenuTriggerFor]="about" > About </button>
+                <mat-menu #about="matMenu">
+                    <div  class="product-menu">
+                        <button mat-menu-item [routerLink]="['/about']">About</button>
+                        <button mat-menu-item [routerLink]="['/story']">Story</button>
+                    </div>
+                </mat-menu>
+
+                <button mat-button [matMenuTriggerFor]="menu">Menus</button>
                 <mat-menu #menu="matMenu">
                     <div class="product-menu">
-                        <button mat-menu-item [routerLink]="['/about']">menu</button>
+                        <button mat-menu-item [routerLink]="['/menu']">Menu</button>
                         <button mat-menu-item [routerLink]="['/wheel']">koo</button>
                     </div>
                 </mat-menu>
-                <button mat-button [routerLink]="['/about']">private event </button>
-                <button mat-button [routerLink]="['/about']">reserve</button>
-                <button mat-button [routerLink]="['/about']">order online </button>
+                <button mat-button [routerLink]="['/events']">Private Event </button>
+                <button mat-button [routerLink]="['/reservation']">Reserve</button>
+                <button mat-button [routerLink]="['/order']">Order Online </button>
+                <button (click)="openDialog()" id="login" mat-stroked-button color="primary">
+                    <!-- {{loginMode}} -->
+                    <span class="material-icons">{{authStatusIsLoggedin?"logout":"login"}}</span>
+                </button>
 
             </div>
-
         </div>
-
     </div>
 </div>

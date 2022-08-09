@@ -22,7 +22,9 @@ const routes: Routes = [
   { path: 'admin-order', loadChildren: () => import('./admin-components/admin-order/admin-order.module').then(m => m.AdminOrderModule) },
   { path: 'admin-reservation', loadChildren: () => import('./admin-components/admin-reservation/admin-reservation.module').then(m => m.AdminReservationModule) },
   { path: 'admin--event', loadChildren: () => import('./admin-components/admin-event/admin-event.module').then(m => m.AdminEventModule) },
-  { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) }];
+  { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) },
+  { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
+  { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

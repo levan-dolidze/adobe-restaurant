@@ -3,10 +3,14 @@
     color: white;
     padding: 5px;
     text-align: center;
+
+
 }
 
 .nav-inner {
     display: flex;
+
+
 }
 
 .logo {
@@ -18,9 +22,17 @@
 .logo img {
     height: 100%;
     width: 100%;
+    cursor: pointer;
     object-fit: cover;
 }
 .router-links{
     margin-left: auto;
     order: 2;
+    padding: 30px;
+}
+
+.navbar-inner{
+    
+    position: sticky;
+    top: 0;
 }

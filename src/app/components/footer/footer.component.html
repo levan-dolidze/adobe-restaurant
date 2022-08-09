@@ -1,1 +1,27 @@
-<p>footer works!</p>
+<div class="footer-content">
+
+    <div class="footer-title-inner">
+        <h1 class='footer-title'> Welcome to our restourant</h1>
+        <p class="footer-welcome-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati maiores,
+            exercitationem quas cum officiis libero. </p>
+        <div class="restBtn">
+            <button mat-button [routerLink]="['/gallery']"> Gallery </button>
+            <button mat-button [routerLink]="['/contact']"> Contact </button>
+            <button mat-flat-button [routerLink]="['/signup']" color="primary">Sign Up</button>
+
+        </div>
+    </div>
+
+
+    <div class="footer-inner">
+        <div class="sociall-network">
+            <a href="https://www.facebook.com" target="_blank">
+                <mat-icon style="color:blue;cursor: pointer;">facebook</mat-icon>
+            </a>
+        </div>
+        <div class="copy-right">
+            Copyright © 2022 adobe restaurant. All rights reserved.
+        </div>
+
+    </div>
+</div>

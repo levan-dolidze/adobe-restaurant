@@ -19,6 +19,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html{
     scroll-behavior: smooth;
+    text-transform: capitalize;
+
   }
     ::-webkit-scrollbar {
       width: 7px;
