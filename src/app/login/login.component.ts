@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupModule } from '../components/signup/signup.module';
 import { AuthModel, SignupModel } from '../models/authModel';
 import { AuthService } from '../services/auth.service';
-import { getAuth, sendEmailVerification } from "firebase/auth";
 import { MatDialog } from '@angular/material/dialog';
+import { getAuth, sendEmailVerification } from "firebase/auth";
+
 
 @Component({
   selector: 'app-login',
@@ -57,10 +57,9 @@ export class LoginComponent implements OnInit {
     } else {
       await this.authservice.signUp(this.auth.email, this.auth.password);
       this.verifyEmail();
+      this.dialog.closeAll()
     }
-
-
-  }
+  };
 
 
   verifyEmail() {
@@ -71,7 +70,6 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             // this.dialog.closeAll()
             // this.authServise.userIsLogedin.next(true);
-
             // this.router.navigate([''])
           }, 3000);
         });

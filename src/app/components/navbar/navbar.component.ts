@@ -1,9 +1,8 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-navbar',

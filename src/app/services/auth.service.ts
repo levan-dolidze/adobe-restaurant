@@ -22,7 +22,6 @@ export class AuthService {
       return of(false)
     }
     return of(false)
-
   }
 
 
@@ -37,12 +36,6 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(res.user))
     })
   };
-
-
-
-  
-
-
 
   async logOut() {
     this.firebaseAuth.signOut();

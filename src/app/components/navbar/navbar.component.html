@@ -27,6 +27,20 @@
                 <button mat-button [routerLink]="['/events']">Private Event </button>
                 <button mat-button [routerLink]="['/reservation']">Reserve</button>
                 <button mat-button [routerLink]="['/order']">Order Online </button>
+                <button *ngIf="authStatusIsLoggedin"  mat-button [matMenuTriggerFor]="admin">Admin</button>
+                <mat-menu #admin="matMenu">
+                    <div class="product-menu">
+                        <button mat-menu-item [routerLink]="['/admin-order']">Orders</button>
+                        <button mat-menu-item [routerLink]="['/admin-event']">Events</button>
+                        <button mat-menu-item [routerLink]="['/admin-product']">Products</button>
+                    </div>
+                </mat-menu>
+
+
+
+
+
+
                 <button (click)="openDialog()" id="login" mat-stroked-button color="primary">
                     <!-- {{loginMode}} -->
                     <span class="material-icons">{{authStatusIsLoggedin?"logout":"login"}}</span>

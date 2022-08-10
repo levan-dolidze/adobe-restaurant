@@ -8,7 +8,7 @@ export class SignupModel {
     username: string;
     surename: string;
     email: string;
-    birthDay: Date;
+    age: number;
     pass:any;
 
 }

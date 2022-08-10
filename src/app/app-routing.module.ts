@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -18,9 +19,26 @@ const routes: Routes = [
   { path: 'reservation', loadChildren: () => import('./components/reservation/reservation.module').then(m => m.ReservationModule) },
   { path: 'events', loadChildren: () => import('./components/events/events.module').then(m => m.EventsModule) },
   { path: 'order', loadChildren: () => import('./components/order/order.module').then(m => m.OrderModule) },
-  { path: 'admin-product', loadChildren: () => import('./admin-components/admin-product/admin-product.module').then(m => m.AdminProductModule) },
-  { path: 'admin-order', loadChildren: () => import('./admin-components/admin-order/admin-order.module').then(m => m.AdminOrderModule) },
-  { path: 'admin-reservation', loadChildren: () => import('./admin-components/admin-reservation/admin-reservation.module').then(m => m.AdminReservationModule) },
+  {
+    path: 'admin-product',
+    loadChildren: () => import('./admin-components/admin-product/admin-product.module').then(m => m.AdminProductModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-order',
+    loadChildren: () => import('./admin-components/admin-order/admin-order.module').then(m => m.AdminOrderModule),
+    canActivate: [AuthGuard]
+
+
+  },
+  {
+    path: 'admin-reservation',
+    loadChildren: () => import('./admin-components/admin-reservation/admin-reservation.module').then(m => m.AdminReservationModule),
+    canActivate: [AuthGuard]
+
+
+
+  },
   { path: 'admin--event', loadChildren: () => import('./admin-components/admin-event/admin-event.module').then(m => m.AdminEventModule) },
   { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) },
   { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
