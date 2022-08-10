@@ -1,0 +1,47 @@
+.private-event-content {
+    width: 100%;
+}
+
+.private-event-inner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.personalInfo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.personalInfo div {
+    width: 100%;
+    /* padding: 0px 10px 0px 10px; */
+
+}
+
+.personalInfo div input {
+    /* margin: 0 auto; */
+    
+    width: 100%;
+}
+
+.event-form {
+    width: 50%;
+}
+
+textarea {
+    width: 100%;
+    margin-top: 10px;
+}
+.form-control{
+    margin-top: 10px;
+}
+.first{
+    padding: 0px 5px 0px 0px;
+
+}
+
+.second{
+    padding: 0px 0px 0px 5px;
+}

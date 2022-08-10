@@ -61,7 +61,8 @@
                     required
                 </div>
                 <input [(ngModel)]="signupModel.email" 
-                       required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                       required 
+                       pattern="^[a-z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$"
                        #userEmail="ngModel" name="userEmail" class="form-control"
                        [class.borderError]="registrationForm.submitted&&(userEmail.errors?.['required']||userEmail.errors?.['pattern'])"
                        placeholder="Email" autocomplete="off" type="text">
@@ -75,7 +76,6 @@
                         wrong format
                     </div>
                 </div>
-
 
                 <input [(ngModel)]="signupModel.pass"  required #userPass="ngModel"
                     name="userEmail" class="form-control"

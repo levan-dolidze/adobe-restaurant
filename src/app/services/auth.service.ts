@@ -9,7 +9,7 @@ import { of, Subject } from 'rxjs';
 export class AuthService {
 
   constructor(public firebaseAuth: AngularFireAuth) { }
-  userLoggedIn$: Subject<void> = new Subject()
+  userLoggedIn$: Subject<any> = new Subject()
 
 
   getToken() {

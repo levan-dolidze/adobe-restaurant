@@ -1,1 +1,78 @@
-<p>events works!</p>
+<div class="private-event-content">
+    <div class="private-event-inner">
+
+        <div class="event-form">
+            <form (ngSubmit)="submitPrivateEvent(privateDinerForm)" #privateDinerForm="ngForm">
+                <div class="personalInfo">
+                    <div class="first">
+                    <input [(ngModel)]="privateDiningModel.firstName"
+                       [ngModelOptions]="{standalone: true}"
+                       name="firstname"
+                       #firstname="ngModel"
+                       class="form-control" type="text"
+                       placeholder="firstname"
+                       >
+              
+                    <input [(ngModel)]="privateDiningModel.phoneNumber" 
+                       [ngModelOptions]="{standalone: true}"
+                       name="phoneNumber"
+                       #phoneNumber="ngModel"
+                       placeholder="phone"
+                       class="form-control" type="text">
+
+                       <input [(ngModel)]="privateDiningModel.eventDate" 
+                       [ngModelOptions]="{standalone: true}"
+                       name="eventDate"
+                       #eventDate="ngModel"
+                       class="form-control" type="text">
+                 </div>
+                    <div class="second">
+               
+                    <input [(ngModel)]="privateDiningModel.surname"
+                       [ngModelOptions]="{standalone: true}"
+                       name="surname"
+                       #surname="ngModel"
+                       class="form-control" type="text"
+                       placeholder="surname"
+                       >
+
+                     <input [(ngModel)]="privateDiningModel.email" 
+                       [ngModelOptions]="{standalone: true}"
+                       name="email"
+                       #email="ngModel"
+                       class="form-control" type="text"
+                       placeholder="email"
+                       >
+                        
+                <input [(ngModel)]="privateDiningModel.startTime" 
+                [ngModelOptions]="{standalone: true}"
+                name="startTime"
+                #startTime="ngModel"
+                class="form-control" type="text">
+                
+                    </div>
+                </div>
+            
+                <input [(ngModel)]="privateDiningModel.numberOfPeople" 
+                       [ngModelOptions]="{standalone: true}"
+                       name="numberOfPeople"
+                       #numberOfPeople="ngModel"
+                       class="form-control" type="text">
+                <textarea [(ngModel)]="privateDiningModel.additionalInfo"
+                          [ngModelOptions]="{standalone: true}"
+                          name="additionalInfo"
+                          #additionalInfo="ngModel"
+                          id="" cols="30" rows="5"
+                          placeholder="Aditional information..."
+                          ></textarea>
+                <div>
+                    <button type="submit" class="sendBtn" mat-raised-button color="primary">Send</button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</div>

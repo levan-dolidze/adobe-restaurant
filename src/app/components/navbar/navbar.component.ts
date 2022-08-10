@@ -1,6 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AdminPermission } from 'src/app/classes/admin-permission';
 import { LoginComponent } from 'src/app/login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -27,20 +28,26 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
-
+  adminPermission: AdminPermission = new AdminPermission();
+  admin1: boolean = false;
   constructor(public dialog: MatDialog, private http: AuthService) { }
+
   ngOnInit(): void {
-
     this.returnToken();
-    this.userIsLoggedIn()
-
+    this.userIsLoggedIn();
   };
 
 
 
   userIsLoggedIn() {
     this.http.userLoggedIn$.subscribe((res) => {
-      this.authStatusIsLoggedin = true
+      this.authStatusIsLoggedin = true;
+      if (this.adminPermission.adminPermission(res)) {
+        this.admin1 = true
+      } else {
+        this.admin1 = false
+      }
+
 
     })
   }
@@ -62,10 +69,10 @@ export class NavbarComponent implements OnInit {
     this.http.getToken().subscribe((res) => {
       if (res) {
         this.http.logOut()
+        this.admin1 = false
         this.authStatusIsLoggedin = false
       } else {
         this.dialog.open(LoginComponent)
-
       }
     })
 

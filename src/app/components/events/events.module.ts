@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { EventsRoutingModule } from './events-routing.module';
 import { EventsComponent } from './events.component';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { EventsComponent } from './events.component';
   ],
   imports: [
     CommonModule,
-    EventsRoutingModule
+    EventsRoutingModule,
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class EventsModule { }

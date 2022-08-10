@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.authservice.getToken().subscribe((res) => {
           if (res) {
             this.dialog.closeAll()
-            this.authservice.userLoggedIn$.next();
+            this.authservice.userLoggedIn$.next(res.email);
           }
           else {
             return
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
       return
     } else {
-      await this.authservice.signUp(this.auth.email, this.auth.password);
+      await this.authservice.signUp(this.signupModel.email, this.signupModel.pass);
       this.verifyEmail();
       this.dialog.closeAll()
     }
