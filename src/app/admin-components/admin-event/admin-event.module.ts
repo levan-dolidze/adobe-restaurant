@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminEventRoutingModule } from './admin-event-routing.module';
 import { AdminEventComponent } from './admin-event.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AdminEventComponent } from './admin-event.component';
   ],
   imports: [
     CommonModule,
-    AdminEventRoutingModule
+    AdminEventRoutingModule,
+    MatIconModule
   ]
 })
 export class AdminEventModule { }

@@ -39,7 +39,11 @@ const routes: Routes = [
 
 
   },
-  { path: 'admin--event', loadChildren: () => import('./admin-components/admin-event/admin-event.module').then(m => m.AdminEventModule) },
+  { path: 'admin-event', 
+    loadChildren: () => import('./admin-components/admin-event/admin-event.module').then(m => m.AdminEventModule),
+    canActivate: [AuthGuard]
+
+},
   { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) },
   { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
   { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) }];

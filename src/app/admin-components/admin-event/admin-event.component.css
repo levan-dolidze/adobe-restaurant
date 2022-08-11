@@ -1,0 +1,25 @@
+.admin-event-content {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.dining-list-inner {
+    display: flex;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.dining-list {
+    width: 70%;
+}
+
+.customerInfo{
+    width: 20%;
+}
+.eventInfo{
+    width: 80%;
+
+}

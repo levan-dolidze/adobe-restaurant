@@ -9,6 +9,9 @@ export class PrivateDiningModel {
     startTime: Time;
     numberOfPeople: number;
     additionalInfo: string;
+    key?:string;
+    orderDate:Date;
 
 
 }   
+

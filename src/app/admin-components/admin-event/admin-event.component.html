@@ -1,1 +1,70 @@
-<p>admin-event works!</p>
+<div class="admin-event-content">
+    <!-- <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner> -->
+    <div class="admin-event-inner">
+        <div class="dining-inner">
+            <h3>Private Dining List</h3>
+            <div *ngIf="privateDining$" class="dining-list">
+                <div class="dining-list-inner" *ngFor="let dining of ( privateDining$|async)">
+                    <div class="customerInfo">
+                        <h3>Personal Info</h3>
+                        <div>
+                            Full name:{{dining.firstName}} {{dining.surname}}
+                        </div>
+                        <div>
+                            Email# {{dining.email}}
+                        </div>
+                        <div>
+                            Phone: {{dining.phoneNumber}}
+                        </div>
+
+                    </div>
+                    <div class="eventInfo">
+                        <h3>Event Info</h3>
+                        <div>
+                            Order Date: {{dining?.orderDate|date:"short"}}
+                        </div>
+                        <div>
+                            Event Date: {{dining.phoneNumber}}
+                        </div>
+                        <div>
+                            Start Time {{dining.startTime}}
+                        </div>
+                        <div>
+                            Number Of People: {{dining.phoneNumber}}
+                        </div>
+                        <div>
+                            AdditionalInfo:{{dining.additionalInfo}}
+                        </div>
+                    </div>
+                    <!-- <div class="product-details" *ngFor="let i of item.product">
+                                       <img [src]="i.image">
+
+                                       <div style="padding:10px">
+                                              <div>
+                                                     id : <span>{{i.key}}</span>
+                                              </div>
+                                              name : <span>{{i.name}}</span>
+                                              <div>
+                                                     Type <span>{{i.type}}</span>
+                                              </div>
+                                              <div>
+                                                     Size <span>{{i.size}}</span>
+                                              </div>
+                                              <div>
+                                                     Description <span>{{i.description}}</span>
+                                              </div>
+                                              <!-- <div>
+                                                     Description <span>{{i.sale}}</span>
+                                              </div> -->
+                    <div>
+                        <!-- price <span>{{i.price}}</span> -->
+                    </div>
+                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
+                    (click)="deleteDiningEvent(dining.key)">delete</mat-icon>
+                </div>
+
+            </div>
+          
+        </div>
+    </div>
+</div>

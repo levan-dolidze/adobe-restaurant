@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -10,8 +9,8 @@ import { HttpService } from 'src/app/services/http.service';
 export class HomeComponent implements OnInit {
 
   constructor(private http: HttpService) { }
-
   ngOnInit(): void {
+
 
 
   };

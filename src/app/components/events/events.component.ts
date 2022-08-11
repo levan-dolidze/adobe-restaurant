@@ -28,7 +28,8 @@ export class EventsComponent implements OnInit {
         eventDate: this.privateDiningModel.eventDate,
         startTime: this.privateDiningModel.startTime,
         numberOfPeople: this.privateDiningModel.numberOfPeople,
-        additionalInfo: this.privateDiningModel.additionalInfo
+        additionalInfo: this.privateDiningModel.additionalInfo,
+        orderDate:new Date()
 
       }
       this.http.addPrivateEvent(obj).subscribe((res)=>{

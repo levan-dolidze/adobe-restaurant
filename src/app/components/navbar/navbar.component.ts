@@ -29,7 +29,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
-  admin1: boolean = false;
+  adminPanel: boolean = false;
   constructor(public dialog: MatDialog, private http: AuthService) { }
 
   ngOnInit(): void {
@@ -37,44 +37,44 @@ export class NavbarComponent implements OnInit {
     this.userIsLoggedIn();
   };
 
+  adminChecking(adminMail: AdminPermission) {
+    (this.adminPermission.adminPermission(adminMail))?this.adminPanel = true:this.adminPanel = false;
+  };
+
 
 
   userIsLoggedIn() {
-    this.http.userLoggedIn$.subscribe((res) => {
+    this.http.userLoggedIn$.subscribe((adminMail) => {
+      this.adminChecking(adminMail)
       this.authStatusIsLoggedin = true;
-      if (this.adminPermission.adminPermission(res)) {
-        this.admin1 = true
-      } else {
-        this.admin1 = false
-      }
-
-
     })
-  }
+  };
 
 
   returnToken() {
     this.http.getToken().subscribe((res) => {
-      if (res) {
-        this.authStatusIsLoggedin = true
-      } else {
-        this.authStatusIsLoggedin = false
-
+      switch (res) {
+        case res:true
+        this.adminChecking(res.email)
+        this.authStatusIsLoggedin = true;
+          break;
+        default:
+        this.authStatusIsLoggedin = false;
+          break;
       }
     })
-  }
+  };
 
 
   openDialog() {
     this.http.getToken().subscribe((res) => {
       if (res) {
-        this.http.logOut()
-        this.admin1 = false
+        this.http.logOut();
+        this.adminPanel = false
         this.authStatusIsLoggedin = false
       } else {
         this.dialog.open(LoginComponent)
-      }
+      };
     })
-
   };
 };

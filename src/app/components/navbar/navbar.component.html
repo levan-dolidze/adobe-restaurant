@@ -27,7 +27,7 @@
                 <button mat-button [routerLink]="['/events']">Private Event </button>
                 <button mat-button [routerLink]="['/reservation']">Reserve</button>
                 <button mat-button [routerLink]="['/order']">Order Online </button>
-                <button *ngIf="admin1" mat-button [matMenuTriggerFor]="admin">Admin</button>
+                <button *ngIf="adminPanel" mat-button [matMenuTriggerFor]="admin">Admin</button>
                 <mat-menu   #admin="matMenu">
                     <div  class="product-menu">
                         <button mat-menu-item [routerLink]="['/admin-order']">Orders</button>
