@@ -7,57 +7,93 @@
                     <div class="first">
                     <input [(ngModel)]="privateDiningModel.firstName"
                        [ngModelOptions]="{standalone: true}"
+                       required
                        name="firstname"
                        #firstname="ngModel"
                        class="form-control" type="text"
                        placeholder="firstname"
                        >
+                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&firstname.errors?.['required']">
+                        Required
+                       </div>
               
                     <input [(ngModel)]="privateDiningModel.phoneNumber" 
+                       required
                        [ngModelOptions]="{standalone: true}"
                        name="phoneNumber"
                        #phoneNumber="ngModel"
                        placeholder="phone"
                        class="form-control" type="text">
+                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&phoneNumber.errors?.['required']">
+                        Required
+                       </div>
 
                        <input [(ngModel)]="privateDiningModel.eventDate" 
                        [ngModelOptions]="{standalone: true}"
+                       required
                        name="eventDate"
                        #eventDate="ngModel"
                        class="form-control" type="text">
+                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&eventDate.errors?.['required']">
+                        Required
+                       </div>
                  </div>
                     <div class="second">
                
                     <input [(ngModel)]="privateDiningModel.surname"
                        [ngModelOptions]="{standalone: true}"
+                       required
                        name="surname"
                        #surname="ngModel"
                        class="form-control" type="text"
                        placeholder="surname"
                        >
-
+                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&surname.errors?.['required']">
+                        Required
+                       </div>
                      <input [(ngModel)]="privateDiningModel.email" 
                        [ngModelOptions]="{standalone: true}"
+                       required
                        name="email"
                        #email="ngModel"
                        class="form-control" type="text"
                        placeholder="email"
                        >
-                        
+                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&email.errors?.['required']">
+                        Required
+                       </div>
                 <input [(ngModel)]="privateDiningModel.startTime" 
                 [ngModelOptions]="{standalone: true}"
+                required
                 name="startTime"
                 #startTime="ngModel"
                 class="form-control" type="text">
+                <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
+                    Required
+                   </div>
                 
                     </div>
                 </div>
             
                 <input [(ngModel)]="privateDiningModel.numberOfPeople" 
                        [ngModelOptions]="{standalone: true}"
+                       required
+                       pattern="[0-9]*"
                        name="numberOfPeople"
                        #numberOfPeople="ngModel"
-                       class="form-control" type="text">
+                       class="form-control" type="text"
+                       >
+                       <div *ngIf="privateDinerForm.submitted">
+                        <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['required']">
+                            Required
+                           </div>
+                        <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['pattern']">
+                            Wrong format
+                           </div>
+
+                       </div>
+                
+
                 <textarea [(ngModel)]="privateDiningModel.additionalInfo"
                           [ngModelOptions]="{standalone: true}"
                           name="additionalInfo"
@@ -74,5 +110,8 @@
         </div>
 
 
+
     </div>
 </div>
+
+

@@ -5,7 +5,7 @@ import { EventsRoutingModule } from './events-routing.module';
 import { EventsComponent } from './events.component';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,12 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     EventsRoutingModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    NgbModule,
+    
+
+    
+ 
   ]
 })
 export class EventsModule { }

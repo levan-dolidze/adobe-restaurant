@@ -11,4 +11,4 @@ export class PrivateDiningModel {
     additionalInfo: string;
 
 
-}
+}   
