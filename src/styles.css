@@ -40,3 +40,12 @@ html{
     ::-webkit-scrollbar-thumb:hover {
       background-color: #a6bdce;
     }
+
+
+    .loader-spinner{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      /* -webkit-transform: translate(-50%, -50%); */
+    }

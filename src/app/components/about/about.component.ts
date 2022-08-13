@@ -1,3 +1,4 @@
+import { Direction } from '@angular/cdk/bidi';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,6 +11,12 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
+
   }
+
+
+
 
 }

@@ -1,1 +1,23 @@
-<p>reservation works!</p>
+<div class="reservation-content">
+    <div class="reservation-inner">
+        <h3>reservation</h3>
+        <div>
+            <label>
+                <select  class="form-control" >
+                    <option value="">Number of people</option>
+                    <option *ngFor="let people of people" value="people">{{people}} {{people>6?"+":"Person"}}</option>
+
+                </select>
+            </label>
+
+        </div>
+        <div>
+            <label>
+                <input class="form-control" type="text">
+            </label>
+
+        </div>
+
+    </div>
+
+</div>

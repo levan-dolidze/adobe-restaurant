@@ -1,9 +1,8 @@
 <div class="admin-event-content">
-    <!-- <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner> -->
     <div class="admin-event-inner">
-        <div class="dining-inner">
+        <div @fade class="dining-inner">
             <h3>Private Dining List</h3>
-            <div *ngIf="privateDining$" class="dining-list">
+            <div  *ngIf="privateDining$" class="dining-list">
                 <div class="dining-list-inner" *ngFor="let dining of ( privateDining$|async)">
                     <div class="customerInfo">
                         <h3>Personal Info</h3>
@@ -67,4 +66,6 @@
           
         </div>
     </div>
+<mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
 </div>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-reservation',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationComponent implements OnInit {
 
-  constructor() { }
+  people:Array<number>=[1,2,4,6,8]
+  constructor(public modal: MatDialog,
+  ) { }
 
   ngOnInit(): void {
   }
