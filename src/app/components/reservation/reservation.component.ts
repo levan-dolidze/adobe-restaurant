@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { ReserveModel } from 'src/app/models/reserve';
 
 @Component({
   selector: 'app-reservation',
@@ -8,11 +10,17 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ReservationComponent implements OnInit {
 
-  people:Array<number>=[1,2,4,6,8]
+  people: Array<number> = [1,2,3,4,5,6,7,8];
+  reserveModel: ReserveModel = new ReserveModel();
   constructor(public modal: MatDialog,
   ) { }
 
   ngOnInit(): void {
-  }
 
-}
+  };
+
+  findTable(findTableForm: any) {
+
+  };
+
+};

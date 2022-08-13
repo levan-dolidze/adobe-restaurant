@@ -1,0 +1,25 @@
+.reservation-content {
+    width: 100%;
+    height: 100%;
+}
+
+.reservation-inner {
+    margin: 0 auto;
+
+}
+form{
+    text-align: center;
+}
+.form-control {
+    width: 300px;
+    margin-top: 10px;
+}
+.fintTableBtn{
+    margin-top: 10px;
+    
+}
+.date-manu {
+    cursor: pointer;
+    position: absolute;
+    color: rgb(197, 203, 197);
+}

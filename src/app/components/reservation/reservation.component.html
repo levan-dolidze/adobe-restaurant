@@ -1,23 +1,47 @@
 <div class="reservation-content">
     <div class="reservation-inner">
-        <h3>reservation</h3>
-        <div>
-            <label>
-                <select  class="form-control" >
-                    <option value="">Number of people</option>
-                    <option *ngFor="let people of people" value="people">{{people}} {{people>6?"+":"Person"}}</option>
-
-                </select>
-            </label>
-
-        </div>
-        <div>
-            <label>
-                <input class="form-control" type="text">
-            </label>
-
-        </div>
-
+        <form (ngSubmit)="findTable(findTableForm)" #findTableForm="ngForm">
+            <h3>reservation</h3>
+            <div>
+                <label>
+                    <select class="form-control" [(ngModel)]="reserveModel.people" 
+                            [ngModelOptions]="{standalone: true}" 
+                    >
+                        <option *ngFor="let people of people" [ngValue]="people"
+                        
+                        >
+                                {{people}} 
+                              <div [ngSwitch]="people">
+                                <div *ngSwitchCase="1">Guest</div>
+                                <div *ngSwitchCase="2">Guests</div>
+                                <div *ngSwitchCase="3">Guests</div>
+                                <div *ngSwitchCase="4">Guests</div>
+                                <div *ngSwitchCase="5">Guests</div>
+                                <div *ngSwitchCase="6">Guests</div>
+                                <div *ngSwitchCase="7">Guests</div>
+                                <div *ngSwitchCase="8">+</div>
+                              </div>
+                                <!-- {{people===1?"Guest":"Guests"}}  -->
+                           
+                        </option>
+                    </select>
+                </label>
+            </div>
+            
+            <div>
+                <input 
+                       [(ngModel)]="reserveModel.date"
+                       [ngModelOptions]="{standalone: true}" 
+                       style="cursor:pointer" 
+                       class="form-control" 
+                       placeholder="yyyy-mm-dd"
+                       ngbDatepicker #d="ngbDatepicker"
+                       (click)="d.toggle()"
+                >
+            </div>
+            <div>
+                <button class="fintTableBtn" type="submit" mat-raised-button color="primary">Find Table</button>
+            </div>
+        </form>
     </div>
-
 </div>

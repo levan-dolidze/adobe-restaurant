@@ -68,6 +68,9 @@ export class NavbarComponent implements OnInit {
     })
   };
 
+  openReserve(){
+    this.modal.open(ReservationComponent)
 
+  }
 
 };

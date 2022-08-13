@@ -42,6 +42,6 @@ export class AdminEventComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.orderedDiningDelete$.unsubscribe()
-  }
+  };
 
 };
