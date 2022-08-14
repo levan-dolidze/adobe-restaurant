@@ -12,7 +12,8 @@ import { getAuth, sendEmailVerification } from "firebase/auth";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice: AuthService, private dialog: MatDialog) { }
+  constructor(private authservice: AuthService, 
+              private dialog: MatDialog) { }
 
   auth: AuthModel = new AuthModel();
   signupModel: SignupModel = new SignupModel();

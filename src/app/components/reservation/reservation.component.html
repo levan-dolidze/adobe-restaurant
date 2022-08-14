@@ -5,11 +5,9 @@
             <div>
                 <label>
                     <select class="form-control" [(ngModel)]="reserveModel.people" 
-                            [ngModelOptions]="{standalone: true}" 
+                     name="people"
                     >
-                        <option *ngFor="let people of people" [ngValue]="people"
-                        
-                        >
+                        <option *ngFor="let people of people" [ngValue]="people">
                                 {{people}} 
                               <div [ngSwitch]="people">
                                 <div *ngSwitchCase="1">Guest</div>
@@ -19,26 +17,32 @@
                                 <div *ngSwitchCase="5">Guests</div>
                                 <div *ngSwitchCase="6">Guests</div>
                                 <div *ngSwitchCase="7">Guests</div>
-                                <div *ngSwitchCase="8">+</div>
+                                <div *ngSwitchCase="8">+ Guests</div>
                               </div>
                                 <!-- {{people===1?"Guest":"Guests"}}  -->
                            
                         </option>
                     </select>
+            
                 </label>
             </div>
             
             <div>
                 <input 
                        [(ngModel)]="reserveModel.date"
-                       [ngModelOptions]="{standalone: true}" 
+                       required
+                       name="date"
                        style="cursor:pointer" 
                        class="form-control" 
+                       #date="ngModel"
                        placeholder="yyyy-mm-dd"
                        ngbDatepicker #d="ngbDatepicker"
                        (click)="d.toggle()"
                 >
             </div>
+            <div class="text-danger f-12 m-t-8" *ngIf="findTableForm.submitted&&date.errors?.['required']">
+                Required
+               </div>
             <div>
                 <button class="fintTableBtn" type="submit" mat-raised-button color="primary">Find Table</button>
             </div>

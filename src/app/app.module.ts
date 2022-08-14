@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EventMessageComponent } from './event-message/event-message.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
+    EventMessageComponent,
 
   ],
   imports: [

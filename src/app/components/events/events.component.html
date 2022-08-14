@@ -1,12 +1,10 @@
 <div class="private-event-content">
     <div class="private-event-inner">
-
         <div class="event-form">
             <form (ngSubmit)="submitPrivateEvent(privateDinerForm)" #privateDinerForm="ngForm">
                 <div class="personalInfo">
                     <div class="first">
                     <input [(ngModel)]="privateDiningModel.firstName"
-                       [ngModelOptions]="{standalone: true}"
                        required
                        name="firstname"
                        #firstname="ngModel"
@@ -19,7 +17,6 @@
               
                     <input [(ngModel)]="privateDiningModel.phoneNumber" 
                        required
-                       [ngModelOptions]="{standalone: true}"
                        name="phoneNumber"
                        #phoneNumber="ngModel"
                        placeholder="phone"
@@ -29,7 +26,6 @@
                        </div>
 
                        <input [(ngModel)]="privateDiningModel.eventDate" 
-                       [ngModelOptions]="{standalone: true}"
                        required
                        name="eventDate"
                        #eventDate="ngModel"
@@ -41,7 +37,6 @@
                     <div class="second">
                
                     <input [(ngModel)]="privateDiningModel.surname"
-                       [ngModelOptions]="{standalone: true}"
                        required
                        name="surname"
                        #surname="ngModel"
@@ -52,7 +47,6 @@
                         Required
                        </div>
                      <input [(ngModel)]="privateDiningModel.email" 
-                       [ngModelOptions]="{standalone: true}"
                        required
                        name="email"
                        #email="ngModel"
@@ -63,7 +57,6 @@
                         Required
                        </div>
                 <input [(ngModel)]="privateDiningModel.startTime" 
-                [ngModelOptions]="{standalone: true}"
                 required
                 name="startTime"
                 #startTime="ngModel"
@@ -76,7 +69,6 @@
                 </div>
             
                 <input [(ngModel)]="privateDiningModel.numberOfPeople" 
-                       [ngModelOptions]="{standalone: true}"
                        required
                        pattern="[0-9]*"
                        name="numberOfPeople"
@@ -90,23 +82,21 @@
                         <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['pattern']">
                             Wrong format
                            </div>
-
                        </div>
                 
 
                 <textarea [(ngModel)]="privateDiningModel.additionalInfo"
-                          [ngModelOptions]="{standalone: true}"
                           name="additionalInfo"
                           #additionalInfo="ngModel"
                           id="" cols="30" rows="5"
                           placeholder="Aditional information..."
-                          ></textarea>
+                          >
+                </textarea>
                 <div>
                     <button type="submit" class="sendBtn" mat-raised-button color="primary">Send</button>
                 </div>
 
             </form>
-
         </div>
 
 
