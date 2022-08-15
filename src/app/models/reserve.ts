@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export class ReserveModel {
     people: number;
     date: Date;
@@ -8,7 +10,10 @@ export class ReserveModel {
 
 
 
-
+export class GuestTime {
+    place: string;
+    time: Time
+};
 
 
 

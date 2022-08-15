@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EventMessageComponent } from './event-message/event-message.component';
+import { TimemodalComponent } from './timemodal/timemodal.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { EventMessageComponent } from './event-message/event-message.component';
     FooterComponent,
     LoginComponent,
     EventMessageComponent,
+    TimemodalComponent,
 
   ],
   imports: [

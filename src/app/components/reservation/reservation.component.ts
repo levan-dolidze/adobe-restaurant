@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/login/login.component';
-import { ReserveModel } from 'src/app/models/reserve';
+import { GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,17 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ReservationComponent implements OnInit {
 
   people: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
-  timeList: Array<any> = [
-    {
-      place: "dining room",
-      time: "17:00"
-    },
-    {
-      place: "patio",
-      time: "17:30"
-    }
-  ]
-
+  timeList: GuestTime[];
 
 
   reserveModel: ReserveModel = new ReserveModel();
@@ -42,6 +32,8 @@ export class ReservationComponent implements OnInit {
 
 
   };
+
+
 
   timeDetection(time: any) {
     console.log(time)
