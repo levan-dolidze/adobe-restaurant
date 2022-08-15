@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/login/login.component';
 import { ReserveModel } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,17 +9,47 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css']
 })
+
 export class ReservationComponent implements OnInit {
 
   people: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
+  timeList: Array<any> = [
+    {
+      place: "dining room",
+      time: "17:00"
+    },
+    {
+      place: "patio",
+      time: "17:30"
+    }
+  ]
+
+
+
   reserveModel: ReserveModel = new ReserveModel();
+  selectDay: boolean = true;
+
+
+
   constructor(public modal: MatDialog,
-              private auth: AuthService
-  ) { }
+    private auth: AuthService
+  ) {
+
+
+  }
 
   ngOnInit(): void {
 
+
   };
+
+  timeDetection(time: any) {
+    console.log(time)
+
+  }
+
+
+
 
   findTable(findTableForm: any) {
     if (findTableForm.invalid) {
@@ -29,11 +58,15 @@ export class ReservationComponent implements OnInit {
     else {
       this.auth.getToken().subscribe((res) => {
         if (res) {
-          //aq unda gaigzavnos dareservebis req
+          this.selectDay = false;
+          //aq unda gaketdes reqi backshi,gadaeces parametrad 
+          //person raodenoba da dge
+          //
         }
         else {
+
           this.modal.open(LoginComponent)
-          
+
         }
       })
     }
@@ -44,3 +77,4 @@ export class ReservationComponent implements OnInit {
 
 
 };
+

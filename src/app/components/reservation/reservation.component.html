@@ -1,15 +1,13 @@
 <div class="reservation-content">
     <div class="reservation-inner">
-        <form (ngSubmit)="findTable(findTableForm)" #findTableForm="ngForm">
+        <form *ngIf="selectDay" (ngSubmit)="findTable(findTableForm)" #findTableForm="ngForm">
             <h3>reservation</h3>
             <div>
                 <label>
-                    <select class="form-control" [(ngModel)]="reserveModel.people" 
-                     name="people"
-                    >
+                    <select class="form-control" [(ngModel)]="reserveModel.people" name="people">
                         <option *ngFor="let people of people" [ngValue]="people">
-                                {{people}} 
-                              <div [ngSwitch]="people">
+                            {{people}}
+                            <div [ngSwitch]="people">
                                 <div *ngSwitchCase="1">Guest</div>
                                 <div *ngSwitchCase="2">Guests</div>
                                 <div *ngSwitchCase="3">Guests</div>
@@ -18,34 +16,38 @@
                                 <div *ngSwitchCase="6">Guests</div>
                                 <div *ngSwitchCase="7">Guests</div>
                                 <div *ngSwitchCase="8">+ Guests</div>
-                              </div>
-                                <!-- {{people===1?"Guest":"Guests"}}  -->
-                           
+                            </div>
+                            <!-- {{people===1?"Guest":"Guests"}}  -->
+
                         </option>
                     </select>
-            
+
                 </label>
             </div>
-            
+
             <div>
-                <input 
-                       [(ngModel)]="reserveModel.date"
-                       required
-                       name="date"
-                       style="cursor:pointer" 
-                       class="form-control" 
-                       #date="ngModel"
-                       placeholder="yyyy-mm-dd"
-                       ngbDatepicker #d="ngbDatepicker"
-                       (click)="d.toggle()"
-                >
+                <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
+                    #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             </div>
             <div class="text-danger f-12 m-t-8" *ngIf="findTableForm.submitted&&date.errors?.['required']">
                 Required
-               </div>
+            </div>
             <div>
                 <button class="fintTableBtn" type="submit" mat-raised-button color="primary">Find Table</button>
             </div>
         </form>
+
+        <div *ngIf="!selectDay">
+            <form *ngFor="let time of timeList">
+                <div style="cursor:pointer;
+                " (click)="timeDetection(time)">
+                    {{time.place}}
+                    {{time.time}}
+
+                </div>
+            </form>
+        </div>
+
+
     </div>
 </div>
