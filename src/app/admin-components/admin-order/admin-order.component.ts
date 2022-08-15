@@ -9,13 +9,14 @@ import { TimemodalComponent } from 'src/app/timemodal/timemodal.component';
 })
 export class AdminOrderComponent implements OnInit {
 
-  constructor(private modal:MatDialog) { }
+  constructor(private modal: MatDialog) { }
 
   ngOnInit(): void {
-  }
+    
+  };
 
-  timeModalOpen(){
+  timeModalOpen() {
     this.modal.open(TimemodalComponent)
 
-  }
-}
+  };
+};

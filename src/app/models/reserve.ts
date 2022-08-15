@@ -12,7 +12,7 @@ export class ReserveModel {
 
 export class GuestTime {
     place: string;
-    time: Time
+    time: string;
 };
 
 
