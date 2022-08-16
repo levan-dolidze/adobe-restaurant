@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { map, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PrivateDiningModel } from '../models/privateDiningModel';
+import { GuestTime } from '../models/reserve';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class AdminService {
   constructor(public firebaseAuth: AngularFireAuth,
     private http: HttpClient) { }
   privateDinning: PrivateDiningModel[] = [];
+
+  guestTime: GuestTime[] = [];
 
   orderedDiningDelete$: Subject<any> = new Subject()
 
@@ -46,6 +49,11 @@ export class AdminService {
     )
   }
 
+  //time add
+
+  addGuestTime(time: GuestTime) {
+    return this.http.post(`${this.apiUrl}guestTime.json`, time)
+  };
 
 
-}
+};

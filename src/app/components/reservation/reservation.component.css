@@ -7,19 +7,27 @@
     margin: 0 auto;
 
 }
-form{
+
+form {
     text-align: center;
 }
+
 .form-control {
     width: 300px;
     margin-top: 10px;
 }
-.fintTableBtn{
+
+.fintTableBtn {
     margin-top: 10px;
-    
+
 }
+
 .date-manu {
     cursor: pointer;
     position: absolute;
     color: rgb(197, 203, 197);
+}
+
+.timeMode {
+    color: red
 }

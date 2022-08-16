@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GuestTime } from '../models/reserve';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-timemodal',
@@ -8,7 +9,7 @@ import { GuestTime } from '../models/reserve';
 })
 export class TimemodalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: AdminService) { }
   guestTime: GuestTime = new GuestTime();
   guestTimes: Array<GuestTime> = [];
 
@@ -21,7 +22,25 @@ export class TimemodalComponent implements OnInit {
   };
 
 
+
+
+
   addTime(form: any) {
+    if (form.invalid) {
+      return
+    } else {
+      const time: GuestTime = {
+        time: this.guestTime.time,
+        place: this.guestTime.place,
+        status:true
+      }
+      this.http.addGuestTime(time).subscribe((res) => {
+
+      })
+    }
+
+
+
 
 
   };

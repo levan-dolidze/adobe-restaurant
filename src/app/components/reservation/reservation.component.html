@@ -38,11 +38,13 @@
         </form>
 
         <div *ngIf="!selectDay">
-            <form *ngFor="let time of timeList">
-                <div style="cursor:pointer;
-                " (click)="timeDetection(time)">
-                    {{time.place}}
-                    {{time.time}}
+            <form *ngFor="let time of (timeList$|async)">
+                <div style="cursor:pointer;" (click)="timeDetection(time)">
+                    <div [ngClass]="time.status==true?'text-success':'text-danger'">
+                        {{time.place}}
+                        {{time.time}}
+                    </div>
+               
                 </div>
             </form>
         </div>

@@ -13,6 +13,9 @@ export class ReserveModel {
 export class GuestTime {
     place: string;
     time: string;
+    status:boolean;
+    date?:Date;
+    key?:string
 };
 
 
