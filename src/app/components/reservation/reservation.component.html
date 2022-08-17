@@ -1,6 +1,6 @@
 <div class="reservation-content">
-    <div class="reservation-inner">
-        <form *ngIf="selectDay" (ngSubmit)="findTable(findTableForm)" #findTableForm="ngForm">
+    <div [ngSwitch]="viewMode" class="reservation-inner">
+        <form *ngSwitchCase="'selectDay'" (ngSubmit)="findTable(findTableForm)" #findTableForm="ngForm">
             <h3>reservation</h3>
             <div>
                 <label>
@@ -29,6 +29,9 @@
                 <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
                     #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             </div>
+
+
+
             <div class="text-danger f-12 m-t-8" *ngIf="findTableForm.submitted&&date.errors?.['required']">
                 Required
             </div>
@@ -36,13 +39,21 @@
                 <button class="fintTableBtn" type="submit" mat-raised-button color="primary">Find Table</button>
             </div>
         </form>
-<div class="guest-table-content" *ngIf="!selectDay">
+        <div *ngSwitchCase="'selectTime'" class="guest-table-content">
+            <mat-icon style="cursor:pointer" (click)="this.viewMode = 'selectDay'" class="back-to-signin">
+                keyboard_return
+            </mat-icon>
+            <h2>Guest Table</h2>
 
- <h2>Guest Table</h2>
-
- <h3>Need To Know</h3>
- <!-- aq unda gavaketo read more pipe -->
- <p >-Due to space restrictions and guest demand, we are limiting reservation times to 2 hours. -For curbside pickup orders or online gift cards, please visit www.toasttab.com/travelers-table -All patio reservations are for our uncovered and covered patio areas. If you have a preference on an area on the patio, please make a note of your request in the notes section. -Reservations are available 30 days in advance. The bar area is held nightly for Walk-in guests. -We offer a complimentary valet service on most nights for your convenience. If you decide to self-park on the street, please be aware of all street signage. -If you are running late, please call the restaurant at (832) 409-5785.</p>
+            <h3>Need To Know</h3>
+            <!-- aq unda gavaketo read more pipe -->
+            <p>-Due to space restrictions and guest demand, we are limiting reservation times to 2 hours. -For curbside
+                pickup orders or online gift cards, please visit www.toasttab.com/travelers-table -All patio
+                reservations are for our uncovered and covered patio areas. If you have a preference on an area on the
+                patio, please make a note of your request in the notes section. -Reservations are available 30 days in
+                advance. The bar area is held nightly for Walk-in guests. -We offer a complimentary valet service on
+                most nights for your convenience. If you decide to self-park on the street, please be aware of all
+                street signage. -If you are running late, please call the restaurant at (832) 409-5785.</p>
 
             <div class="timeSelect">
                 <label>
@@ -66,53 +77,126 @@
 
                 </label>
                 <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
-                #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                    #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
             </div>
-       
 
-      <div class="time-content">
-       <div class="time-inner">
 
-            <form *ngFor="let time of (timeList$|async)">
-                <div [class.reserved]="time.status===false" 
-                    [class.available]="time.status===true"
-                style="cursor:pointer;" (click)="timeDetection(time)">
-                    <div class="time-div" >
-                     <div>
-                        {{time.time}}
-                        {{time.place}}
-                     </div>
-                    </div>
-               
+            <div class="time-content">
+                <div class="time-inner">
+                    <form *ngFor="let time of (timeList$|async)">
+                        <div [class.reserved]="time.status===false" [class.available]="time.status===true"
+                            (click)="timeDetection(time)">
+                            <div class="time-div">
+                                <div>
+                                    {{time.time}}PM
+                                    {{time.place}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
                 </div>
-            </form>
+            </div>
+            <!-- //info -->
+            <div>
+                <div>
+                    <h2>About Traveler's Table</h2>
+                    <p>Traveler’s Table is a modern, globally-inspired eatery (and full bar) serving great-tasting
+                        versions of hand-selected dishes from around the world. Here, we believe that food can serve as
+                        a gateway for learning about other cultures, for fostering understanding, and for breaking down
+                        the barriers that divide us as citizens of the world. After all, no matter how different we are
+                        – everyone loves to eat! At Traveler’s Table, we are fortunate to have a diverse team of
+                        talented chefs who have brought their multi-ethnic cooking styles and experiences together to
+                        help create unique dishes and drinks that showcase the best flavors and ingredients from all
+                        over the world. Rather than recreate traditional recipes, however, we seek to modernize and
+                        elevate our dishes by making them lighter, brighter, and full of flavor, and while we may use a
+                        bit of creative license from time to time, we still try to stay true to the spirit of the
+                        originals</p>
+
+                </div>
+
+                <div>
+                    <h2>Safety Measures</h2>
+                </div>
+
+                <div>
+                    <h2>Contact Info</h2>
+                    520 Westheimer Road
+                    Houston, TX 77006
+                    <div class="sociall-network">
+                        <a href="https://www.facebook.com" target="_blank">
+                            <mat-icon style="color:blue;cursor: pointer;">facebook</mat-icon>
+                        </a>
+                    </div>
+                    <!-- //aq gvinda ruka  -->
+                </div>
+            </div>
         </div>
+        <div *ngSwitchCase="'reserve'">
+
+            <mat-icon style="cursor:pointer" (click)="this.viewMode = 'selectTime'" class="back-to-signin">
+                keyboard_return
+            </mat-icon>
+            <h2>Complete Your Reservation</h2>
+
+            <form (ngSubmit)="completeReservation(completeReservationForm)" #completeReservationForm="ngForm">
+            <div class="reservation-details-content">
+                <h3 class="reservation-details-title">Traveler's Table</h3>
+
+                <div>
+                    {{reserveModel.people===1?'Guest':'Guests'}}:{{reserveModel.people}}
+                </div>
+                <div>
+                    Date: {{reserveModel.date|json}}
+                </div>
+                <div>
+                    Time: {{reserveTime}}PM
+                </div>
+                <div>
+                    Place: {{reservePlace}}
+                </div>
+
+            </div>
+
+            <div class="cancelation-content">
+                <h3 class="cancelation-title">Cancellation policy</h3>
+                <ul class="cancelation-text">While you won't be charged if you need to cancel, we ask that you do so at
+                    least 24 hours in advance.</ul>
+
+            </div>
+
+
+            <div class="about-content">
+                <h3 class="about-title">About</h3>
+                <ul class="about-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eveniet quod
+                    mollitia iure et eos. Sed asperiores commodi ab rem eius dolore odit itaque, nobis mollitia error
+                    eligendi atque id ratione eos accusamus molestiae tempora dicta. Quibusdam similique minima quos id
+                    exercitationem debitis dignissimos est magni, eligendi, rem omnis a sit quidem obcaecati dolor
+                    quisquam. Neque quos, nesciunt possimus doloribus eos repellendus maxime minus ea nostrum, non
+                    voluptatem vel pariatur aperiam nam maiores iste. Vitae architecto quos veniam officia consequuntur
+                    nemo corporis tenetur, ad neque beatae earum fugiat molestiae placeat deserunt pariatur a eius
+                    commodi obcaecati sit molestias! Deleniti tempore rem animi aperiam corporis, accusantium architecto
+                    dolores? Perspiciatis, quo cum laborum, dolorum culpa eligendi beatae molestiae doloribusharum!.
+                </ul>
+            </div>
+            <div class='marketing-consents-content'>
+                <section class="example-section">
+                    <mat-checkbox class="example-margin">
+                        Receive offers and other emails from this restaurant</mat-checkbox>
+                </section>
+            </div>
+
+            <div>
+                <button class="reserveBtn" type="submit" mat-raised-button color="primary">Reserve Now</button>
+            </div>
+        </form>
         </div>
-     
-        <div>
-            <h2>About Traveler's Table</h2>
-            <p >Traveler’s Table is a modern, globally-inspired eatery (and full bar) serving great-tasting versions of hand-selected dishes from around the world. Here, we believe that food can serve as a gateway for learning about other cultures, for fostering understanding, and for breaking down the barriers that divide us as citizens of the world. After all, no matter how different we are – everyone loves to eat! At Traveler’s Table, we are fortunate to have a diverse team of talented chefs who have brought their multi-ethnic cooking styles and experiences together to help create unique dishes and drinks that showcase the best flavors and ingredients from all over the world. Rather than recreate traditional recipes, however, we seek to modernize and elevate our dishes by making them lighter, brighter, and full of flavor, and while we may use a bit of creative license from time to time, we still try to stay true to the spirit of the originals</p>
+
+        <div *ngSwitchCase="'reserveComplete'">
+            reservation is complete!
 
         </div>
-
-        <div>
-           <h2>Safety Measures</h2> 
-        </div>
-    
-    <div>
-        <h2>Contact Info</h2>
-        520 Westheimer Road
-        Houston, TX 77006
-        <div class="sociall-network">
-            <a href="https://www.facebook.com" target="_blank">
-                <mat-icon style="color:blue;cursor: pointer;">facebook</mat-icon>
-            </a>
-        </div>
-        <!-- //aq gvinda ruka  -->
-    </div>
-    
-    </div>
-
 
     </div>
 </div>

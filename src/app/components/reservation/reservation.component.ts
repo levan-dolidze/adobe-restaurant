@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { LoginComponent } from 'src/app/login/login.component';
 import { GuestTime, ReserveModel } from 'src/app/models/reserve';
@@ -17,10 +18,15 @@ export class ReservationComponent implements OnInit {
   people: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
   timeList$: Observable<GuestTime[]>;
 
+  isDisabled = (date: NgbDate, current: { month: number }) => date.day === 13;
 
   reserveModel: ReserveModel = new ReserveModel();
   selectDay: boolean = true;
+  viewMode = 'selectDay';
 
+  reserveTime: string;
+  reservePlace: string
+  reserve: any
 
 
   constructor(public modal: MatDialog,
@@ -47,19 +53,15 @@ export class ReservationComponent implements OnInit {
 
 
   timeDetection(reserve: any) {
-
-    if (reserve.status == false) {
+    if (reserve.status === false) {
       return
     } else {
-
-      this.http.reserveGuestTime(reserve).subscribe(()=>{
-
-      })
-
-
+      this.viewMode = 'reserve'
+      this.reserveTime = reserve.time
+      this.reservePlace = reserve.place
+      this.reserve = reserve;
     }
-
-  }
+  };
 
 
 
@@ -69,17 +71,29 @@ export class ReservationComponent implements OnInit {
       return
     }
     else {
+      this.viewMode = 'selectTime';
+      //aq unda gaketdes reqi backshi,gadaeces parametrad 
+      //person raodenoba da dge
+      //
+    }
+
+
+  };
+
+
+  completeReservation(form: any) {
+    if (form.invalid) {
+      return
+    } else {
       this.auth.getToken().subscribe((res) => {
         if (res) {
-          this.selectDay = false;
-          //aq unda gaketdes reqi backshi,gadaeces parametrad 
-          //person raodenoba da dge
-          //
+          console.log(this.reserve)
+          this.http.reserveGuestTime(this.reserve).subscribe(() => {
+            this.viewMode = 'reserveComplete';
+          })
         }
         else {
-
           this.modal.open(LoginComponent)
-
         }
       })
     }

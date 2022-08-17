@@ -9,9 +9,9 @@
 
 }
 
-form {
+/* form {
     text-align: center;
-}
+} */
 
 .form-control {
     width: 300px;
@@ -20,6 +20,7 @@ form {
 
 .fintTableBtn {
     margin-top: 10px;
+    float: right;
 
 }
 
@@ -60,30 +61,14 @@ form {
     
 }
 
-/* .time-div {
-    background-color: orchid;
-    margin-left: 10px;
-    border-radius: 5px;
-} */
 
 .time-div div {
     padding: 10px;
-    width: 150px;
+    width: 200px;
     margin-top: 10px;
-    cursor: pointer;
-
-    /* width: 100px;
-    height: 50px; */
-
 }
 
-.time-div :hover{
-    background-color: rgb(197, 62, 193);
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
 
-}
 
 .reserved{
     background-color: red;
@@ -95,3 +80,34 @@ form {
     margin-left: 10px;
     border-radius: 5px;
 }
+
+.available:hover{
+    background-color: rgb(197, 62, 193);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+.cancelation-content,.about-content{
+    display: flex;
+    margin-top: 20px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+
+    
+}
+.cancelation-title,.about-title,.reservation-details-title{
+    width: 30%;
+    font-weight: bold;
+}
+.cancelation-text,.about-text{
+    width: 60%;
+}
+.reservation-details-content{
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+
+.reserveBtn{
+    margin-top: 20px;
+    float: right;
+}
+
