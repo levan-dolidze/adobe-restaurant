@@ -10,7 +10,7 @@ import { GuestTime } from '../models/reserve';
 })
 export class HttpService {
 
-  apiUrl = environment.apiURL;
+ readonly apiUrl = environment.apiURL;
   constructor(private http: HttpClient) { }
 
   guestTime: GuestTime[] = [];

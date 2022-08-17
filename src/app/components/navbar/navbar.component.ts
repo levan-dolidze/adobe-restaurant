@@ -69,7 +69,10 @@ export class NavbarComponent implements OnInit {
   };
 
   openReserve(){
-    this.modal.open(ReservationComponent)
+    this.modal.open(ReservationComponent,{
+      autoFocus: false,
+      maxHeight: '90vh' //you can adjust the value as per your view
+})
 
   }
 

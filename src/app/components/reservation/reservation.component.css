@@ -1,6 +1,7 @@
 .reservation-content {
     width: 100%;
     height: 100%;
+   
 }
 
 .reservation-inner {
@@ -30,4 +31,66 @@ form {
 
 .timeMode {
     color: red
+}
+
+.timeSelect {
+    display: flex;
+    justify-content: center;
+
+}
+.guest-table-content{
+    overflow: scroll;
+}
+.timeSelect .form-control {
+    margin-left: 5px;
+}
+
+.time-content {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+.time-inner{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+/* .time-div {
+    background-color: orchid;
+    margin-left: 10px;
+    border-radius: 5px;
+} */
+
+.time-div div {
+    padding: 10px;
+    width: 150px;
+    margin-top: 10px;
+    cursor: pointer;
+
+    /* width: 100px;
+    height: 50px; */
+
+}
+
+.time-div :hover{
+    background-color: rgb(197, 62, 193);
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.reserved{
+    background-color: red;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+.available{
+    background-color: rgb(141, 216, 137);
+    margin-left: 10px;
+    border-radius: 5px;
 }

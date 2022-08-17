@@ -36,18 +36,82 @@
                 <button class="fintTableBtn" type="submit" mat-raised-button color="primary">Find Table</button>
             </div>
         </form>
+<div class="guest-table-content" *ngIf="!selectDay">
 
-        <div *ngIf="!selectDay">
+ <h2>Guest Table</h2>
+
+ <h3>Need To Know</h3>
+ <!-- aq unda gavaketo read more pipe -->
+ <p >-Due to space restrictions and guest demand, we are limiting reservation times to 2 hours. -For curbside pickup orders or online gift cards, please visit www.toasttab.com/travelers-table -All patio reservations are for our uncovered and covered patio areas. If you have a preference on an area on the patio, please make a note of your request in the notes section. -Reservations are available 30 days in advance. The bar area is held nightly for Walk-in guests. -We offer a complimentary valet service on most nights for your convenience. If you decide to self-park on the street, please be aware of all street signage. -If you are running late, please call the restaurant at (832) 409-5785.</p>
+
+            <div class="timeSelect">
+                <label>
+                    <select class="form-control" [(ngModel)]="reserveModel.people" name="people">
+                        <option *ngFor="let people of people" [ngValue]="people">
+                            {{people}}
+                            <div [ngSwitch]="people">
+                                <div *ngSwitchCase="1">Guest</div>
+                                <div *ngSwitchCase="2">Guests</div>
+                                <div *ngSwitchCase="3">Guests</div>
+                                <div *ngSwitchCase="4">Guests</div>
+                                <div *ngSwitchCase="5">Guests</div>
+                                <div *ngSwitchCase="6">Guests</div>
+                                <div *ngSwitchCase="7">Guests</div>
+                                <div *ngSwitchCase="8">+ Guests</div>
+                            </div>
+                            <!-- {{people===1?"Guest":"Guests"}}  -->
+
+                        </option>
+                    </select>
+
+                </label>
+                <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
+                #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            </div>
+       
+
+      <div class="time-content">
+       <div class="time-inner">
+
             <form *ngFor="let time of (timeList$|async)">
-                <div style="cursor:pointer;" (click)="timeDetection(time)">
-                    <div [ngClass]="time.status==true?'text-success':'text-danger'">
-                        {{time.place}}
+                <div [class.reserved]="time.status===false" 
+                    [class.available]="time.status===true"
+                style="cursor:pointer;" (click)="timeDetection(time)">
+                    <div class="time-div" >
+                     <div>
                         {{time.time}}
+                        {{time.place}}
+                     </div>
                     </div>
                
                 </div>
             </form>
         </div>
+        </div>
+     
+        <div>
+            <h2>About Traveler's Table</h2>
+            <p >Traveler’s Table is a modern, globally-inspired eatery (and full bar) serving great-tasting versions of hand-selected dishes from around the world. Here, we believe that food can serve as a gateway for learning about other cultures, for fostering understanding, and for breaking down the barriers that divide us as citizens of the world. After all, no matter how different we are – everyone loves to eat! At Traveler’s Table, we are fortunate to have a diverse team of talented chefs who have brought their multi-ethnic cooking styles and experiences together to help create unique dishes and drinks that showcase the best flavors and ingredients from all over the world. Rather than recreate traditional recipes, however, we seek to modernize and elevate our dishes by making them lighter, brighter, and full of flavor, and while we may use a bit of creative license from time to time, we still try to stay true to the spirit of the originals</p>
+
+        </div>
+
+        <div>
+           <h2>Safety Measures</h2> 
+        </div>
+    
+    <div>
+        <h2>Contact Info</h2>
+        520 Westheimer Road
+        Houston, TX 77006
+        <div class="sociall-network">
+            <a href="https://www.facebook.com" target="_blank">
+                <mat-icon style="color:blue;cursor: pointer;">facebook</mat-icon>
+            </a>
+        </div>
+        <!-- //aq gvinda ruka  -->
+    </div>
+    
+    </div>
 
 
     </div>

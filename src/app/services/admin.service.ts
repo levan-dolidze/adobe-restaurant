@@ -10,7 +10,7 @@ import { GuestTime } from '../models/reserve';
   providedIn: 'root'
 })
 export class AdminService {
-  apiUrl = environment.apiURL;
+ readonly apiUrl = environment.apiURL;
   //privatze unda gadavaketo tu ar gaaerorebs
   constructor(public firebaseAuth: AngularFireAuth,
     private http: HttpClient) { }
