@@ -4,22 +4,23 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { map, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PrivateDiningModel } from '../models/privateDiningModel';
-import { GuestTime } from '../models/reserve';
+import { GuestTime, TableReservationModel } from '../models/reserve';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
- readonly apiUrl = environment.apiURL;
+  readonly apiUrl = environment.apiURL;
   //privatze unda gadavaketo tu ar gaaerorebs
   constructor(public firebaseAuth: AngularFireAuth,
     private http: HttpClient) { }
+
   privateDinning: PrivateDiningModel[] = [];
-
   guestTime: GuestTime[] = [];
+  tableReservations: TableReservationModel[] = []
 
-  orderedDiningDelete$: Subject<any> = new Subject()
-
+  orderedDiningDelete$: Subject<any> = new Subject();
+  tableReservationDetele$: Subject<any> = new Subject();
 
   returnPrivateDining(): Observable<PrivateDiningModel[]> {
     return this.http.get<PrivateDiningModel[]>(`${this.apiUrl}privateEvent.json`).pipe(
@@ -55,5 +56,46 @@ export class AdminService {
     return this.http.post(`${this.apiUrl}guestTime.json`, time)
   };
 
+
+  //get all reservations
+
+  getTableReservations(): Observable<TableReservationModel[]> {
+    return this.http.get<TableReservationModel[]>(`${this.apiUrl}completeReservations.json`).pipe(
+      map((res) => {
+        if (res) {
+          const array = [];
+          for (const key in res) {
+            array.push({ ...res[key], key: key })
+          }
+          this.tableReservations = array
+          return array
+        }
+        return []
+      })
+    )
+  };
+
+
+  //delete Reservation, it also would be fit for cancelation of table reservation
+
+  deleteTableReservation(key: any) {
+    return this.http.delete(`${this.apiUrl}completeReservations/${key}.json`).pipe(
+      tap(() => {
+        const index = this.tableReservations.map((item) => item.key).indexOf(key);
+        this.tableReservations.splice(index, 1)
+        this.tableReservationDetele$.next(of(this.tableReservations))
+      })
+    )
+  }
+
+
+  cancelTableTime(key: any) {
+    return this.http.patch(`${this.apiUrl}guestTime/${key}.json`,{ status: true }).pipe(
+      // tap(()=>{
+      //   const index =this.guestTime.map((item)=>item.key).indexOf(reserveTime.key)
+      //   this.guestTime[index]=reserveTime
+      // })
+    )
+  };
 
 };

@@ -45,3 +45,7 @@ textarea {
 .second{
     padding: 0px 0px 0px 5px;
 }
+
+.sendBtn{
+    float: right;
+}

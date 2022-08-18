@@ -13,14 +13,28 @@ export class ReserveModel {
 export class GuestTime {
     place: string;
     time: string;
-    status:boolean;
-    date?:NgbDateStruct;
-    key?:string;
-    marketingConsent?:boolean;
-    constructor(){
-        this.marketingConsent=false
+    status: boolean;
+    date?: NgbDateStruct;
+    key?: string;
+    marketingConsent?: boolean;
+    constructor() {
+        this.marketingConsent = false;
 
     }
+};
+
+
+export class TableReservationModel {
+    customer: {
+        customer: string,
+        marketing: boolean,
+        uid: string,
+
+    }
+    key: string;
+    place: string;
+    status: boolean;
+    time: string;
 };
 
 

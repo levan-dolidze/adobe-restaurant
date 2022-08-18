@@ -30,9 +30,9 @@
                 <button *ngIf="adminPanel" mat-button [matMenuTriggerFor]="admin">Admin</button>
                 <mat-menu #admin="matMenu">
                     <div class="product-menu">
-                        <button mat-menu-item [routerLink]="['/admin-reservation']">Reservations</button>
-                        <button mat-menu-item [routerLink]="['/admin-order']">Online Orders</button>
+                        <button mat-menu-item [routerLink]="['/admin-reservation']">Table Bookings</button>
                         <button mat-menu-item [routerLink]="['/admin-event']">Event Bookings</button>
+                        <button mat-menu-item [routerLink]="['/admin-order']">Online Orders</button>
                         <button mat-menu-item [routerLink]="['/admin-product']">Products</button>
                     </div>
                 </mat-menu>
