@@ -10,7 +10,7 @@ import { GuestTime } from '../models/reserve';
 })
 export class HttpService {
 
- readonly apiUrl = environment.apiURL;
+  readonly apiUrl = environment.apiURL;
   constructor(private http: HttpClient) { }
 
   guestTime: GuestTime[] = [];
@@ -39,8 +39,8 @@ export class HttpService {
   };
 
 
-  reserveGuestTime(reserveTime: GuestTime) {
-    return this.http.patch(`${this.apiUrl}guestTime/${reserveTime.key}.json`,{status:false} ).pipe(
+  bookingTable(reserveTime: GuestTime) {
+    return this.http.patch(`${this.apiUrl}guestTime/${reserveTime.key}.json`, { status: false }).pipe(
       // tap(()=>{
       //   const index =this.guestTime.map((item)=>item.key).indexOf(reserveTime.key)
       //   this.guestTime[index]=reserveTime
@@ -48,6 +48,10 @@ export class HttpService {
     )
   };
 
+
+  completeReservation(reservation: any) {
+    return this.http.post(`${this.apiUrl}completeReservations.json`, reservation)
+  }
 
 
 }

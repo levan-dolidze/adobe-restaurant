@@ -17,17 +17,14 @@ export class ReservationComponent implements OnInit {
 
   people: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8];
   timeList$: Observable<GuestTime[]>;
+  reserveInfo: GuestTime = new GuestTime();
 
-  isDisabled = (date: NgbDate, current: { month: number }) => date.day === 13;
 
   reserveModel: ReserveModel = new ReserveModel();
   selectDay: boolean = true;
   viewMode = 'selectDay';
-
-  reserveTime: string;
-  reservePlace: string
   reserve: any
-
+  marketingConsent: boolean = true
 
   constructor(public modal: MatDialog,
     private auth: AuthService,
@@ -41,6 +38,11 @@ export class ReservationComponent implements OnInit {
     this.returnGuestTimes();
 
 
+  };
+
+
+  onChange(e: any) {
+    this.reserveInfo.marketingConsent = e.checked;
   };
 
   returnGuestTimes() {
@@ -57,8 +59,8 @@ export class ReservationComponent implements OnInit {
       return
     } else {
       this.viewMode = 'reserve'
-      this.reserveTime = reserve.time
-      this.reservePlace = reserve.place
+      this.reserveInfo.time = reserve.time
+      this.reserveInfo.place = reserve.place
       this.reserve = reserve;
     }
   };
@@ -72,12 +74,7 @@ export class ReservationComponent implements OnInit {
     }
     else {
       this.viewMode = 'selectTime';
-      //aq unda gaketdes reqi backshi,gadaeces parametrad 
-      //person raodenoba da dge
-      //
     }
-
-
   };
 
 
@@ -87,9 +84,15 @@ export class ReservationComponent implements OnInit {
     } else {
       this.auth.getToken().subscribe((res) => {
         if (res) {
-          console.log(this.reserve)
-          this.http.reserveGuestTime(this.reserve).subscribe(() => {
+          this.reserve.customer = {
+            customer: res.email,
+            uid: res.uid,
+            marketing: this.reserveInfo.marketingConsent
+          };
+          this.http.bookingTable(this.reserve).subscribe(() => {
+            this.addReservation(this.reserve)
             this.viewMode = 'reserveComplete';
+
           })
         }
         else {
@@ -99,7 +102,11 @@ export class ReservationComponent implements OnInit {
     }
   };
 
+  addReservation(reservation: any) {
+    this.http.completeReservation(reservation).subscribe((res) => {
 
+    })
+  }
 
 
 

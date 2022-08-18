@@ -1,4 +1,3 @@
-import { Time } from "@angular/common";
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
 export class ReserveModel {
@@ -16,7 +15,12 @@ export class GuestTime {
     time: string;
     status:boolean;
     date?:NgbDateStruct;
-    key?:string
+    key?:string;
+    marketingConsent?:boolean;
+    constructor(){
+        this.marketingConsent=false
+
+    }
 };
 
 

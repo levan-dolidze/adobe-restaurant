@@ -151,10 +151,10 @@
                     Date: {{reserveModel.date|json}}
                 </div>
                 <div>
-                    Time: {{reserveTime}}PM
+                    Time: {{reserveInfo.time}}PM
                 </div>
                 <div>
-                    Place: {{reservePlace}}
+                    Place: {{reserveInfo.place}}
                 </div>
 
             </div>
@@ -181,9 +181,10 @@
                 </ul>
             </div>
             <div class='marketing-consents-content'>
-                <section class="example-section">
-                    <mat-checkbox class="example-margin">
-                        Receive offers and other emails from this restaurant</mat-checkbox>
+                 <section class="example-section">
+                    <mat-checkbox (change)="onChange($event)" 
+                                  class="example-margin">Receive offers and other emails from this restaurant
+                    </mat-checkbox>
                 </section>
             </div>
 
