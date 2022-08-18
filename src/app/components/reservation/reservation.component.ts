@@ -92,7 +92,6 @@ export class ReservationComponent implements OnInit {
           this.http.bookingTable(this.reserve).subscribe(() => {
             this.addReservation(this.reserve)
             this.viewMode = 'reserveComplete';
-
           })
         }
         else {
@@ -106,7 +105,7 @@ export class ReservationComponent implements OnInit {
     this.http.completeReservation(reservation).subscribe((res) => {
 
     })
-  }
+  };
 
 
 

@@ -32,6 +32,7 @@ export class TableReservationModel {
 
     }
     key: string;
+    ke:string
     place: string;
     status: boolean;
     time: string;

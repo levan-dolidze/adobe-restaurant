@@ -23,16 +23,17 @@
                             Event Date: {{table.time}}
                         </div>
                         <div>
-                            Event Date: {{table.key}}
+                            Event Date: {{table.ke}}
                         </div>
                     
                     </div>
-                  
+                
                     <div>
                         <!-- price <span>{{i.price}}</span> -->
                     </div>
                     <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
-                    (click)="deleteTableReservation(table.key)">delete</mat-icon>
+                
+                    (click)="deleteTableReservation(table.ke,table.key)">delete</mat-icon>
                 </div>
 
             </div>

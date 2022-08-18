@@ -28,7 +28,7 @@ export class AdminService {
         if (res) {
           const arr = [];
           for (const key in res) {
-            arr.push({ ...res[key], key: key })
+            arr.push({ ...res[key], ke: key })
           }
           this.privateDinning = arr
           return arr
@@ -65,7 +65,7 @@ export class AdminService {
         if (res) {
           const array = [];
           for (const key in res) {
-            array.push({ ...res[key], key: key })
+            array.push({ ...res[key], ke: key })
           }
           this.tableReservations = array
           return array
@@ -79,6 +79,7 @@ export class AdminService {
   //delete Reservation, it also would be fit for cancelation of table reservation
 
   deleteTableReservation(key: any) {
+    //es key ar aris romelic shecvlis statuss
     return this.http.delete(`${this.apiUrl}completeReservations/${key}.json`).pipe(
       tap(() => {
         const index = this.tableReservations.map((item) => item.key).indexOf(key);

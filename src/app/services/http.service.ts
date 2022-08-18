@@ -51,7 +51,7 @@ export class HttpService {
 
   completeReservation(reservation: any) {
     return this.http.post(`${this.apiUrl}completeReservations.json`, reservation)
-  }
+  };
 
 
-}
+};

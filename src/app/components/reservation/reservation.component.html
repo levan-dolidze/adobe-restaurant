@@ -84,8 +84,9 @@
             <div class="time-content">
                 <div class="time-inner">
                     <form *ngFor="let time of (timeList$|async)">
-                        <div [class.reserved]="time.status===false" [class.available]="time.status===true"
-                            (click)="timeDetection(time)">
+                        <div [class.reserved]="time.status===false" 
+                             [class.available]="time.status===true"
+                             (click)="timeDetection(time)">
                             <div class="time-div">
                                 <div>
                                     {{time.time}}PM

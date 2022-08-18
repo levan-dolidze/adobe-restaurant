@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { filter, from, Observable, of } from 'rxjs';
 import { LoaderService } from 'src/app/loader.service';
 import { TableReservationModel } from 'src/app/models/reserve';
 import { AdminService } from 'src/app/services/admin.service';
@@ -22,44 +22,33 @@ export class AdminReservationComponent implements OnInit {
   ) { }
 
   tableReservations$: Observable<TableReservationModel[]>
-   
-  key:any
+  key: any;
+
   ngOnInit(): void {
     this.returnTableReservations();
-    this.getGuestTimes();
   };
-
-
-  getGuestTimes() {
-    this.httpService.getGuestTime().subscribe((res)=>{
-      for (const iterator of res) {
-        this.key=iterator.key
-      };
-    })
-  };
-
 
   returnTableReservations() {
     this.tableReservations$ = this.httpAdmin.getTableReservations();
     this.tableReservations$.subscribe((res) => {
-      this.tableReservations$ = of(res)
+    this.tableReservations$ = of(res)
     })
   };
 
-
-  deleteTableReservation(key: any) {
-    this.httpAdmin.deleteTableReservation(key).subscribe((res) => {
-      this.cancelTableBooking();
+  deleteTableReservation(ke:any,key: any) {
+    this.cancelTableBooking(key)
+    this.httpAdmin.deleteTableReservation(ke).subscribe((res) => {
       this.httpAdmin.tableReservationDetele$.subscribe((updatedReservations) => {
         this.tableReservations$ = updatedReservations;
       })
     })
   };
 
-  cancelTableBooking() {
-    this.httpAdmin.cancelTableTime(this.key).subscribe((res) => {
+  cancelTableBooking(key:any) {
+    this.httpAdmin.cancelTableTime(key).subscribe((res) => {
     })
   };
+
 
 
 };
