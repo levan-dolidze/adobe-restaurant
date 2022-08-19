@@ -22,7 +22,6 @@ export class AdminReservationComponent implements OnInit {
   ) { }
 
   tableReservations$: Observable<TableReservationModel[]>
-  key: any;
 
   ngOnInit(): void {
     this.returnTableReservations();
@@ -31,21 +30,22 @@ export class AdminReservationComponent implements OnInit {
   returnTableReservations() {
     this.tableReservations$ = this.httpAdmin.getTableReservations();
     this.tableReservations$.subscribe((res) => {
-    this.tableReservations$ = of(res)
+      this.tableReservations$ = of(res)
     })
   };
 
-  deleteTableReservation(ke:any,key: any) {
-    this.cancelTableBooking(key)
-    this.httpAdmin.deleteTableReservation(ke).subscribe((res) => {
+  deleteTableReservation(deleteKey: any) {
+    this.httpAdmin.deleteTableReservation(deleteKey).subscribe((res) => {
+    })
+  };
+
+  cancelTableBooking(key: any, deleteKey: any) {
+    this.httpAdmin.cancelTableTime(key).subscribe((res) => {
+      this.deleteTableReservation(deleteKey)
       this.httpAdmin.tableReservationDetele$.subscribe((updatedReservations) => {
         this.tableReservations$ = updatedReservations;
+        this.returnTableReservations();
       })
-    })
-  };
-
-  cancelTableBooking(key:any) {
-    this.httpAdmin.cancelTableTime(key).subscribe((res) => {
     })
   };
 

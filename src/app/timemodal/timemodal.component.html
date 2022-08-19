@@ -30,6 +30,10 @@
                     Required
                 </div>
             </div>
+            <div>
+                <input [(ngModel)]="guestTime.date" required name="date" style="cursor:pointer" class="form-control"
+                #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            </div>
 
             <div>
                 <button class="addTimeBtn" type="submit" mat-raised-button color="primary">Add time</button>

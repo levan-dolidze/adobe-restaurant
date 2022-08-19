@@ -2,7 +2,7 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
 export class ReserveModel {
     people: number;
-    date: Date;
+    date: NgbDateStruct;
     constructor() {
         this.people = 1;
     };
@@ -29,10 +29,9 @@ export class TableReservationModel {
         customer: string,
         marketing: boolean,
         uid: string,
-
     }
     key: string;
-    ke:string
+    deleteKey: string
     place: string;
     status: boolean;
     time: string;

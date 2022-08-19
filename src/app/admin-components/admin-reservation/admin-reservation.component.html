@@ -2,12 +2,12 @@
     <div class="admin-tableReserve-inner">
         <div @fade class="tableReserve-inner">
             <h3>Table Reservation List</h3>
-            <div  *ngIf="tableReservations$" class="tableReserve-list">
+            <div *ngIf="tableReservations$" class="tableReserve-list">
                 <div class="tableReserve-list-inner" *ngFor="let table of (tableReservations$|async)">
                     <div class="customerInfo">
                         <h3>Personal Info</h3>
                         <div>
-                            Customer Email:{{table.customer.customer}} 
+                            Customer Email:{{table.customer.customer}}
                         </div>
                         <div>
                             Marketing {{table.customer.marketing}}
@@ -22,24 +22,19 @@
                         <div>
                             Event Date: {{table.time}}
                         </div>
-                        <div>
-                            Event Date: {{table.ke}}
-                        </div>
-                    
+
+
                     </div>
-                
+
                     <div>
                         <!-- price <span>{{i.price}}</span> -->
                     </div>
                     <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
-                
-                    (click)="deleteTableReservation(table.ke,table.key)">delete</mat-icon>
+                        (click)="cancelTableBooking(table.key,table.deleteKey)">delete</mat-icon>
                 </div>
 
             </div>
-          
         </div>
     </div>
-<mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
+    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
 </div>
-

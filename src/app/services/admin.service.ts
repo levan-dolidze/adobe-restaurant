@@ -17,7 +17,7 @@ export class AdminService {
 
   privateDinning: PrivateDiningModel[] = [];
   guestTime: GuestTime[] = [];
-  tableReservations: TableReservationModel[] = []
+  tableReservations: TableReservationModel[] = [];
 
   orderedDiningDelete$: Subject<any> = new Subject();
   tableReservationDetele$: Subject<any> = new Subject();
@@ -38,7 +38,7 @@ export class AdminService {
         }
       })
     )
-  }
+  };
 
   deleteOrderedDiningEvent(key: any) {
     return this.http.delete(`${this.apiUrl}privateEvent/${key}.json`).pipe(
@@ -48,7 +48,7 @@ export class AdminService {
         this.orderedDiningDelete$.next(of(this.privateDinning))
       })
     )
-  }
+  };
 
   //time add
 
@@ -65,7 +65,7 @@ export class AdminService {
         if (res) {
           const array = [];
           for (const key in res) {
-            array.push({ ...res[key], ke: key })
+            array.push({ ...res[key], deleteKey: key })
           }
           this.tableReservations = array
           return array
@@ -87,7 +87,7 @@ export class AdminService {
         this.tableReservationDetele$.next(of(this.tableReservations))
       })
     )
-  }
+  };
 
 
   cancelTableTime(key: any) {
@@ -98,5 +98,4 @@ export class AdminService {
       // })
     )
   };
-
 };

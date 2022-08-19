@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of } from 'rxjs';
+import { filter, from, Observable, of } from 'rxjs';
+import { LoaderService } from 'src/app/loader.service';
 import { LoginComponent } from 'src/app/login/login.component';
 import { GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
@@ -28,7 +29,9 @@ export class ReservationComponent implements OnInit {
 
   constructor(public modal: MatDialog,
     private auth: AuthService,
-    private http: HttpService
+    private http: HttpService,
+    public loader: LoaderService,
+
   ) {
 
 
@@ -48,7 +51,6 @@ export class ReservationComponent implements OnInit {
   returnGuestTimes() {
     this.timeList$ = this.http.getGuestTime();
     this.timeList$.subscribe((res) => {
-      this.timeList$ = of(res)
     })
 
   }
@@ -66,7 +68,18 @@ export class ReservationComponent implements OnInit {
   };
 
 
+  changeDate() {
+    this.returnGuestTimes()
+    this.timeList$.subscribe((res) => {
+      const filtred = res.filter((item) => {
+        return item.date?.day === this.reserveModel.date.day &&
+          item.date?.month === this.reserveModel.date.month &&
+          item.date?.year === this.reserveModel.date.year
+      })
+      this.timeList$ = of(filtred)
 
+    })
+  }
 
   findTable(findTableForm: any) {
     if (findTableForm.invalid) {
@@ -74,6 +87,18 @@ export class ReservationComponent implements OnInit {
     }
     else {
       this.viewMode = 'selectTime';
+      this.timeList$.subscribe((res) => {
+        const filtred = res.filter((item) => {
+          console.log(item.date)
+          console.log(this.reserveModel.date)
+          return item.date?.day === this.reserveModel.date.day &&
+            item.date?.month === this.reserveModel.date.month &&
+            item.date?.year === this.reserveModel.date.year
+        })
+        console.log(filtred)
+        this.timeList$ = of(filtred)
+
+      })
     }
   };
 

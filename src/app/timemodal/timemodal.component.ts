@@ -32,7 +32,8 @@ export class TimemodalComponent implements OnInit {
       const time: GuestTime = {
         time: this.guestTime.time,
         place: this.guestTime.place,
-        status:true
+        status:true,
+        date:this.guestTime.date
       }
       this.http.addGuestTime(time).subscribe((res) => {
 

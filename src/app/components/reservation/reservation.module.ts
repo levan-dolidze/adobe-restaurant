@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     ReservationComponent
@@ -21,7 +22,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     NgbModule,
     MatIconModule,
     DatePipe,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
+
   ]
 })
 export class ReservationModule { }

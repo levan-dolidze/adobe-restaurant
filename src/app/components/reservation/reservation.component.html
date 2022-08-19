@@ -26,9 +26,15 @@
             </div>
 
             <div>
-                <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
-                    #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-            </div>
+                <input [(ngModel)]="reserveModel.date" 
+                       required 
+                       name="date" 
+                       style="cursor:pointer" 
+                       class="form-control"
+                       #date="ngModel" 
+                       placeholder="yyyy-mm-dd" 
+                       ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+         </div>
 
 
 
@@ -76,13 +82,22 @@
                     </select>
 
                 </label>
-                <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
-                    #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                <input [(ngModel)]="reserveModel.date" 
+                       required name="date" 
+                       style="cursor:pointer" 
+                       class="form-control"
+                       #date="ngModel" 
+                       placeholder="yyyy-mm-dd" 
+                       ngbDatepicker #d="ngbDatepicker" 
+                       (ngModelChange)="changeDate()"
+                       (click)="d.toggle()">
             </div>
 
 
             <div class="time-content">
                 <div class="time-inner">
+    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
+
                     <form *ngFor="let time of (timeList$|async)">
                         <div [class.reserved]="time.status===false" 
                              [class.available]="time.status===true"
