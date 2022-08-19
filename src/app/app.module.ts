@@ -18,7 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EventMessageComponent } from './event-message/event-message.component';
 import { TimemodalComponent } from './timemodal/timemodal.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,8 @@ import { TimemodalComponent } from './timemodal/timemodal.component';
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    FontAwesomeModule,
+    FontAwesomeModule
 
 
   ],

@@ -27,6 +27,7 @@
                 <button mat-button [routerLink]="['/events']">Private Event </button>
                 <button mat-button (click)="openReserve()">Reserve</button>
                 <button mat-button [routerLink]="['/order']">Order Online </button>
+
                 <button *ngIf="adminPanel" mat-button [matMenuTriggerFor]="admin">Admin</button>
                 <mat-menu #admin="matMenu">
                     <div class="product-menu">
@@ -36,6 +37,17 @@
                         <button mat-menu-item [routerLink]="['/admin-product']">Products</button>
                     </div>
                 </mat-menu>
+
+                <i *ngIf="authStatusIsLoggedin" style="margin-right:10px;cursor:pointer;" [matMenuTriggerFor]="userProfile"
+                    class="fa-solid fa-user"></i>
+
+                <mat-menu #userProfile="matMenu">
+                    <div class="product-menu">
+                        <button mat-menu-item [routerLink]="['/user-profile']">My Reservations</button>
+
+                    </div>
+                </mat-menu>
+
 
 
 

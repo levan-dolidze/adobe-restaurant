@@ -35,6 +35,7 @@ export class TableReservationModel {
     place: string;
     status: boolean;
     time: string;
+    date:NgbDateStruct
 };
 
 

@@ -96,10 +96,10 @@
 
             <div class="time-content">
                 <div class="time-inner">
-    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
+    <mat-spinner  *ngIf="loader.isLoading|async"></mat-spinner>
 
                     <form *ngFor="let time of (timeList$|async)">
-                        <div [class.reserved]="time.status===false" 
+                        <div @fade [class.reserved]="time.status===false" 
                              [class.available]="time.status===true"
                              (click)="timeDetection(time)">
                             <div class="time-div">

@@ -46,7 +46,16 @@ const routes: Routes = [
 },
   { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) },
   { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
-  { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) }];
+  { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
+  { path: 'user-profile', 
+    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule),
+    canActivate: [AuthGuard]
+
+  
+  
+  }
+  
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

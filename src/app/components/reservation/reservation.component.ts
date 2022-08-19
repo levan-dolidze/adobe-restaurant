@@ -7,11 +7,13 @@ import { LoginComponent } from 'src/app/login/login.component';
 import { GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
+import { fade } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.css']
+  styleUrls: ['./reservation.component.css'],
+  animations:[fade]
 })
 
 export class ReservationComponent implements OnInit {
@@ -112,7 +114,8 @@ export class ReservationComponent implements OnInit {
           this.reserve.customer = {
             customer: res.email,
             uid: res.uid,
-            marketing: this.reserveInfo.marketingConsent
+            marketing: this.reserveInfo.marketingConsent,
+            date:this.reserveInfo.date
           };
           this.http.bookingTable(this.reserve).subscribe(() => {
             this.addReservation(this.reserve)
