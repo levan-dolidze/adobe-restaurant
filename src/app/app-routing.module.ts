@@ -10,6 +10,18 @@ const routes: Routes = [
     pathMatch: 'full'
 
   },
+  {
+    path: 'user-profile',
+    // component: MyReservationComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'my-reservation',
+        loadChildren: () => import('./my-reservation/my-reservation.module').then(m => m.MyReservationModule)
+      },
+    ]
+
+  },
 
   { path: 'home', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule) },
   { path: 'about', loadChildren: () => import('./components/about/about.module').then(m => m.AboutModule) },
@@ -39,23 +51,17 @@ const routes: Routes = [
 
 
   },
-  { path: 'admin-event', 
+  {
+    path: 'admin-event',
     loadChildren: () => import('./admin-components/admin-event/admin-event.module').then(m => m.AdminEventModule),
     canActivate: [AuthGuard]
 
-},
+  },
   { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) },
   { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
   { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
-  { path: 'user-profile', 
-    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule),
-    canActivate: [AuthGuard]
 
-  
-  
-  }
-  
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

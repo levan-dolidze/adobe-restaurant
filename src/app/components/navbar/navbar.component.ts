@@ -17,10 +17,10 @@ export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
   adminPanel: boolean = false;
-  constructor(public modal: MatDialog, 
-              private http: AuthService,
-              private router:Router
-              ) { }
+  constructor(public modal: MatDialog,
+    private http: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.returnToken();
@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
   };
 
   adminChecking(adminMail: AdminPermission) {
-    (this.adminPermission.adminPermission(adminMail))?this.adminPanel = true:this.adminPanel = false;
+    (this.adminPermission.adminPermission(adminMail)) ? this.adminPanel = true : this.adminPanel = false;
   };
 
 
@@ -43,14 +43,11 @@ export class NavbarComponent implements OnInit {
 
   returnToken() {
     this.http.getToken().subscribe((res) => {
-      switch (res) {
-        case res:true
+      if (res) {
         this.adminChecking(res.email)
         this.authStatusIsLoggedin = true;
-          break;
-        default:
+      } else {
         this.authStatusIsLoggedin = false;
-          break;
       }
     })
   };
@@ -68,11 +65,11 @@ export class NavbarComponent implements OnInit {
     })
   };
 
-  openReserve(){
-    this.modal.open(ReservationComponent,{
+  openReserve() {
+    this.modal.open(ReservationComponent, {
       autoFocus: false,
-      maxHeight: '90vh' //you can adjust the value as per your view
-})
+      maxHeight: '90vh'
+    })
 
   }
 

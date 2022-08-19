@@ -38,23 +38,26 @@
                     </div>
                 </mat-menu>
 
-                <i *ngIf="authStatusIsLoggedin" style="margin-right:10px;cursor:pointer;" [matMenuTriggerFor]="userProfile"
-                    class="fa-solid fa-user"></i>
-
-                <mat-menu #userProfile="matMenu">
-                    <div class="product-menu">
-                        <button mat-menu-item [routerLink]="['/user-profile']">My Reservations</button>
-
-                    </div>
-                </mat-menu>
-
-
-
-
-                <button (click)="openDialog()" id="login" mat-stroked-button color="primary">
-                    {{authStatusIsLoggedin?"Logout":"Login"}}
-                    <span class="material-icons">{{authStatusIsLoggedin?"logout":"login"}}</span>
-                </button>
+                <ng-container [ngSwitch]="authStatusIsLoggedin">
+                    <ng-container *ngSwitchCase="true">
+                        <i style="margin-right:10px;cursor:pointer;" [matMenuTriggerFor]="userProfile"
+                            class="fa-solid fa-user"></i>
+                        <mat-menu #userProfile="matMenu">
+                            <div class="product-menu">
+                                <button mat-menu-item [routerLink]="['user-profile/my-reservation']">My Reservations</button>
+                                <button style="width: 100%" (click)="openDialog()" id="login" mat-stroked-button
+                                    color="primary">
+                                    {{"Logout"}}<span class="material-icons">{{"logout"}}</span>
+                                </button>
+                            </div>
+                        </mat-menu>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="false">
+                        <button (click)="openDialog()" id="login" mat-stroked-button color="primary">
+                            {{'Login'}} <span class="material-icons">{{"login"}}</span>
+                        </button>
+                    </ng-container>
+                </ng-container>
 
             </div>
         </div>
