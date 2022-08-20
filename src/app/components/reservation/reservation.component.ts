@@ -13,7 +13,7 @@ import { fade } from 'src/app/shared/animations';
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css'],
-  animations:[fade]
+  animations: [fade]
 })
 
 export class ReservationComponent implements OnInit {
@@ -91,15 +91,11 @@ export class ReservationComponent implements OnInit {
       this.viewMode = 'selectTime';
       this.timeList$.subscribe((res) => {
         const filtred = res.filter((item) => {
-          console.log(item.date)
-          console.log(this.reserveModel.date)
           return item.date?.day === this.reserveModel.date.day &&
             item.date?.month === this.reserveModel.date.month &&
             item.date?.year === this.reserveModel.date.year
         })
-        console.log(filtred)
         this.timeList$ = of(filtred)
-
       })
     }
   };
@@ -115,7 +111,8 @@ export class ReservationComponent implements OnInit {
             customer: res.email,
             uid: res.uid,
             marketing: this.reserveInfo.marketingConsent,
-            date:this.reserveInfo.date
+            date: this.reserveInfo.date,
+            UID: res.uid
           };
           this.http.bookingTable(this.reserve).subscribe(() => {
             this.addReservation(this.reserve)

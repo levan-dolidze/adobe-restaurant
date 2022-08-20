@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
   adminPanel: boolean = false;
   constructor(public modal: MatDialog,
     private http: AuthService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -57,8 +56,8 @@ export class NavbarComponent implements OnInit {
     this.http.getToken().subscribe((res) => {
       if (res) {
         this.http.logOut();
-        this.adminPanel = false
-        this.authStatusIsLoggedin = false
+        this.adminPanel = false;
+        this.authStatusIsLoggedin = false;
       } else {
         this.modal.open(LoginComponent)
       };
@@ -70,7 +69,6 @@ export class NavbarComponent implements OnInit {
       autoFocus: false,
       maxHeight: '90vh'
     })
-
-  }
+  };
 
 };

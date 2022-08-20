@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { UserIsLoggedinGuard } from './guards/user-is-loggedin.guard';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path: 'user-profile',
     // component: MyReservationComponent,
-    canActivate: [AuthGuard],
+    canActivate: [UserIsLoggedinGuard],
     children: [
       {
         path: 'my-reservation',
@@ -40,16 +41,11 @@ const routes: Routes = [
     path: 'admin-order',
     loadChildren: () => import('./admin-components/admin-order/admin-order.module').then(m => m.AdminOrderModule),
     canActivate: [AuthGuard]
-
-
   },
   {
     path: 'admin-reservation',
     loadChildren: () => import('./admin-components/admin-reservation/admin-reservation.module').then(m => m.AdminReservationModule),
     canActivate: [AuthGuard]
-
-
-
   },
   {
     path: 'admin-event',

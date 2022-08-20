@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { MyReservationRoutingModule } from './my-reservation-routing.module';
 import { MyReservationComponent } from './my-reservation.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -11,7 +14,10 @@ import { MyReservationComponent } from './my-reservation.component';
   ],
   imports: [
     CommonModule,
-    MyReservationRoutingModule
+    MyReservationRoutingModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatButtonModule
   ]
 })
 export class MyReservationModule { }

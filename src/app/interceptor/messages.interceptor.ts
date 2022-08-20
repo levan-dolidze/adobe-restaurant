@@ -24,7 +24,7 @@ export class MessagesInterceptor implements HttpInterceptor {
         return throwError(error.error)
       }),
       finalize(() => {
-        this.loader.isLoading.next(false)
+        this.loader.isLoading.next(false);
       }
       )
     )

@@ -35,7 +35,8 @@ export class TableReservationModel {
     place: string;
     status: boolean;
     time: string;
-    date:NgbDateStruct
+    date:NgbDateStruct;
+    UID:any;
 };
 
 

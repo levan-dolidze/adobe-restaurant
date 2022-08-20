@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { filter, from, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PrivateDiningModel } from '../models/privateDiningModel';
-import { GuestTime } from '../models/reserve';
+import { GuestTime, TableReservationModel } from '../models/reserve';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   guestTime: GuestTime[] = [];
-
+  myReservations: TableReservationModel[] = [];
 
   addPrivateEvent(event: PrivateDiningModel): Observable<PrivateDiningModel> {
     return this.http.post<PrivateDiningModel>(`${this.apiUrl}privateEvent.json`, event)
@@ -51,6 +51,32 @@ export class HttpService {
 
   completeReservation(reservation: any) {
     return this.http.post(`${this.apiUrl}completeReservations.json`, reservation)
+  };
+
+
+  // get my reservations
+
+  getMyReservations(): Observable<TableReservationModel[]> {
+    return this.http.get<TableReservationModel[]>(`${this.apiUrl}completeReservations.json`).pipe(
+      map((res) => {
+        if (res) {
+          const arr = [];
+          for (const key in res) {
+            arr.push({ ...res[key], deleteKey: key })
+          }
+          this.myReservations = arr
+          return this.myReservations;
+        } else {
+          return [];
+        }
+      })
+    )
+
+  }
+
+
+  deleteMyTableReservation(key: any) {
+    return this.http.delete(`${this.apiUrl}completeReservations/${key}.json`)
   };
 
 
