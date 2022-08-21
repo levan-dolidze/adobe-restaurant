@@ -2,7 +2,7 @@
     <div class="admin-event-inner">
         <div @fade class="dining-inner">
             <h3>Private Dining List</h3>
-            <div  *ngIf="privateDining$" class="dining-list">
+            <div *ngIf="privateDining$" class="dining-list">
                 <div class="dining-list-inner" *ngFor="let dining of ( privateDining$|async)">
                     <div class="customerInfo">
                         <h3>Personal Info</h3>
@@ -35,35 +35,54 @@
                             AdditionalInfo:{{dining.additionalInfo}}
                         </div>
                     </div>
-                    <!-- <div class="product-details" *ngFor="let i of item.product">
-                                       <img [src]="i.image">
-
-                                       <div style="padding:10px">
-                                              <div>
-                                                     id : <span>{{i.key}}</span>
-                                              </div>
-                                              name : <span>{{i.name}}</span>
-                                              <div>
-                                                     Type <span>{{i.type}}</span>
-                                              </div>
-                                              <div>
-                                                     Size <span>{{i.size}}</span>
-                                              </div>
-                                              <div>
-                                                     Description <span>{{i.description}}</span>
-                                              </div>
-                                              <!- <div>
-                                                     Description <span>{{i.sale}}</span>
-                                              </div> -->
+              
                     <div>
-                        <!-- price <span>{{i.price}}</span> -->
                     </div>
                     <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
                     (click)="deleteDiningEvent(dining.key)">delete</mat-icon>
                 </div>
-
             </div>
-          
+        </div>
+        
+        <div class="add-dining-date-inner">
+            <h2 class="event-title">Add New Event</h2>
+            <form style="padding:10px" (ngSubmit)="addNewEventType(eventTypeForm)"#eventTypeForm='ngForm' >
+          <div>
+            <input type="text"
+            [(ngModel)]="eventTypeModel.eventType"
+            required
+            name="eventType"
+            #eventType="ngModel"
+            class="form-control"
+            placeholder="Event Type">
+          </div>
+
+          <div class="text-danger f-12 m-t-8" *ngIf="eventTypeForm.submitted&&eventType.errors?.['required']">
+            Required
+        </div>
+          <div>
+            <input type="text"
+            [(ngModel)]="eventTypeModel.eventId"
+            required
+            pattern="[0-9]*"
+            maxlength="3"
+            name="eventId"
+            #eventId="ngModel"
+            class="form-control"
+            placeholder="Event ID">
+          </div>
+          <div *ngIf="eventTypeForm.submitted" >
+            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['required']">
+              Required
+            </div>
+            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['pattern']">
+              Only Numbers Is Allowed
+            </div>
+
+        </div>
+    
+            <button class="addEventBtn" type="submit" mat-raised-button color="primary">Add New Event</button>
+        </form>
         </div>
     </div>
 <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>

@@ -2,6 +2,11 @@
     width: 100%;
     height: 100%;
     overflow: scroll;
+    
+}
+.admin-event-inner{
+    display: flex;
+    width: 100%;
 }
 
 .dining-list-inner {
@@ -11,15 +16,35 @@
     padding: 10px;
     margin-top: 10px;
 }
-
-.dining-list {
-    width: 70%;
+.dining-inner{
+    overflow: scroll;
+    width: 75%;
 }
+
+/* .dining-list {
+    width: 100%;
+} */
 
 .customerInfo{
-    width: 20%;
+    width: 40%;
 }
 .eventInfo{
-    width: 80%;
+    width: 60%;
 
+}
+
+
+.add-dining-date-inner{
+    background-color: white;
+    text-align: center;
+    width: 20%;
+    position: sticky;
+    top: 0px;
+    height: 250px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.form-control,.addEventBtn{
+    margin-top: 10px;
 }

@@ -4,6 +4,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { AdminEventRoutingModule } from './admin-event-routing.module';
 import { AdminEventComponent } from './admin-event.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +16,10 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     AdminEventRoutingModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    FormsModule
+
   ]
 })
 export class AdminEventModule { }

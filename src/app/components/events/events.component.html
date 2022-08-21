@@ -29,7 +29,13 @@
                        required
                        name="eventDate"
                        #eventDate="ngModel"
-                       class="form-control" type="text">
+                       placeholder="yyyy-mm-dd" 
+                       ngbDatepicker 
+                       #d="ngbDatepicker"
+                       style="cursor: pointer"
+                       class="form-control"
+                       (click)="d.toggle()"
+                       >
                        <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&eventDate.errors?.['required']">
                         Required
                        </div>
@@ -65,6 +71,24 @@
                     Required
                    </div>
                 
+                    </div>
+                </div>
+
+
+                
+                <select style="cursor:pointer"  [(ngModel)]="privateDiningModel.eventType" 
+                         name="eventType"
+                         #eventType="ngModel"
+                         class="form-control">
+                    <option *ngFor="let event of (eventTypes$|async)" [value]="event.eventType">
+                          {{event.eventType}}
+                    </option>
+
+                </select>
+            
+                <div *ngIf="privateDinerForm.submitted">
+                 <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['required']">
+                     Required
                     </div>
                 </div>
             

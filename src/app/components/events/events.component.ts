@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, of } from 'rxjs';
 import { EventMessageComponent } from 'src/app/event-message/event-message.component';
 import { LoginComponent } from 'src/app/login/login.component';
-import { PrivateDiningModel } from 'src/app/models/privateDiningModel';
+import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -14,14 +15,26 @@ import { HttpService } from 'src/app/services/http.service';
 export class EventsComponent implements OnInit {
 
   privateDiningModel: PrivateDiningModel = new PrivateDiningModel();
+  eventTypes$:Observable<EventTypeModel[]>;
+  
   constructor(private http: HttpService,
      private authService: AuthService,
      private dialog: MatDialog
      ) { }
 
   ngOnInit(): void {
+    this.returnEventTypes()
 
   };
+
+
+  returnEventTypes(){
+    this.eventTypes$=this.http.getEventTypes();
+    this.eventTypes$.subscribe((res)=>{
+      this.eventTypes$=of(res)
+
+    })
+  }
 
   submitPrivateEvent(form: any) {
     if (form.invalid) {
@@ -38,7 +51,10 @@ export class EventsComponent implements OnInit {
             startTime: this.privateDiningModel.startTime,
             numberOfPeople: this.privateDiningModel.numberOfPeople,
             additionalInfo: this.privateDiningModel.additionalInfo,
-            orderDate: new Date()
+            orderDate: new Date(),
+            eventType:this.privateDiningModel.eventType
+
+
           }
           this.http.addPrivateEvent(obj).subscribe((res) => { 
 

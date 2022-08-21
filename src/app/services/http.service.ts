@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, from, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PrivateDiningModel } from '../models/privateDiningModel';
+import { EventTypeModel, PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
 
 @Injectable({
@@ -80,4 +80,28 @@ export class HttpService {
   };
 
 
+  //add new event type
+
+  addEventType(eventType: EventTypeModel): Observable<EventTypeModel> {
+    return this.http.post<EventTypeModel>(`${this.apiUrl}eventTypes.json`, eventType)
+  }
+
+  getEventTypes(): Observable<EventTypeModel[]> {
+    return this.http.get<EventTypeModel[]>(`${this.apiUrl}eventTypes.json`).pipe(
+      map((res) => {
+        if (res) {
+          const array = [];
+          for (const key in res) {
+            array.push({ ...res[key], key: key })
+          }
+          return array
+        }
+        else {
+          return []
+        }
+
+      })
+    )
+
+  }
 };
