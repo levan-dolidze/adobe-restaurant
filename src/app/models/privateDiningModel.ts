@@ -7,7 +7,7 @@ export class PrivateDiningModel {
     surname: string;
     phoneNumber: string;
     eventDate: NgbDateStruct;
-    startTime: Time;
+    startTime: any;
     numberOfPeople: number;
     additionalInfo: string;
     key?:string;

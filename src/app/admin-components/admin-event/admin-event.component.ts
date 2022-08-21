@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, of, Subscription } from 'rxjs';
+import { filter, from, Observable, of, Subscription, toArray } from 'rxjs';
 import { LoaderService } from 'src/app/loader.service';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AdminService } from 'src/app/services/admin.service';
 import { HttpService } from 'src/app/services/http.service';
-import { v4 as uuidv4 } from 'uuid';
 import { fade } from 'src/app/shared/animations';
 
 @Component({
@@ -46,29 +45,36 @@ export class AdminEventComponent implements OnInit, OnDestroy {
 
 
 
-  get returnEventTypeUniqueId() {
-    return uuidv4()
-  };
-
   addNewEventType(form: any) {
     if (form.invalid) {
       return
-    } else {
-      const newEvent:EventTypeModel={
-        eventType:this.eventTypeModel.eventType,
-        eventId:this.eventTypeModel.eventId
-      }
-      this.http.addEventType(newEvent).subscribe((res) => {
-
-      })
     }
+    else {
+      this.http.getEventTypes().subscribe((res) => {
+        from(res).pipe(
+          filter((x => x.eventId === this.eventTypeModel.eventId ||
+            x.eventType === this.eventTypeModel.eventType)),
+          toArray(),
+        ).subscribe((res) => {
+          if (res.length > 0) {
+            return
+          } else {
+            const newEvent: EventTypeModel = {
+              eventType: this.eventTypeModel.eventType,
+              eventId: this.eventTypeModel.eventId
+            }
+            this.http.addEventType(newEvent).subscribe((res) => {
 
+            })
+          };
 
-
-  }
+        })
+      })
+    };
+  };
 
   ngOnDestroy(): void {
-    this.orderedDiningDelete$.unsubscribe()
+    this.orderedDiningDelete$.unsubscribe();
   };
 
 };

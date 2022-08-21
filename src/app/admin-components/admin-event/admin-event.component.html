@@ -23,13 +23,39 @@
                             Order Date: {{dining?.orderDate|date:"short"}}
                         </div>
                         <div>
-                            Event Date: {{dining.phoneNumber}}
+                            Event Date: {{dining.eventDate.day}}
+                              {{dining.eventDate.month}}
+                            {{dining.eventDate.year}}
                         </div>
                         <div>
-                            Start Time {{dining.startTime}}
+                            Start Time :
+                            <ng-container >
+                                {{dining.startTime.hour}} : 
+                            </ng-container>
+                         
+                            <ng-container *ngIf="dining.startTime.minute===0;else isnotNull"  >
+                              0{{dining.startTime.minute}}
+                            </ng-container>
+                            <ng-template #isnotNull >
+                                {{dining.startTime.minute}}
+                            </ng-template>
+                        
+
+                            <ng-container *ngIf="dining.startTime.hour<=12;else PM" >
+                                AM
+                            </ng-container>
+                            <ng-template #PM >
+                                PM
+                            </ng-template>
+                       
+                       
+                          
                         </div>
                         <div>
                             Number Of People: {{dining.phoneNumber}}
+                        </div>
+                        <div>
+                            Event Type: {{dining.eventType}}
                         </div>
                         <div>
                             AdditionalInfo:{{dining.additionalInfo}}
@@ -44,22 +70,29 @@
             </div>
         </div>
         
-        <div class="add-dining-date-inner">
+        <div @fade  class="add-dining-date-inner">
             <h2 class="event-title">Add New Event</h2>
             <form style="padding:10px" (ngSubmit)="addNewEventType(eventTypeForm)"#eventTypeForm='ngForm' >
           <div>
             <input type="text"
             [(ngModel)]="eventTypeModel.eventType"
             required
+            pattern="[a-z ]*"
             name="eventType"
             #eventType="ngModel"
             class="form-control"
             placeholder="Event Type">
           </div>
+<div *ngIf="eventTypeForm.submitted" class="text-danger f-12 m-t-8" >
+    <div *ngIf="eventType.errors?.['required']">
+        Required
+    </div>
+    <div *ngIf="eventType.errors?.['pattern']">
+        Wrong Format
+    </div>
 
-          <div class="text-danger f-12 m-t-8" *ngIf="eventTypeForm.submitted&&eventType.errors?.['required']">
-            Required
-        </div>
+</div>
+       
           <div>
             <input type="text"
             [(ngModel)]="eventTypeModel.eventId"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, of } from 'rxjs';
 import { EventMessageComponent } from 'src/app/event-message/event-message.component';
 import { LoginComponent } from 'src/app/login/login.component';
@@ -16,11 +17,16 @@ export class EventsComponent implements OnInit {
 
   privateDiningModel: PrivateDiningModel = new PrivateDiningModel();
   eventTypes$:Observable<EventTypeModel[]>;
+  meridian = true;
   
   constructor(private http: HttpService,
      private authService: AuthService,
-     private dialog: MatDialog
-     ) { }
+     private dialog: MatDialog,
+     config: NgbTimepickerConfig
+
+     ) { 
+      config.spinners = false;
+     }
 
   ngOnInit(): void {
     this.returnEventTypes()
@@ -37,6 +43,7 @@ export class EventsComponent implements OnInit {
   }
 
   submitPrivateEvent(form: any) {
+    console.log(this.privateDiningModel.startTime)
     if (form.invalid) {
       return
     } else {
@@ -53,19 +60,13 @@ export class EventsComponent implements OnInit {
             additionalInfo: this.privateDiningModel.additionalInfo,
             orderDate: new Date(),
             eventType:this.privateDiningModel.eventType
-
-
           }
           this.http.addPrivateEvent(obj).subscribe((res) => { 
-
             this.dialog.open(EventMessageComponent)
-            // form.reset();
           })
-
         }
         else {
          this.dialog.open(LoginComponent)
-
         }
       })
     };

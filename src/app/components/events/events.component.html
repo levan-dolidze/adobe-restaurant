@@ -10,6 +10,7 @@
                        #firstname="ngModel"
                        class="form-control" type="text"
                        placeholder="firstname"
+                       autocomplete="off"
                        >
                        <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&firstname.errors?.['required']">
                         Required
@@ -20,6 +21,7 @@
                        name="phoneNumber"
                        #phoneNumber="ngModel"
                        placeholder="phone"
+                       autocomplete="off"
                        class="form-control" type="text">
                        <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&phoneNumber.errors?.['required']">
                         Required
@@ -48,6 +50,7 @@
                        #surname="ngModel"
                        class="form-control" type="text"
                        placeholder="surname"
+                       autocomplete="off"
                        >
                        <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&surname.errors?.['required']">
                         Required
@@ -58,18 +61,35 @@
                        #email="ngModel"
                        class="form-control" type="text"
                        placeholder="email"
+                       autocomplete="off"
                        >
                        <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&email.errors?.['required']">
                         Required
                        </div>
-                <input [(ngModel)]="privateDiningModel.startTime" 
+
+<div style="margin:10px 0px 0px 30%">
+    <ngb-timepicker [(ngModel)]="privateDiningModel.startTime"
+    required
+    name="startTime"
+    #startTime="ngModel"
+    autocomplete="off"
+    
+    ></ngb-timepicker>
+    <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
+     Required
+    </div> 
+</div>
+              
+                     
+                <!-- <input [(ngModel)]="privateDiningModel.startTime" 
                 required
                 name="startTime"
                 #startTime="ngModel"
+                autocomplete="off"
                 class="form-control" type="text">
                 <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
                     Required
-                   </div>
+                   </div> -->
                 
                     </div>
                 </div>
@@ -79,8 +99,9 @@
                 <select style="cursor:pointer"  [(ngModel)]="privateDiningModel.eventType" 
                          name="eventType"
                          #eventType="ngModel"
-                         class="form-control">
-                    <option *ngFor="let event of (eventTypes$|async)" [value]="event.eventType">
+                         class="form-control"
+                         >
+                    <option  *ngFor="let event of (eventTypes$|async)" [value]="event.eventType">
                           {{event.eventType}}
                     </option>
 
@@ -98,6 +119,7 @@
                        name="numberOfPeople"
                        #numberOfPeople="ngModel"
                        placeholder="Number Of People"
+                       autocomplete="off"
                        class="form-control" type="text"
                        >
                        <div *ngIf="privateDinerForm.submitted">
@@ -114,6 +136,7 @@
                           name="additionalInfo"
                           #additionalInfo="ngModel"
                           id="" cols="30" rows="5"
+                          autocomplete="off"
                           placeholder="Aditional information..."
                           >
                 </textarea>

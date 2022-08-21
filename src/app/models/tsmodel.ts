@@ -1,3 +1,4 @@
+import { expand } from "rxjs";
 
 
 export interface Person {
@@ -14,4 +15,10 @@ const person: Person = {
 }
 type Acces = Person['name']
 type Query = keyof Person;
+
+
+
+
+
+
 
