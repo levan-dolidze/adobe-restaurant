@@ -4,13 +4,13 @@ import { LoaderService } from 'src/app/loader.service';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AdminService } from 'src/app/services/admin.service';
 import { HttpService } from 'src/app/services/http.service';
-import { fade } from 'src/app/shared/animations';
+import {fade, show } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-admin-event',
   templateUrl: './admin-event.component.html',
   styleUrls: ['./admin-event.component.css'],
-  animations: [fade]
+  animations: [fade,show]
 
 })
 export class AdminEventComponent implements OnInit, OnDestroy {
