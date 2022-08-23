@@ -33,8 +33,16 @@
                 </div>
             </div>
             <div>
-                <input [(ngModel)]="guestTime.date" required name="date" style="cursor:pointer" class="form-control"
-                #date="ngModel" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                <label >
+                <input [(ngModel)]="guestTime.date" 
+                       required name="date" 
+                       style="cursor:pointer" 
+                       class="form-control"
+                       #date="ngModel" 
+                       placeholder="yyyy-mm-dd" 
+                       ngbDatepicker #d="ngbDatepicker" 
+                       (click)="d.toggle()">
+                    </label>
             </div>
 
             <div>

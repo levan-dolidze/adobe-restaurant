@@ -9,14 +9,7 @@
                     alt="">
             </div>
             <div @fadeout class="router-links">
-                <button mat-button [matMenuTriggerFor]="about"> About </button>
-                <mat-menu #about="matMenu">
-                    <div class="product-menu">
-                        <button mat-menu-item [routerLink]="['/about']">About</button>
-                        <button mat-menu-item [routerLink]="['/story']">Story</button>
-                    </div>
-                </mat-menu>
-
+                <button mat-button [routerLink]="['/story']">Story </button>
                 <button mat-button [matMenuTriggerFor]="menu">Menus</button>
                 <mat-menu #menu="matMenu">
                     <div class="product-menu">
