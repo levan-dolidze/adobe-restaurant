@@ -1,0 +1,7 @@
+.employee-form{
+    width: 20%;
+}
+.employee-form label,textarea,.employeeBtn{
+    width: 100%;
+    margin-top: 10px;
+}

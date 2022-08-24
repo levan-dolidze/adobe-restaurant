@@ -16,7 +16,6 @@ export class FooterComponent implements OnInit {
 
   openSignup() {
     this.dialog.open(LoginComponent)
+  };
 
-  }
-
-}
+};

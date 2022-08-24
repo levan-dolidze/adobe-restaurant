@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { AdminProductRoutingModule } from './admin-product-routing.module';
 import { AdminProductComponent } from './admin-product.component';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { AdminProductComponent } from './admin-product.component';
   ],
   imports: [
     CommonModule,
-    AdminProductRoutingModule
+    AdminProductRoutingModule,
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class AdminProductModule { }

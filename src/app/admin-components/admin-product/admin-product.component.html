@@ -1,1 +1,61 @@
-<p>admin-product works!</p>
+<div class="product-content">
+    <div class="product inner">
+        <form (ngSubmit)="addEmployee(employeeForm)" class="employee-form" #employeeForm="ngForm">
+            <div>
+                <label>
+                    <input [(ngModel)]="employee.name"
+                           name="employeeName"
+                           #employeeName="ngModel"
+                           placeholder="Name"
+                           type="text" 
+                           class="form-control">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <input [(ngModel)]="employee.surname"
+                         name="employeeSurname"
+                         #employeeSurname="ngModel"
+                          placeholder="Surname"
+                          type="text" 
+                          class="form-control">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input [(ngModel)]="employee.position"
+                           name="employeePosition"
+                           #employeePosition="ngModel"
+                          placeholder="Position"
+                          type="text" 
+                          class="form-control">
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    <input [(ngModel)]="employee.image"
+                          name="employeeImage"
+                          #employeeImage="ngModel"
+                          type="file" 
+                          class="form-control">
+                </label>
+            </div>
+
+
+            <textarea [(ngModel)]="employee.description"
+                    placeholder="Working Experience"
+                    name="employeeDescription" 
+                    #employeeDescription="ngModel"
+                    cols="30" 
+                    rows="5">
+            </textarea>
+
+            <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Employee</button>
+       
+
+        </form>
+
+    </div>
+</div>

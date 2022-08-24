@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EventMessageComponent } from './event-message/event-message.component';
 import { TimemodalComponent } from './timemodal/timemodal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TeamMemberTextComponent } from './team-member-text/team-member-text.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     EventMessageComponent,
     TimemodalComponent,
+    TeamMemberTextComponent,
 
   ],
   imports: [

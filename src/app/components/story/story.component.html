@@ -28,38 +28,23 @@
 
             </div>
         </div>
- 
-        
-        <h1 style="text-align: center">Our Team</h1>
-  
-        <div  class="team-content">
-            <div @fade @show class="team-inner">
-                <div class="team-member">
-                    <img src="https://thumbs.dreamstime.com/b/female-restaurant-owner-digital-tablet-portrait-smiling-coffee-shop-standing-inside-her-116631151.jpg"
-                        alt="">
-                    saxeli gvari
-                    <div>
-                        pozicia
-                    </div>
 
+
+        <h1 style="text-align: center">Our Team</h1>
+
+        <div class="team-content">
+            <div @fade @show class="team-inner">
+                <div class="team-member" *ngFor="let member of membersArray;let i=index">
+                    <img (click)="openEmployeeInfo(i)" [src]="member.image" alt="">
+                    {{member.name}} {{member.surname}}
+                    <div>
+                        {{member.position}}
+                    </div>
                 </div>
-                <div class="team-member">
-                    <img src="https://thumbs.dreamstime.com/b/female-restaurant-owner-digital-tablet-portrait-smiling-coffee-shop-standing-inside-her-116631151.jpg"
-                        alt="">
-                    saxeli gvari
-                    pozicia
-                </div>
-                <div class="team-member">
-                    <img src="https://thumbs.dreamstime.com/b/female-restaurant-owner-digital-tablet-portrait-smiling-coffee-shop-standing-inside-her-116631151.jpg"
-                        alt="">
-                    saxeli gvari
-                    pozicia
-                </div>
+
             </div>
         </div>
+
+
+
     </div>
-
-
-
-
-</div>
