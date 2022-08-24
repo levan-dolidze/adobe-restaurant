@@ -5,6 +5,7 @@ import { map, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class AdminService {
   readonly apiUrl = environment.apiURL;
   //privatze unda gadavaketo tu ar gaaerorebs
   constructor(public firebaseAuth: AngularFireAuth,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private firebase: AngularFireDatabase
+  ) { }
 
   privateDinning: PrivateDiningModel[] = [];
   guestTime: GuestTime[] = [];
@@ -21,6 +24,9 @@ export class AdminService {
 
   orderedDiningDelete$: Subject<any> = new Subject();
   tableReservationDetele$: Subject<any> = new Subject();
+
+
+  imageDetailList: AngularFireList<any>
 
   returnPrivateDining(): Observable<PrivateDiningModel[]> {
     return this.http.get<PrivateDiningModel[]>(`${this.apiUrl}privateEvent.json`).pipe(
@@ -91,11 +97,22 @@ export class AdminService {
 
 
   cancelTableTime(key: any) {
-    return this.http.patch(`${this.apiUrl}guestTime/${key}.json`,{ status: true }).pipe(
+    return this.http.patch(`${this.apiUrl}guestTime/${key}.json`, { status: true }).pipe(
       // tap(()=>{
       //   const index =this.guestTime.map((item)=>item.key).indexOf(reserveTime.key)
       //   this.guestTime[index]=reserveTime
       // })
     )
   };
+
+
+  //add new employee
+
+  insertImageDetails(imageDetails: any) {
+    this.imageDetailList.push(imageDetails)
+  }
+  getImageDetailList() {
+    this.imageDetailList = this.firebase.list('employees')
+  };
+
 };

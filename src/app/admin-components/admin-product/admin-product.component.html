@@ -11,7 +11,6 @@
                            class="form-control">
                 </label>
             </div>
-
             <div>
                 <label>
                     <input [(ngModel)]="employee.surname"
@@ -33,9 +32,15 @@
                 </label>
             </div>
 
+            <div class="image-content">
+                <img [src]="imgURL">
+            </div>
+
             <div>
                 <label>
                     <input [(ngModel)]="employee.image"
+                          (change)="showPreview($event)" 
+                          accept="image/*"
                           name="employeeImage"
                           #employeeImage="ngModel"
                           type="file" 

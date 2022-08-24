@@ -5,3 +5,12 @@
     width: 100%;
     margin-top: 10px;
 }
+.image-content{
+    width: 250px;
+    height: 250px;
+}
+.image-content img{
+    height: 100%;;
+    width: 100%;
+    object-fit: cover;
+}

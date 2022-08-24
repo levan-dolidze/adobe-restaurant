@@ -3,14 +3,15 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBTFToc75kJyOOegNQSX-l60zscgkLm8MA",
-    authDomain: "adobe-restaurant.firebaseapp.com",
-    projectId: "adobe-restaurant",
-    storageBucket: "adobe-restaurant.appspot.com",
-    messagingSenderId: "705969273202",
-    appId: "1:705969273202:web:230e4ef0e81079d15ec5eb",
-    measurementId: "G-4D8L23BLH1"
+    apiKey: "AIzaSyAob77ysBgRroGIkJzci23yb_WduKAxcME",
+    authDomain: "restaurant-cf9cb.firebaseapp.com",
+    projectId: "restaurant-cf9cb",
+    storageBucket: "restaurant-cf9cb.appspot.com",
+    messagingSenderId: "874073602550",
+    appId: "1:874073602550:web:b25c28003afe7267b66fd7",
+    measurementId: "G-FSJ4J7YW9Y"
   },
-  apiURL:'https://adobe-restaurant-default-rtdb.europe-west1.firebasedatabase.app/'
+  apiURL:'https://restaurant-cf9cb-default-rtdb.europe-west1.firebasedatabase.app/',
+  
 };
 
