@@ -12,7 +12,7 @@ export const environment = {
     appId: "1:705969273202:web:230e4ef0e81079d15ec5eb",
     measurementId: "G-4D8L23BLH1"
   },
-  apiURL:'https://adobe-restaurant-default-rtdb.europe-west1.firebasedatabase.app/',
-  
+  apiURL: 'https://adobe-restaurant-default-rtdb.europe-west1.firebasedatabase.app/',
+
 };
 
