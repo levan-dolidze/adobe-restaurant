@@ -5,6 +5,7 @@ import { AdminProductRoutingModule } from './admin-product-routing.module';
 import { AdminProductComponent } from './admin-product.component';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     AdminProductRoutingModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class AdminProductModule { }

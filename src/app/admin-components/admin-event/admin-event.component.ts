@@ -73,6 +73,11 @@ export class AdminEventComponent implements OnInit, OnDestroy {
     };
   };
 
+
+  formToggle(){
+    
+  }
+
   ngOnDestroy(): void {
     this.orderedDiningDelete$.unsubscribe();
   };

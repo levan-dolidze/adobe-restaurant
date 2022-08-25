@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, from, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { employeeModel } from '../models/employee';
 import { EventTypeModel, PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
 
@@ -103,5 +104,27 @@ export class HttpService {
       })
     )
 
+  }
+
+
+  getEmployeeInfo(): Observable<employeeModel[]> {
+    return this.http.get<employeeModel[]>(`${this.apiUrl}employees.json`).pipe(
+      map((res) => {
+        if (res) {
+          const array = [];
+          for (const key in res) {
+            array.push({ ...res[key], key: key })
+          }
+          return array
+        }
+        else {
+          return [];
+        }
+      })
+    )
+  };
+
+  deleteEmployee(key:any){
+    return this.http.delete(`${this.apiUrl}employees/${key}.json`)
   }
 };

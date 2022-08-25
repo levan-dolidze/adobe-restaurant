@@ -1,28 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, Observable, of } from 'rxjs';
 import { employeeModel } from 'src/app/models/employee';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { HttpService } from 'src/app/services/http.service';
 import { AdminService } from 'src/app/services/admin.service';
+import { fade, menu } from 'src/app/shared/animations';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-admin-product',
   templateUrl: './admin-product.component.html',
-  styleUrls: ['./admin-product.component.css']
+  styleUrls: ['./admin-product.component.css'],
+  animations: [menu,fade]
 })
 export class AdminProductComponent implements OnInit {
 
   constructor(private storage: AngularFireStorage,
-    private httpAdmin: AdminService
+    private httpAdmin: AdminService,
+    private http: HttpService
   ) { }
   employee: employeeModel = new employeeModel();
   imgURL: any;
-  selectedImage: any
+  selectedImage: any;
+  viewMode: string = 'colosedForm'
+  // colosedForm: string = 'colosedForm';
+  employeeList$: Observable<employeeModel[]>
+
 
   ngOnInit(): void {
-    this.httpAdmin.getImageDetailList()
-
+    this.httpAdmin.getImageDetailList();
+    this.returnEmployees();
   };
+
+
+  returnEmployees() {
+    this.employeeList$ = this.http.getEmployeeInfo();
+    this.employeeList$.subscribe((res) => {
+      this.employeeList$ = of(res)
+    })
+  };
+
+
   addEmployee(form: any) {
     if (form.invalid) {
       return
@@ -30,7 +47,7 @@ export class AdminProductComponent implements OnInit {
       //მოგვაქვს ფაილის სახელი , რომ არ დადუბლირდეს ფაილის სახელი დროს ვუთითებთ
       var filePath = `${this.selectedImage.name}_${new Date().getTime()}`
       const fileRef = this.storage.ref(filePath)
-      
+
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
           //url ში გვაქვს ახალი ატვირთული სურათი
@@ -53,7 +70,11 @@ export class AdminProductComponent implements OnInit {
 
   };
 
-
+  deleteEmployee(key: any) {
+    this.http.deleteEmployee(key).subscribe(() => {
+      this.returnEmployees();
+    })
+  };
 
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {

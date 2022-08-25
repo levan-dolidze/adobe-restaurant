@@ -1,6 +1,7 @@
 <div class="product-content">
-    <div class="product inner">
-        <form (ngSubmit)="addEmployee(employeeForm)" class="employee-form" #employeeForm="ngForm">
+    <div [ngSwitch]="viewMode" class="product-inner">
+        <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"  #employeeForm="ngForm">
+           Add Employee <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
             <div>
                 <label>
                     <input [(ngModel)]="employee.name"
@@ -31,11 +32,9 @@
                           class="form-control">
                 </label>
             </div>
-
             <div class="image-content">
                 <img [src]="imgURL">
             </div>
-
             <div>
                 <label>
                     <input [(ngModel)]="employee.image"
@@ -47,8 +46,6 @@
                           class="form-control">
                 </label>
             </div>
-
-
             <textarea [(ngModel)]="employee.description"
                     placeholder="Working Experience"
                     name="employeeDescription" 
@@ -56,11 +53,43 @@
                     cols="30" 
                     rows="5">
             </textarea>
-
             <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Employee</button>
-       
-
         </form>
 
+        <div @menu *ngSwitchCase="'colosedForm'" class="closedEmployeeForm" >
+         <i (click)="viewMode='form'" class="fa-solid fa-angle-right"></i>
+         <div>
+            <!-- <i class="fa-solid fa-people-roof"></i> -->
+         </div>
+        </div>
+
+        <div @fade class="employee-inner">
+            <h3>Employee List</h3>
+            <div *ngIf="employeeList$" class="employee-list">
+                <div class="employee-list-inner" *ngFor="let employee of ( employeeList$|async)">
+                    <div class="employeeInfo">
+                        <!-- <h3>Personal Info</h3> -->
+                        <div class="employeeImage">
+                            <img [src]="employee.image" >
+                        </div>
+                       
+                    </div>
+                    <div class="employee-personal-info">
+                        <h3>Personal Info</h3>
+                        <div>
+                            Full name:{{employee.name}} {{employee.surname}}
+                        </div>
+                        <div>
+                            Email# {{employee.position}}
+                        </div>
+                    
+                    </div>
+              
+                
+                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
+                    (click)="deleteEmployee(employee.key)">delete</mat-icon>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

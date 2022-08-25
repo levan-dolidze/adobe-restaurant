@@ -115,4 +115,7 @@ export class AdminService {
     this.imageDetailList = this.firebase.list('employees')
   };
 
+
+  
+
 };
