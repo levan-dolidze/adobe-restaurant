@@ -11,6 +11,7 @@ export class PrivateDiningModel {
     numberOfPeople: number;
     additionalInfo: string;
     key?:string;
+    ke?:string
     orderDate:Date;
     eventType?:EventTypeModel
 

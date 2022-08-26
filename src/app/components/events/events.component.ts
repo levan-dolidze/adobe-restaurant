@@ -7,40 +7,54 @@ import { LoginComponent } from 'src/app/login/login.component';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
+import { fade } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.css'],
+  animations: [fade]
 })
 export class EventsComponent implements OnInit {
 
   privateDiningModel: PrivateDiningModel = new PrivateDiningModel();
-  eventTypes$:Observable<EventTypeModel[]>;
-  meridian = true;
-  
-  constructor(private http: HttpService,
-     private authService: AuthService,
-     private dialog: MatDialog,
-     config: NgbTimepickerConfig
+  eventTypes$: Observable<EventTypeModel[]>;
+  eventTableArray: Array<any> = [
+    {
+      image: 'https://thumbs.dreamstime.com/z/family-sitting-together-restaurant-party-concept-birthday-160638781.jpg'
+    },
+    {
+      image: 'https://thumbs.dreamstime.com/z/family-sitting-together-restaurant-party-concept-birthday-160638781.jpg'
+    },
+    {
+      image: 'https://thumbs.dreamstime.com/z/family-sitting-together-restaurant-party-concept-birthday-160638781.jpg'
+    },
+    {
+      image: 'https://thumbs.dreamstime.com/z/family-sitting-together-restaurant-party-concept-birthday-160638781.jpg'
+    },
+  ]
 
-     ) { 
-      config.spinners = false;
-     }
+  constructor(private http: HttpService,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    config: NgbTimepickerConfig
+
+  ) {
+    config.spinners = false;
+  }
 
   ngOnInit(): void {
     this.returnEventTypes()
-
   };
 
 
-  returnEventTypes(){
-    this.eventTypes$=this.http.getEventTypes();
-    this.eventTypes$.subscribe((res)=>{
-      this.eventTypes$=of(res)
+  returnEventTypes() {
+    this.eventTypes$ = this.http.getEventTypes();
+    this.eventTypes$.subscribe((res) => {
+      this.eventTypes$ = of(res)
 
     })
-  }
+  };
 
   submitPrivateEvent(form: any) {
     console.log(this.privateDiningModel.startTime)
@@ -59,14 +73,14 @@ export class EventsComponent implements OnInit {
             numberOfPeople: this.privateDiningModel.numberOfPeople,
             additionalInfo: this.privateDiningModel.additionalInfo,
             orderDate: new Date(),
-            eventType:this.privateDiningModel.eventType
+            eventType: this.privateDiningModel.eventType
           }
-          this.http.addPrivateEvent(obj).subscribe((res) => { 
+          this.http.addPrivateEvent(obj).subscribe((res) => {
             this.dialog.open(EventMessageComponent)
           })
         }
         else {
-         this.dialog.open(LoginComponent)
+          this.dialog.open(LoginComponent)
         }
       })
     };

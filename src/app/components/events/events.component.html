@@ -1,144 +1,128 @@
-<div class="private-event-content">
+<div @fade class="private-event-content">
+    <div clas="event-div">
+        <div class="event-fotos">
+            <div class="event-table" *ngFor="let foto of eventTableArray">
+                <img [src]="foto.image">
+            </div>
+
+        </div>
+        <div class="event-description">
+            Having had the opportunity to travel to different parts of the world, we’ve been overwhelmed by the
+            hospitality shown in other countries. Now, it is our turn to host you at Traveler’s Table!
+
+            Let our globally-inspired eatery be the backdrop for your next event. We offer a diverse range of menu
+            options at various price points, so that you and your guests can explore the world through food and
+            drink with us!
+
+            Please note that our host can assist with standard reservations for parties of up to 10 guests. Give us
+            a call or email info@travelerstable.com to reserve.
+
+            For all buyouts and private dining inquiries, please fill out the form below and we’ll be in touch soon.
+            Please click here for additional information about private dining.
+
+        </div>
+       
+
+    </div>
+<h1 style="text-align:center">Reservation Form</h1>
+
     <div class="private-event-inner">
+
         <div class="event-form">
             <form (ngSubmit)="submitPrivateEvent(privateDinerForm)" #privateDinerForm="ngForm">
                 <div class="personalInfo">
                     <div class="first">
-                    <input [(ngModel)]="privateDiningModel.firstName"
-                       required
-                       name="firstname"
-                       #firstname="ngModel"
-                       class="form-control" type="text"
-                       placeholder="firstname"
-                       autocomplete="off"
-                       >
-                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&firstname.errors?.['required']">
-                        Required
-                       </div>
-              
-                    <input [(ngModel)]="privateDiningModel.phoneNumber" 
-                       required
-                       name="phoneNumber"
-                       #phoneNumber="ngModel"
-                       placeholder="phone"
-                       autocomplete="off"
-                       class="form-control" type="text">
-                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&phoneNumber.errors?.['required']">
-                        Required
-                       </div>
+                        <input [(ngModel)]="privateDiningModel.firstName" required name="firstname" #firstname="ngModel"
+                            class="form-control" type="text" placeholder="firstname" autocomplete="off">
 
-                       <input [(ngModel)]="privateDiningModel.eventDate" 
-                       required
-                       name="eventDate"
-                       #eventDate="ngModel"
-                       placeholder="yyyy-mm-dd" 
-                       ngbDatepicker 
-                       #d="ngbDatepicker"
-                       style="cursor: pointer"
-                       class="form-control"
-                       (click)="d.toggle()"
-                       >
-                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&eventDate.errors?.['required']">
-                        Required
-                       </div>
-                 </div>
+
+                        <div class="text-danger f-12 m-t-8"
+                            *ngIf="privateDinerForm.submitted&&firstname.errors?.['required']">
+                            Required
+                        </div>
+
+                        <input [(ngModel)]="privateDiningModel.phoneNumber" required name="phoneNumber"
+                            #phoneNumber="ngModel" placeholder="phone" autocomplete="off" class="form-control"
+                            type="text">
+                        <div class="text-danger f-12 m-t-8"
+                            *ngIf="privateDinerForm.submitted&&phoneNumber.errors?.['required']">
+                            Required
+                        </div>
+
+                        <input [(ngModel)]="privateDiningModel.eventDate" required name="eventDate" #eventDate="ngModel"
+                            placeholder="Date" ngbDatepicker #d="ngbDatepicker" style="cursor: pointer"
+                            class="form-control" (click)="d.toggle()">
+                        <div class="text-danger f-12 m-t-8"
+                            *ngIf="privateDinerForm.submitted&&eventDate.errors?.['required']">
+                            Required
+                        </div>
+                    </div>
                     <div class="second">
-               
-                    <input [(ngModel)]="privateDiningModel.surname"
-                       required
-                       name="surname"
-                       #surname="ngModel"
-                       class="form-control" type="text"
-                       placeholder="surname"
-                       autocomplete="off"
-                       >
-                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&surname.errors?.['required']">
-                        Required
-                       </div>
-                     <input [(ngModel)]="privateDiningModel.email" 
-                       required
-                       name="email"
-                       #email="ngModel"
-                       class="form-control" type="text"
-                       placeholder="email"
-                       autocomplete="off"
-                       >
-                       <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&email.errors?.['required']">
-                        Required
-                       </div>
 
-<div style="margin:10px 0px 0px 30%">
-    <ngb-timepicker [(ngModel)]="privateDiningModel.startTime"
-    required
-    name="startTime"
-    #startTime="ngModel"
-    autocomplete="off"
-    
-    ></ngb-timepicker>
-    <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
-     Required
-    </div> 
-</div>
-              
-                     
-                <!-- <input [(ngModel)]="privateDiningModel.startTime" 
-                required
-                name="startTime"
-                #startTime="ngModel"
-                autocomplete="off"
-                class="form-control" type="text">
-                <div class="text-danger f-12 m-t-8" *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
-                    Required
-                   </div> -->
-                
+                        <input [(ngModel)]="privateDiningModel.surname" required name="surname" #surname="ngModel"
+                            class="form-control" type="text" placeholder="surname" autocomplete="off">
+                        <div class="text-danger f-12 m-t-8"
+                            *ngIf="privateDinerForm.submitted&&surname.errors?.['required']">
+                            Required
+                        </div>
+                        <input [(ngModel)]="privateDiningModel.email" required name="email" #email="ngModel"
+                            class="form-control" type="text" placeholder="email" autocomplete="off">
+                        <div class="text-danger f-12 m-t-8"
+                            *ngIf="privateDinerForm.submitted&&email.errors?.['required']">
+                            Required
+                        </div>
+
+                        <div style="margin:10px 0px 0px 30%">
+                            <ngb-timepicker [(ngModel)]="privateDiningModel.startTime" required name="startTime"
+                                #startTime="ngModel" autocomplete="off"></ngb-timepicker>
+                            <div class="text-danger f-12 m-t-8"
+                                *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
+                                Required
+                            </div>
+                        </div>
                     </div>
                 </div>
 
 
-                
-                <select style="cursor:pointer"  [(ngModel)]="privateDiningModel.eventType" 
-                         name="eventType"
-                         #eventType="ngModel"
-                         class="form-control"
-                         >
-                    <option  *ngFor="let event of (eventTypes$|async)" [value]="event.eventType">
-                          {{event.eventType}}
+                <select style="cursor:pointer" [(ngModel)]="privateDiningModel.eventType" name="eventType"
+                    #eventType="ngModel" class="form-control">
+                    <option value="" disabled selected>Select the role</option>
+                    <option *ngFor="let event of (eventTypes$|async)" [value]="event.eventType">
+
+                        {{event.eventType}}
                     </option>
 
                 </select>
-            
+
                 <div *ngIf="privateDinerForm.submitted">
-                 <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['required']">
-                     Required
+                    <div class="text-danger f-12 m-t-8" 
+                    *ngIf="numberOfPeople.errors?.['required']">
+                        Required
                     </div>
                 </div>
-            
-                <input [(ngModel)]="privateDiningModel.numberOfPeople" 
-                       required
-                       pattern="[0-9]*"
-                       name="numberOfPeople"
-                       #numberOfPeople="ngModel"
-                       placeholder="Number Of People"
-                       autocomplete="off"
-                       class="form-control" type="text"
-                       >
-                       <div *ngIf="privateDinerForm.submitted">
-                        <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['required']">
-                            Required
-                           </div>
-                        <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['pattern']">
-                            Wrong format
-                           </div>
-                       </div>
-                
 
-                <textarea [(ngModel)]="privateDiningModel.additionalInfo"
-                          name="additionalInfo"
-                          #additionalInfo="ngModel"
-                          id="" cols="30" rows="5"
-                          autocomplete="off"
-                          placeholder="Aditional information..."
-                          >
+                <input [(ngModel)]="privateDiningModel.numberOfPeople" 
+                       required pattern="[0-9]*" 
+                       maxlength="3"
+                       name="numberOfPeople"
+                       #numberOfPeople="ngModel" 
+                       placeholder="Number Of People" 
+                       autocomplete="off" 
+                       class="form-control"
+                       type="text">
+                <div *ngIf="privateDinerForm.submitted">
+                    <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['required']">
+                        Required
+                    </div>
+                    <div class="text-danger f-12 m-t-8" *ngIf="numberOfPeople.errors?.['pattern']">
+                        Wrong format
+                    </div>
+                </div>
+
+
+                <textarea [(ngModel)]="privateDiningModel.additionalInfo" name="additionalInfo"
+                    #additionalInfo="ngModel" id="" cols="30" rows="5" autocomplete="off"
+                    placeholder="Aditional information...">
                 </textarea>
                 <div>
                     <button type="submit" class="sendBtn" mat-raised-button color="primary">Send</button>
@@ -151,5 +135,3 @@
 
     </div>
 </div>
-
-

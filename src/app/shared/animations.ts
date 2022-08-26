@@ -12,7 +12,7 @@ export const fade = [
 export const show = [
   trigger('show', [
     transition(':enter', [
-      style({ transform: 'translateX(-5%)' }),
+      style({ transform: 'translateY(-5%)' }),
       animate('0.5s')
     ]),
   ]),
