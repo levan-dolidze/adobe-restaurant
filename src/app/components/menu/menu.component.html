@@ -1,1 +1,9 @@
 <p>menu works!</p>
+
+
+
+<button *ngFor="let menu of (menuList$|async)" mat-button>
+
+    <a class="menu-link" [href]="menu.menu" target="_blank">{{menu.name}}</a>
+
+</button>

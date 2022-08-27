@@ -42,13 +42,17 @@ textarea,
     height: 100%;
 }
 
-.fa-solid {
+.fa-angle-left,.fa-angle-right {
     float: right;
     cursor: pointer;
     align-items: center;
     margin: 0 auto;
     text-align: center;
 
+}
+.fa-angles-right,.fa-angles-left{
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 

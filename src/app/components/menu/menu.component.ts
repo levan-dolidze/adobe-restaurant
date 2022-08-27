@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Menu } from 'src/app/models/menu';
+import { HttpService } from 'src/app/services/http.service';
+import { MenuModule } from './menu.module';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  menuList$: Observable<Menu[]>
+  constructor(private http:HttpService) { }
 
   ngOnInit(): void {
+    this.returnMenuList()
   }
+
+  returnMenuList(){
+    this.menuList$=this.http.getMenu();
+    this.menuList$.subscribe((res)=>{
+      this.menuList$=of(res)
+      
+    })
+    
+  };
 
 }

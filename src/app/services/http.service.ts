@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, from, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MenuModule } from '../components/menu/menu.module';
 import { employeeModel } from '../models/employee';
+import { Menu } from '../models/menu';
 import { EventTypeModel, PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
 
@@ -124,7 +126,28 @@ export class HttpService {
     )
   };
 
-  deleteEmployee(key:any){
+  deleteEmployee(key: any) {
     return this.http.delete(`${this.apiUrl}employees/${key}.json`)
   }
+
+  getMenu(): Observable<Menu[]> {
+    return this.http.get<Menu[]>(`${this.apiUrl}menu.json`).pipe(
+      map((res) => {
+        if (res) {
+          const arr = [];
+          for (const key in res) {
+            arr.push({ ...res[key], key: key })
+
+          }
+          return arr
+        }
+        else {
+          return []
+        }
+      })
+    )
+};
+
+
+
 };

@@ -4,13 +4,13 @@ import { LoaderService } from 'src/app/loader.service';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AdminService } from 'src/app/services/admin.service';
 import { HttpService } from 'src/app/services/http.service';
-import {fade, show } from 'src/app/shared/animations';
+import { fade, show } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-admin-event',
   templateUrl: './admin-event.component.html',
   styleUrls: ['./admin-event.component.css'],
-  animations: [fade,show]
+  animations: [fade, show]
 
 })
 export class AdminEventComponent implements OnInit, OnDestroy {
@@ -42,7 +42,7 @@ export class AdminEventComponent implements OnInit, OnDestroy {
     this.httpAdmin.deleteOrderedDiningEvent(key).subscribe((res) => { })
     this.orderedDiningDelete$ = this.httpAdmin.orderedDiningDelete$.subscribe((response) => {
       this.privateDining$ = response;
-    this.returnDining();
+      this.returnDining();
     })
   };
 
@@ -77,8 +77,8 @@ export class AdminEventComponent implements OnInit, OnDestroy {
   };
 
 
-  formToggle(){
-    
+  formToggle() {
+
   }
 
   ngOnDestroy(): void {

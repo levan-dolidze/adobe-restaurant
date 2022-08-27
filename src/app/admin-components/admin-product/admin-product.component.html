@@ -1,35 +1,26 @@
 <div class="product-content">
     <div [ngSwitch]="viewMode" class="product-inner">
-        <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"  #employeeForm="ngForm">
-           Add Employee <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+        <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"
+            #employeeForm="ngForm">
+            Add Employee <i  (click)="viewMode='menuForm'" class="fa-solid fa-angles-right"></i>
+            
+            <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.name"
-                           name="employeeName"
-                           #employeeName="ngModel"
-                           placeholder="Name"
-                           type="text" 
-                           class="form-control">
+                    <input [(ngModel)]="employee.name" name="employeeName" #employeeName="ngModel" placeholder="Name"
+                        type="text" class="form-control">
                 </label>
             </div>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.surname"
-                         name="employeeSurname"
-                         #employeeSurname="ngModel"
-                          placeholder="Surname"
-                          type="text" 
-                          class="form-control">
+                    <input [(ngModel)]="employee.surname" name="employeeSurname" #employeeSurname="ngModel"
+                        placeholder="Surname" type="text" class="form-control">
                 </label>
             </div>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.position"
-                           name="employeePosition"
-                           #employeePosition="ngModel"
-                          placeholder="Position"
-                          type="text" 
-                          class="form-control">
+                    <input [(ngModel)]="employee.position" name="employeePosition" #employeePosition="ngModel"
+                        placeholder="Position" type="text" class="form-control">
                 </label>
             </div>
             <div class="image-content">
@@ -37,59 +28,105 @@
             </div>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.image"
-                          (change)="showPreview($event)" 
-                          accept="image/*"
-                          name="employeeImage"
-                          #employeeImage="ngModel"
-                          type="file" 
-                          class="form-control">
+                    <input [(ngModel)]="employee.image" 
+                           (change)="showPreview($event)" 
+                           accept="image/*"
+                           name="employeeImage" 
+                           #employeeImage="ngModel" 
+                           type="file" class="form-control">
                 </label>
             </div>
-            <textarea [(ngModel)]="employee.description"
-                    placeholder="Working Experience"
-                    name="employeeDescription" 
-                    #employeeDescription="ngModel"
-                    cols="30" 
-                    rows="5">
+            <textarea [(ngModel)]="employee.description" placeholder="Working Experience" name="employeeDescription"
+                #employeeDescription="ngModel" cols="30" rows="5">
             </textarea>
             <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Employee</button>
         </form>
 
-        <div @menu *ngSwitchCase="'colosedForm'" class="closedEmployeeForm" >
-         <i (click)="viewMode='form'" class="fa-solid fa-angle-right"></i>
-         <div>
-            <!-- <i class="fa-solid fa-people-roof"></i> -->
-         </div>
-        </div>
-
-        <div @fade class="employee-inner">
-            <h3>Employee List</h3>
-            <div *ngIf="employeeList$" class="employee-list">
-                <div class="employee-list-inner" *ngFor="let employee of ( employeeList$|async)">
-                    <div class="employeeInfo">
-                        <!-- <h3>Personal Info</h3> -->
-                        <div class="employeeImage">
-                            <img [src]="employee.image" >
-                        </div>
-                       
-                    </div>
-                    <div class="employee-personal-info">
-                        <h3>Personal Info</h3>
-                        <div>
-                            Full name:{{employee.name}} {{employee.surname}}
-                        </div>
-                        <div>
-                            Email# {{employee.position}}
-                        </div>
-                    
-                    </div>
-              
-                
-                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
-                    (click)="deleteEmployee(employee.key)">delete</mat-icon>
-                </div>
+        <div @menu *ngSwitchCase="'colosedForm'" class="closedEmployeeForm">
+            <i (click)="viewMode='form'" class="fa-solid fa-angle-right"></i>
+            <div>
+                <!-- <i class="fa-solid fa-people-roof"></i> -->
             </div>
         </div>
+
+    
+
+
+        <form @menu class="employee-form" *ngSwitchCase="'menuForm'" 
+             (ngSubmit)="addMenu(menuForm)"
+              #menuForm="ngForm">
+         Add Menu
+         <i  (click)="viewMode='form'" class="fa-solid fa-angles-left"></i>
+        <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+     
+        <div>
+            <label>
+                <input [(ngModel)]="menu.name" 
+                       name="name" 
+                       #menuName="ngModel" 
+                       type="text" 
+                       class="form-control"
+                       placeholder="Menu Name"
+                       >
+            </label>
+        </div>
+        <div>
+            <label>
+                <input [(ngModel)]="menu.menu" 
+                       (change)="showPreview($event)" 
+                       accept="PDF/*"
+                       name="menu" 
+                       #mainMenu="ngModel" 
+                       type="file" 
+                       class="form-control">
+            </label>
+        </div>
+      
+        <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Menu</button>
+        </form>
+
+        <div @fade class="employee-inner" [ngSwitch]="viewMode">
+            <div *ngSwitchCase="'form'" >
+                <h3>Employee List</h3>
+                <div *ngIf="employeeList$" class="employee-list">
+                    <div class="employee-list-inner" *ngFor="let employee of ( employeeList$|async)">
+                        <div class="employeeInfo">
+                            <!-- <h3>Personal Info</h3> -->
+                            <div class="employeeImage">
+                                <img [src]="employee.image">
+                            </div>
+    
+                        </div>
+                        <div class="employee-personal-info">
+                            <h3>Personal Info</h3>
+                            <div>
+                                Full name:{{employee.name}} {{employee.surname}}
+                            </div>
+                            <div>
+                                Email# {{employee.position}}
+                            </div>
+    
+                        </div>
+    
+    
+                        <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteEmployee(employee.key)">
+                            delete</mat-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngSwitchCase="'menuForm'" >
+                 menu list
+            </div>
+         
+        </div>
+
+ 
+
     </div>
+    
+
+
+
+
 </div>

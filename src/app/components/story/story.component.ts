@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
@@ -45,6 +46,11 @@ export class StoryComponent implements OnInit {
   }
 
 
+  downloadMenu() {
+    let menuUrl = this.employeeList[0].image
+
+
+  }
 
 
 

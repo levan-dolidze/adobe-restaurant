@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { StoryRoutingModule } from './story-routing.module';
 import { StoryComponent } from './story.component';
 
@@ -11,7 +10,8 @@ import { StoryComponent } from './story.component';
   ],
   imports: [
     CommonModule,
-    StoryRoutingModule
+    StoryRoutingModule,
+    
   ]
 })
 export class StoryModule { }
