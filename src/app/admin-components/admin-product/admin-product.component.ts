@@ -26,7 +26,7 @@ export class AdminProductComponent implements OnInit {
   selectedImage: any;
   selectedMenu: any
   menuURL: any
-  viewMode: string = 'colosedForm'
+  viewMode: string = 'form'
   // colosedForm: string = 'colosedForm';
   employeeList$: Observable<employeeModel[]>
 
