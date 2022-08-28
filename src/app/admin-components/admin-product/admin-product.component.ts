@@ -20,7 +20,7 @@ export class AdminProductComponent implements OnInit {
   constructor(private storage: AngularFireStorage,
     private httpAdmin: AdminService,
     private http: HttpService,
-    
+
   ) { }
   employee: employeeModel = new employeeModel();
   menu: Menu = new Menu();
@@ -34,6 +34,7 @@ export class AdminProductComponent implements OnInit {
 
   guestTime: GuestTime = new GuestTime();
   guestTimes: Array<GuestTime> = [];
+  functionChecker: boolean;
 
 
   ngOnInit(): void {
@@ -55,31 +56,16 @@ export class AdminProductComponent implements OnInit {
     if (form.invalid) {
       return
     } else {
-      //მოგვაქვს ფაილის სახელი , რომ არ დადუბლირდეს ფაილის სახელი დროს ვუთითებთ
-      var filePath = `${this.selectedImage.name}_${new Date().getTime()}`
-      const fileRef = this.storage.ref(filePath)
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          //url ში გვაქვს ახალი ატვირთული სურათი
-          fileRef.getDownloadURL().subscribe((url) => {
-            this.imgURL = url;
-            const obj = {
-              name: this.employee.name,
-              surname: this.employee.surname,
-              position: this.employee.position,
-              description: this.employee.description,
-              image: this.imgURL
+      this.functionChecker = false;
+      this.addFile(this.selectedImage, {
+        name: this.employee.name,
+        surname: this.employee.surname,
+        position: this.employee.position,
+        description: this.employee.description,
+      })
 
-            }
-            this.httpAdmin.insertImageDetails(obj)
-          })
-
-        })
-      ).subscribe(() => { })
-    }
-
-  };
-
+    };
+  }
   deleteEmployee(key: any) {
     this.http.deleteEmployee(key).subscribe(() => {
       this.returnEmployees();
@@ -107,30 +93,50 @@ export class AdminProductComponent implements OnInit {
     if (form.invalid) {
       return
     } else {
+      this.functionChecker = true;
       //მოგვაქვს ფაილის სახელი , რომ არ დადუბლირდეს ფაილის სახელი დროს ვუთითებთ
-      var filePath = `${this.selectedMenu.name}_${new Date().getTime()}`
-      const fileRef = this.storage.ref(filePath)
-      this.storage.upload(filePath, this.selectedMenu).snapshotChanges().pipe(
-        finalize(() => {
-          //url ში გვაქვს ახალი ატვირთული სურათი
-          fileRef.getDownloadURL().subscribe((url) => {
-            if (url) {
-              this.menuURL = url;
-              const obj = {
-                menu: this.menuURL,
-                name: this.menu.name
-              }
+      this.addFile(this.selectedMenu, { name: this.menu.name })
+    };
+  };
+
+
+
+
+  addFile(selectedFile: any, obj: any) {
+    var filePath = `${selectedFile.name}_${new Date().getTime()}`
+    const fileRef = this.storage.ref(filePath)
+    this.storage.upload(filePath, selectedFile).snapshotChanges().pipe(
+      finalize(() => {
+        //url ში გვაქვს ახალი ატვირთული სურათი
+        fileRef.getDownloadURL().subscribe((url) => {
+          if (url) {
+            obj.file = url
+            if (this.functionChecker) {
               this.httpAdmin.insertMenu(obj)
-
             }
-
-          })
+            else {
+              this.httpAdmin.insertImageDetails(obj)
+            }
+          }else{
+            return
+          }
 
         })
-      ).subscribe(() => { })
-    }
 
+      })
+    ).subscribe(() => { })
   }
+
+
+
+
+
+
+
+
+
+
+
 
 
   addTime(form: any) {
@@ -140,8 +146,8 @@ export class AdminProductComponent implements OnInit {
       const time: GuestTime = {
         time: this.guestTime.time,
         place: this.guestTime.place,
-        status:true,
-        date:this.guestTime.date
+        status: true,
+        date: this.guestTime.date
       }
       this.httpAdmin.addGuestTime(time).subscribe((res) => {
 

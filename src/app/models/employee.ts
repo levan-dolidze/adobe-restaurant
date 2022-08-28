@@ -1,5 +1,5 @@
 export class employeeModel {
-    image: string;
+    file: string;
     name: string;
     surname: string;
     position: string;

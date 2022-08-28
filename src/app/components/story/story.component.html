@@ -35,7 +35,7 @@
         <div class="team-content">
             <div @fade @show class="team-inner">
                 <div class="team-member" *ngFor="let member of (membersArray$|async);let i=index">
-                    <img (click)="openEmployeeInfo(i)" [src]="member.image" alt="">
+                    <img (click)="openEmployeeInfo(i)" [src]="member.file" alt="">
                     {{member.name}} {{member.surname}}
                     <div>
                        <h2> {{member.position}}</h2>

@@ -47,7 +47,7 @@ export class StoryComponent implements OnInit {
 
 
   downloadMenu() {
-    let menuUrl = this.employeeList[0].image
+    let menuUrl = this.employeeList[0].file
 
 
   }

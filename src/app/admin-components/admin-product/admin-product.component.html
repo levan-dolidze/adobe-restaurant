@@ -4,24 +4,33 @@
 <!-- add employee -->
         <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"
             #employeeForm="ngForm">
-            Add Employee <i  (click)="viewMode='menuForm'" class="fa-solid fa-angles-right"></i>
+            Add Employee <i  (click)="viewMode='menuForm'" 
+                         class="fa-solid fa-angles-right"></i>
             
             <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.name" name="employeeName" #employeeName="ngModel" placeholder="Name"
-                        type="text" class="form-control">
+                    <input [(ngModel)]="employee.name" 
+                           name="employeeName" 
+                           #employeeName="ngModel" 
+                           placeholder="Name"
+                           type="text" class="form-control">
                 </label>
             </div>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.surname" name="employeeSurname" #employeeSurname="ngModel"
-                        placeholder="Surname" type="text" class="form-control">
+                    <input [(ngModel)]="employee.surname" 
+                           name="employeeSurname" 
+                           #employeeSurname="ngModel"
+                           placeholder="Surname" 
+                           type="text" class="form-control">
                 </label>
             </div>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.position" name="employeePosition" #employeePosition="ngModel"
+                    <input [(ngModel)]="employee.position" 
+                           name="employeePosition" 
+                           #employeePosition="ngModel"
                         placeholder="Position" type="text" class="form-control">
                 </label>
             </div>
@@ -30,7 +39,7 @@
             </div>
             <div>
                 <label>
-                    <input [(ngModel)]="employee.image" 
+                    <input [(ngModel)]="employee.file" 
                            (change)="showPreview($event)" 
                            accept="image/*"
                            name="employeeImage" 
@@ -38,8 +47,11 @@
                            type="file" class="form-control">
                 </label>
             </div>
-            <textarea [(ngModel)]="employee.description" placeholder="Working Experience" name="employeeDescription"
-                #employeeDescription="ngModel" cols="30" rows="5">
+            <textarea [(ngModel)]="employee.description" 
+                      placeholder="Working Experience" 
+                      name="employeeDescription"
+                      #employeeDescription="ngModel" 
+                      cols="30" rows="5">
             </textarea>
             <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Employee</button>
         </form>
@@ -74,7 +86,7 @@
         </div>
         <div>
             <label>
-                <input [(ngModel)]="menu.menu" 
+                <input [(ngModel)]="menu.file" 
                        (change)="showPreview($event)" 
                        accept="PDF/*"
                        name="menu" 
@@ -152,7 +164,7 @@
                         <div class="employeeInfo">
                             <!-- <h3>Personal Info</h3> -->
                             <div class="employeeImage">
-                                <img [src]="employee.image">
+                                <img [src]="employee.file">
                             </div>
     
                         </div>
