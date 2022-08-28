@@ -1,5 +1,7 @@
 <div class="product-content">
     <div [ngSwitch]="viewMode" class="product-inner">
+
+<!-- add employee -->
         <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"
             #employeeForm="ngForm">
             Add Employee <i  (click)="viewMode='menuForm'" class="fa-solid fa-angles-right"></i>
@@ -50,13 +52,13 @@
         </div>
 
     
-
-
+<!--add menu -->
         <form @menu class="employee-form" *ngSwitchCase="'menuForm'" 
              (ngSubmit)="addMenu(menuForm)"
               #menuForm="ngForm">
          Add Menu
          <i  (click)="viewMode='form'" class="fa-solid fa-angles-left"></i>
+         <i  (click)="viewMode='timeForm'" class="fa-solid fa-angles-right"></i>
         <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
      
         <div>
@@ -84,6 +86,63 @@
       
         <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Menu</button>
         </form>
+
+        <!-- add time -->
+        <form @menu class="employee-form" *ngSwitchCase="'timeForm'" 
+         (ngSubmit)="addTime(timeForm)"
+         #timeForm="ngForm">
+     Add Time
+    <i  (click)="viewMode='menuForm'" class="fa-solid fa-angles-left"></i>
+    <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+
+    <div>
+        <label>
+            <input [(ngModel)]="guestTime.time" 
+                   required 
+                   pattern="^[0-9]+:[0-9]{2}$"
+                   name="time" 
+                   class="form-control"
+                   placeholder="time e.g: 17:00"
+                   #time="ngModel" >
+        </label>
+        <div class="text-danger f-12 m-t-8" *ngIf="timeForm.submitted&&time.errors?.['required']">
+            Required
+        </div>
+        <div class="text-danger f-12 m-t-8" *ngIf="timeForm.submitted&&time.errors?.['pattern']">
+            Wrong format
+        </div>
+    </div>
+    <div>
+        <label>
+            <input [(ngModel)]="guestTime.place" 
+            required 
+            name="place" 
+            class="form-control"
+            placeholder="place"
+            #place="ngModel" >
+        </label>
+        <div class="text-danger f-12 m-t-8" *ngIf="timeForm.submitted&&place.errors?.['required']">
+            Required
+        </div>
+    </div>
+    <div>
+        <label >
+        <input [(ngModel)]="guestTime.date" 
+               required name="date" 
+               style="cursor:pointer" 
+               class="form-control"
+               #date="ngModel" 
+               placeholder="yyyy-mm-dd" 
+               ngbDatepicker #d="ngbDatepicker" 
+               (click)="d.toggle()">
+            </label>
+            <div class="text-danger f-12 m-t-8" *ngIf="timeForm.submitted&&date.errors?.['required']">
+                Required
+            </div>
+    </div>
+ 
+   <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Time</button>
+       </form>
 
         <div @fade class="employee-inner" [ngSwitch]="viewMode">
             <div *ngSwitchCase="'form'" >
@@ -118,8 +177,12 @@
             <div *ngSwitchCase="'menuForm'" >
                  menu list
             </div>
+            <div *ngSwitchCase="'timeForm'" >
+                 Time list
+            </div>
          
         </div>
+
 
  
 

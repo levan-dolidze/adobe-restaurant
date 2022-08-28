@@ -7,6 +7,7 @@ import { fade, menu } from 'src/app/shared/animations';
 import { HttpService } from 'src/app/services/http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Menu } from 'src/app/models/menu';
+import { GuestTime } from 'src/app/models/reserve';
 
 @Component({
   selector: 'app-admin-product',
@@ -18,7 +19,8 @@ export class AdminProductComponent implements OnInit {
 
   constructor(private storage: AngularFireStorage,
     private httpAdmin: AdminService,
-    private http: HttpService
+    private http: HttpService,
+    
   ) { }
   employee: employeeModel = new employeeModel();
   menu: Menu = new Menu();
@@ -29,6 +31,9 @@ export class AdminProductComponent implements OnInit {
   viewMode: string = 'form'
   // colosedForm: string = 'colosedForm';
   employeeList$: Observable<employeeModel[]>
+
+  guestTime: GuestTime = new GuestTime();
+  guestTimes: Array<GuestTime> = [];
 
 
   ngOnInit(): void {
@@ -126,5 +131,27 @@ export class AdminProductComponent implements OnInit {
     }
 
   }
+
+
+  addTime(form: any) {
+    if (form.invalid) {
+      return
+    } else {
+      const time: GuestTime = {
+        time: this.guestTime.time,
+        place: this.guestTime.place,
+        status:true,
+        date:this.guestTime.date
+      }
+      this.httpAdmin.addGuestTime(time).subscribe((res) => {
+
+      })
+    }
+
+
+
+
+
+  };
 
 };

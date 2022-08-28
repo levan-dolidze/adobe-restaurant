@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TimemodalComponent } from 'src/app/timemodal/timemodal.component';
 
 @Component({
   selector: 'app-admin-order',
@@ -15,8 +14,5 @@ export class AdminOrderComponent implements OnInit {
     
   };
 
-  timeModalOpen() {
-    this.modal.open(TimemodalComponent)
 
-  };
 };

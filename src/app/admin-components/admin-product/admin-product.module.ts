@@ -6,6 +6,7 @@ import { AdminProductComponent } from './admin-product.component';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
     AdminProductRoutingModule,
     FormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgbModule
   ]
 })
 export class AdminProductModule { }
