@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { filter, from, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LoaderService } from 'src/app/loader.service';
 import { LoginComponent } from 'src/app/login/login.component';
-import { GuestTime, ReserveModel } from 'src/app/models/reserve';
+import { DateRestriction, GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
@@ -24,10 +23,13 @@ export class ReservationComponent implements OnInit {
 
 
   reserveModel: ReserveModel = new ReserveModel();
+  currentDate = new DateRestriction();
   selectDay: boolean = true;
   viewMode = 'selectDay';
   reserve: any
-  marketingConsent: boolean = true
+  marketingConsent: boolean = true;
+
+
 
   constructor(public modal: MatDialog,
     private auth: AuthService,
@@ -41,8 +43,6 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnGuestTimes();
-
-
   };
 
 

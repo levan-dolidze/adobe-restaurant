@@ -35,12 +35,22 @@ export class TableReservationModel {
     place: string;
     status: boolean;
     time: string;
-    date:NgbDateStruct;
-    UID:any;
+    date: NgbDateStruct;
+    UID: any;
 };
 
 
-
+export class DateRestriction {
+    currentDate = new Date();
+    year: number;
+    month: number;
+    day: number;
+    constructor() {
+        this.year = this.currentDate.getFullYear(),
+            this.month = this.currentDate.getMonth() + 1,
+            this.day = this.currentDate.getDate()
+    };
+};
 
 
 

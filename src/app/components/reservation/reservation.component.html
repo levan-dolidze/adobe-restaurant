@@ -28,7 +28,11 @@
             <div>
                 <input [(ngModel)]="reserveModel.date" 
                        required 
-                       name="date" 
+                       name="date"
+                       [minDate]="{year: currentDate.year, 
+                                   month: currentDate.month, 
+                                   day: currentDate.day
+                                  }"
                        style="cursor:pointer" 
                        class="form-control"
                        #date="ngModel" 
@@ -88,6 +92,10 @@
                        class="form-control"
                        #date="ngModel" 
                        placeholder="yyyy-mm-dd" 
+                       [minDate]="{year: currentDate.year, 
+                        month: currentDate.month, 
+                        day: currentDate.day
+                       }"
                        ngbDatepicker #d="ngbDatepicker" 
                        (ngModelChange)="changeDate()"
                        (click)="d.toggle()">
