@@ -131,8 +131,6 @@ export class AdminProductComponent implements OnInit {
       finalize(() => {
         //url ში გვაქვს ახალი ატვირთული სურათი
         let service = localStorage.getItem('service');
-        console.log(service)
-        console.log(Service.menu)
         fileRef.getDownloadURL().subscribe((url) => {
           if (url) {
             obj.file = url
@@ -180,7 +178,7 @@ export class AdminProductComponent implements OnInit {
       localStorage.setItem('service', 'dish')
       this.addFile(this.selectedDish, {
         name: this.dish.name,
-        type: this.dish.type,
+        category: this.dish.category,
         price: this.dish.price,
       })
 

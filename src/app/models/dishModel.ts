@@ -1,7 +1,7 @@
 export class DishModel {
     key?: string;
     name: string;
-    type: string;
+    category: string;
     price: number;
     file: string
 };
