@@ -1,19 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { LoaderService } from 'src/app/loader.service';
+import { DishModel } from 'src/app/models/dishModel';
+import { HttpService } from 'src/app/services/http.service';
+import { fade } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.css'],
+  animations:[fade]
 })
 export class OrderComponent implements OnInit {
 
-  constructor(
-    
-  ) {}
+  constructor(private http: HttpService,
+    public loader: LoaderService,
+      
+
+  ) { }
+  dishList$: Observable<DishModel[]>
 
   ngOnInit(): void {
+    this.returnDishList();
 
-  }
+  };
+
+  
+
+  returnDishList() {
+    this.dishList$ = this.http.getDishList();
+    this.dishList$.subscribe((res) => {
+      this.dishList$ = of(res)
+    })
+  };
 
 
-}
+};
+
+

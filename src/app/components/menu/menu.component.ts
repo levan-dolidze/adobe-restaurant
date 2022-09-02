@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Menu } from 'src/app/models/menu';
 import { HttpService } from 'src/app/services/http.service';
-import { MenuModule } from './menu.module';
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +21,6 @@ export class MenuComponent implements OnInit {
     this.menuList$=this.http.getMenu();
     this.menuList$.subscribe((res)=>{
       this.menuList$=of(res)
-      
     })
     
   };

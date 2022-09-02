@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { filter, from, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MenuModule } from '../components/menu/menu.module';
+import { DishModel } from '../models/dishModel';
 import { employeeModel } from '../models/employee';
 import { Menu } from '../models/menu';
 import { EventTypeModel, PrivateDiningModel } from '../models/privateDiningModel';
@@ -87,7 +88,7 @@ export class HttpService {
 
   addEventType(eventType: EventTypeModel): Observable<EventTypeModel> {
     return this.http.post<EventTypeModel>(`${this.apiUrl}eventTypes.json`, eventType)
-  }
+  };
 
   getEventTypes(): Observable<EventTypeModel[]> {
     return this.http.get<EventTypeModel[]>(`${this.apiUrl}eventTypes.json`).pipe(
@@ -102,12 +103,10 @@ export class HttpService {
         else {
           return []
         }
-
       })
     )
 
-  }
-
+  };
 
   getEmployeeInfo(): Observable<employeeModel[]> {
     return this.http.get<employeeModel[]>(`${this.apiUrl}employees.json`).pipe(
@@ -128,7 +127,7 @@ export class HttpService {
 
   deleteEmployee(key: any) {
     return this.http.delete(`${this.apiUrl}employees/${key}.json`)
-  }
+  };
 
   getMenu(): Observable<Menu[]> {
     return this.http.get<Menu[]>(`${this.apiUrl}menu.json`).pipe(
@@ -146,8 +145,29 @@ export class HttpService {
         }
       })
     )
-};
+  };
 
+  getDishList(): Observable<DishModel[]> {
+    return this.http.get<DishModel[]>(`${this.apiUrl}dish.json`).pipe(
+      map((res) => {
+        if (res) {
+          const array = [];
+          for (const key in res) {
+            array.push({ ...res[key], key: key })
+          }
+          return array
+        }
+        else {
+          return []
+        }
+      })
+    )
+
+  };
+
+  deleteDish(key:any){
+    return this.http.delete(`${this.apiUrl}dish/${key}.json`)
+  };
 
 
 };

@@ -95,6 +95,18 @@
                        class="form-control">
             </label>
         </div>
+        <div>
+            <!-- <label>
+                category foto
+                <input [(ngModel)]="menu.file2" 
+                       (change)="showPreview($event)" 
+                       accept="image/*"
+                       name="categoryFoto" 
+                       #categoryFoto="ngModel" 
+                       type="file" 
+                       class="form-control">
+            </label> -->
+        </div>
       
         <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Menu</button>
         </form>
@@ -105,6 +117,7 @@
          #timeForm="ngForm">
      Add Time
     <i  (click)="viewMode='menuForm'" class="fa-solid fa-angles-left"></i>
+    <i  (click)="viewMode='dishForm'" class="fa-solid fa-angles-right"></i>
     <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
 
     <div>
@@ -141,6 +154,10 @@
         <label >
         <input [(ngModel)]="guestTime.date" 
                required name="date" 
+               [minDate]="{year: currentDate.year, 
+                month: currentDate.month, 
+                day: currentDate.day
+               }"
                style="cursor:pointer" 
                class="form-control"
                #date="ngModel" 
@@ -156,13 +173,74 @@
    <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Time</button>
        </form>
 
+       <!-- add Dish -->
+       <form @menu class="employee-form" *ngSwitchCase="'dishForm'" 
+       (ngSubmit)="addDish(dishForm)"
+       #dishForm="ngForm">
+   Add Dish
+  <i  (click)="viewMode='timeForm'" class="fa-solid fa-angles-left"></i>
+  <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+
+  <div>
+      <label>
+          <input [(ngModel)]="dish.name" 
+                 required 
+                 name="name" 
+                 class="form-control"
+                 placeholder="Name"
+                 #dishName="ngModel" >
+      </label>
+      <div class="text-danger f-12 m-t-8" *ngIf="dishForm.submitted&&dishName.errors?.['required']">
+          Required
+      </div>
+  </div>
+  <div>
+      <label>
+          <input [(ngModel)]="dish.type" 
+          required 
+          name="type" 
+          class="form-control"
+          placeholder="Type"
+          #dishType="ngModel" >
+      </label>
+      <div class="text-danger f-12 m-t-8" *ngIf="dishForm.submitted&&dishType.errors?.['required']">
+          Required
+      </div>
+  </div>
+  <div>
+    <label>
+        <input [(ngModel)]="dish.price" 
+        required 
+        name="type" 
+        class="form-control"
+        placeholder="Price"
+        #dishPrice="ngModel" >
+    </label>
+          <div class="text-danger f-12 m-t-8" *ngIf="dishForm.submitted&&dishPrice.errors?.['required']">
+              Required
+          </div> 
+  </div>
+  <div>
+    <label>
+        <input [(ngModel)]="dish.file"
+               (change)="showPreview($event)" 
+               accept="image/*"
+               name="dishImage" 
+               #dishImage="ngModel" 
+               type="file" 
+               class="form-control">
+    </label>
+  </div>
+
+ <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Dish</button>
+     </form>
+
         <div @fade class="employee-inner" [ngSwitch]="viewMode">
             <div *ngSwitchCase="'form'" >
                 <h3>Employee List</h3>
                 <div *ngIf="employeeList$" class="employee-list">
-                    <div class="employee-list-inner" *ngFor="let employee of ( employeeList$|async)">
+                    <div class="employee-list-inner" *ngFor="let employee of (employeeList$|async)">
                         <div class="employeeInfo">
-                            <!-- <h3>Personal Info</h3> -->
                             <div class="employeeImage">
                                 <img [src]="employee.file">
                             </div>
@@ -178,8 +256,6 @@
                             </div>
     
                         </div>
-    
-    
                         <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteEmployee(employee.key)">
                             delete</mat-icon>
                     </div>
@@ -187,10 +263,41 @@
             </div>
 
             <div *ngSwitchCase="'menuForm'" >
-                 menu list
+                 Menu list
             </div>
             <div *ngSwitchCase="'timeForm'" >
                  Time list
+            </div>
+            <div *ngSwitchCase="'dishForm'" >
+                 Dish list
+                 <div *ngIf="dishList$" class="employee-list">
+                    <div class="employee-list-inner" *ngFor="let dish of (dishList$|async)">
+                        <div class="employeeInfo">
+                            <div class="employeeImage">
+                                <img [src]="dish.file">
+                            </div>
+    
+                        </div>
+                        <div class="employee-personal-info">
+                            <h3>Dish Info</h3>
+                            <div>
+                                Name:{{dish.name}} 
+                            </div>
+                            <div>
+                                Type {{dish.type}}
+                            </div>
+                            <div>
+                                Price {{dish.price}}
+                            </div>
+    
+                        </div>
+                        <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(dish.key)">
+                            delete</mat-icon>
+                    </div>
+                </div>
+                 
+
+
             </div>
          
         </div>

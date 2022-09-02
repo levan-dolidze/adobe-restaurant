@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { EventMessageComponent } from 'src/app/event-message/event-message.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
+import { DateRestriction } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
@@ -19,6 +20,8 @@ export class EventsComponent implements OnInit {
 
   privateDiningModel: PrivateDiningModel = new PrivateDiningModel();
   eventTypes$: Observable<EventTypeModel[]>;
+  currentDate = new DateRestriction();
+
   eventTableArray: Array<any> = [
     {
       image: 'https://thumbs.dreamstime.com/z/family-sitting-together-restaurant-party-concept-birthday-160638781.jpg'

@@ -1,0 +1,29 @@
+.order-content {
+    width: 100%;
+    height: 100%;
+}
+
+.order-inner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.order-list {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+
+}
+
+.order-list img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+

@@ -32,8 +32,13 @@
             <form (ngSubmit)="submitPrivateEvent(privateDinerForm)" #privateDinerForm="ngForm">
                 <div class="personalInfo">
                     <div class="first">
-                        <input [(ngModel)]="privateDiningModel.firstName" required name="firstname" #firstname="ngModel"
-                            class="form-control" type="text" placeholder="firstname" autocomplete="off">
+                        <input [(ngModel)]="privateDiningModel.firstName" 
+                               required name="firstname"
+                               #firstname="ngModel"
+                               class="form-control" 
+                               type="text" 
+                               placeholder="firstname" 
+                               autocomplete="off">
 
 
                         <div class="text-danger f-12 m-t-8"
@@ -41,16 +46,31 @@
                             Required
                         </div>
 
-                        <input [(ngModel)]="privateDiningModel.phoneNumber" required name="phoneNumber"
-                            #phoneNumber="ngModel" placeholder="phone" autocomplete="off" class="form-control"
+                        <input [(ngModel)]="privateDiningModel.phoneNumber" 
+                               required 
+                               name="phoneNumber"
+                               #phoneNumber="ngModel" 
+                               placeholder="phone" 
+                               autocomplete="off" 
+                               class="form-control"
                             type="text">
                         <div class="text-danger f-12 m-t-8"
                             *ngIf="privateDinerForm.submitted&&phoneNumber.errors?.['required']">
                             Required
                         </div>
 
-                        <input [(ngModel)]="privateDiningModel.eventDate" required name="eventDate" #eventDate="ngModel"
-                            placeholder="Date" ngbDatepicker #d="ngbDatepicker" style="cursor: pointer"
+                        <input [(ngModel)]="privateDiningModel.eventDate" 
+                               required 
+                               name="eventDate" 
+                               #eventDate="ngModel"
+                               placeholder="Date" 
+                               [minDate]="{year: currentDate.year, 
+                                month: currentDate.month, 
+                                day: currentDate.day
+                               }"
+                               ngbDatepicker 
+                               #d="ngbDatepicker" 
+                               style="cursor: pointer"
                             class="form-control" (click)="d.toggle()">
                         <div class="text-danger f-12 m-t-8"
                             *ngIf="privateDinerForm.submitted&&eventDate.errors?.['required']">
@@ -59,22 +79,37 @@
                     </div>
                     <div class="second">
 
-                        <input [(ngModel)]="privateDiningModel.surname" required name="surname" #surname="ngModel"
-                            class="form-control" type="text" placeholder="surname" autocomplete="off">
+                        <input [(ngModel)]="privateDiningModel.surname" 
+                               required 
+                               name="surname" 
+                               #surname="ngModel"
+                               class="form-control" 
+                               type="text" 
+                               placeholder="surname" 
+                               autocomplete="off">
                         <div class="text-danger f-12 m-t-8"
                             *ngIf="privateDinerForm.submitted&&surname.errors?.['required']">
                             Required
                         </div>
-                        <input [(ngModel)]="privateDiningModel.email" required name="email" #email="ngModel"
-                            class="form-control" type="text" placeholder="email" autocomplete="off">
+                        <input [(ngModel)]="privateDiningModel.email" 
+                               required 
+                               name="email" 
+                               #email="ngModel"
+                               class="form-control" 
+                               type="text" 
+                               placeholder="email" 
+                               autocomplete="off">
                         <div class="text-danger f-12 m-t-8"
                             *ngIf="privateDinerForm.submitted&&email.errors?.['required']">
                             Required
                         </div>
 
                         <div style="margin:10px 0px 0px 30%">
-                            <ngb-timepicker [(ngModel)]="privateDiningModel.startTime" required name="startTime"
-                                #startTime="ngModel" autocomplete="off"></ngb-timepicker>
+                            <ngb-timepicker [(ngModel)]="privateDiningModel.startTime" 
+                                            required name="startTime"
+                                            #startTime="ngModel" 
+                                            autocomplete="off">
+                            </ngb-timepicker>
                             <div class="text-danger f-12 m-t-8"
                                 *ngIf="privateDinerForm.submitted&&startTime.errors?.['required']">
                                 Required
@@ -84,11 +119,13 @@
                 </div>
 
 
-                <select style="cursor:pointer" [(ngModel)]="privateDiningModel.eventType" name="eventType"
-                    #eventType="ngModel" class="form-control">
-                    <option value="" disabled selected>Select the role</option>
+                <select style="cursor:pointer" 
+                        [(ngModel)]="privateDiningModel.eventType" 
+                        name="eventType"
+                        #eventType="ngModel" 
+                        class="form-control">
+                    <option value="" disabled selected>Select Event</option>
                     <option *ngFor="let event of (eventTypes$|async)" [value]="event.eventType">
-
                         {{event.eventType}}
                     </option>
 
@@ -120,9 +157,10 @@
                 </div>
 
 
-                <textarea [(ngModel)]="privateDiningModel.additionalInfo" name="additionalInfo"
-                    #additionalInfo="ngModel" id="" cols="30" rows="5" autocomplete="off"
-                    placeholder="Aditional information...">
+                <textarea [(ngModel)]="privateDiningModel.additionalInfo" 
+                          name="additionalInfo"
+                          #additionalInfo="ngModel" id="" cols="30" rows="5" autocomplete="off"
+                          placeholder="Aditional information...">
                 </textarea>
                 <div>
                     <button type="submit" class="sendBtn" mat-raised-button color="primary">Send</button>

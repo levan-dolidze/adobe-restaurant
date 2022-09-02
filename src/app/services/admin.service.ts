@@ -27,7 +27,8 @@ export class AdminService {
 
 
   imageDetailList: AngularFireList<any>
-  menuList: AngularFireList<any>
+  menuList: AngularFireList<any>;
+  dishList: AngularFireList<any>;
 
   returnPrivateDining(): Observable<PrivateDiningModel[]> {
     return this.http.get<PrivateDiningModel[]>(`${this.apiUrl}privateEvent.json`).pipe(
@@ -122,6 +123,13 @@ export class AdminService {
   }
   getMenuList() {
     this.menuList = this.firebase.list('menu')
+  };
+
+  insertDish(dishDetails: any) {
+    this.dishList.push(dishDetails)
+  }
+  getDishList() {
+    this.dishList = this.firebase.list('dish');
   };
 
 
