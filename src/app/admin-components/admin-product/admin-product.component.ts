@@ -116,10 +116,8 @@ export class AdminProductComponent implements OnInit {
     if (form.invalid) {
       return
     } else {
-      // this.functionChecker = true;
       localStorage.setItem('service', 'menu')
-      //მოგვაქვს ფაილის სახელი , რომ არ დადუბლირდეს ფაილის სახელი დროს ვუთითებთ
-      this.addFile(this.selectedMenu, { name: this.menu.name })
+      this.addFile(this.selectedMenu, { name: this.menu.name.toLocaleUpperCase()})
     };
   };
 

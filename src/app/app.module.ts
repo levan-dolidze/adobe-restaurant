@@ -20,6 +20,7 @@ import { EventMessageComponent } from './event-message/event-message.component';
 import { TimemodalComponent } from './timemodal/timemodal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TeamMemberTextComponent } from './team-member-text/team-member-text.component';
+// import { FormaterDirective } from './formater.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TeamMemberTextComponent } from './team-member-text/team-member-text.com
     EventMessageComponent,
     TimemodalComponent,
     TeamMemberTextComponent,
+    
 
   ],
   imports: [

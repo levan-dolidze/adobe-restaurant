@@ -6,11 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormaterDirective } from 'src/app/formater.directive';
 
 
 @NgModule({
   declarations: [
-    AdminProductComponent
+    AdminProductComponent,
+    FormaterDirective
+
   ],
   imports: [
     CommonModule,
@@ -18,7 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     MatButtonModule,
     MatIconModule,
-    NgbModule
+    NgbModule,
   ]
 })
 export class AdminProductModule { }
