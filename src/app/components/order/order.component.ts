@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { distinctUntilChanged, filter, Observable, of } from 'rxjs';
-import { LoaderService } from 'src/app/loader.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { DishModel } from 'src/app/models/dishModel';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';

@@ -3,6 +3,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 @Directive({
   selector: '[Formater]'
 })
+
 export class FormaterDirective {
 
   constructor(private el: ElementRef) { }
@@ -15,6 +16,6 @@ export class FormaterDirective {
   formatInput(input: any) {
     this.el.nativeElement.value = input.toUpperCase()
     return this.el.nativeElement.value
-  }
+  };
 
 }

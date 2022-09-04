@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter, from, Observable, of, toArray } from 'rxjs';
-import { LoaderService } from '../loader.service';
+import { LoaderService } from '../services/loader.service';
 import { TableReservationModel } from '../models/reserve';
 import { AdminService } from '../services/admin.service';
 import { AuthService } from '../services/auth.service';

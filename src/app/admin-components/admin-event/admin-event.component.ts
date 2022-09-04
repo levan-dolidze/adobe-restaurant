@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { filter, from, Observable, of, Subscription, toArray } from 'rxjs';
-import { LoaderService } from 'src/app/loader.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AdminService } from 'src/app/services/admin.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -32,7 +32,6 @@ export class AdminEventComponent implements OnInit, OnDestroy {
   returnDining() {
     this.privateDining$ = this.httpAdmin.returnPrivateDining();
     this.privateDining$.subscribe((res) => {
-      console.log(res)
       this.privateDining$ = of(res)
 
     })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
-import { LoaderService } from 'src/app/loader.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { LoginComponent } from 'src/app/login/login.component';
 import { DateRestriction, GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';

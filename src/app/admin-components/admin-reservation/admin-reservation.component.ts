@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Observable, of } from 'rxjs';
-import { LoaderService } from 'src/app/loader.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { TableReservationModel } from 'src/app/models/reserve';
 import { AdminService } from 'src/app/services/admin.service';
 import { HttpService } from 'src/app/services/http.service';
