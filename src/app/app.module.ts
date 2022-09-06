@@ -46,8 +46,8 @@ import { TeamMemberTextComponent } from './team-member-text/team-member-text.com
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FontAwesomeModule,
     FontAwesomeModule
+  
 
 
   ],
