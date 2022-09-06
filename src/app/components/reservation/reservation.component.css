@@ -38,7 +38,7 @@
 
 }
 .guest-table-content{
-    overflow: scroll;
+    overflow: auto;
 }
 .timeSelect .form-control {
     margin-left: 5px;

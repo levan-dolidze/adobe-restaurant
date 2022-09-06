@@ -78,7 +78,7 @@ textarea,
 }
 
 .employee-inner{
-    overflow: scroll;
+    overflow: auto;
     width: 75%;
     padding: 10px;
 }

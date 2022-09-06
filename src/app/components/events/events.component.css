@@ -1,7 +1,7 @@
 .private-event-content {
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    
 }
 
 .private-event-inner {
@@ -30,6 +30,7 @@
 
 .event-form {
     width: 50%;
+    padding: 20px;
 }
 
 textarea {

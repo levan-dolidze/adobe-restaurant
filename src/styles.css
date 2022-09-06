@@ -8,6 +8,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #F5F6F7;
     width: 100%;
     height: calc(100% - 106px);
+    overflow: auto;
     
 }
 .inner-content{
