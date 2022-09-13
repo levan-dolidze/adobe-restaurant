@@ -1,11 +1,13 @@
 <div class="order-content">
     <div class="order-inner">
         <mat-spinner *ngIf="loader.isLoading|async"></mat-spinner>
-
-        <div @fade class="order-list" *ngFor="let dish of (dishList$|async)">
+        <div @fade class="order-list" *ngFor="let dish of (dishList$|async)"
+        [routerLink]="['/category/',dish.name]"
+        >
             <div style="border-radius: 50%">{{dish.name}}</div>
             <img [src]="dish.file">
             Price USD {{dish.price}}
+
         </div>
 
     </div>

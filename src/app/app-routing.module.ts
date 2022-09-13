@@ -23,6 +23,14 @@ const routes: Routes = [
     ]
 
   },
+  {
+
+        path:'category/:category',
+        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
+
+
+
+  },
 
   { path: 'home', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule) },
   { path: 'about', loadChildren: () => import('./components/about/about.module').then(m => m.AboutModule) },
@@ -31,7 +39,10 @@ const routes: Routes = [
   { path: 'contact', loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule) },
   { path: 'reservation', loadChildren: () => import('./components/reservation/reservation.module').then(m => m.ReservationModule) },
   { path: 'events', loadChildren: () => import('./components/events/events.module').then(m => m.EventsModule) },
-  { path: 'order', loadChildren: () => import('./components/order/order.module').then(m => m.OrderModule) },
+  {
+    path: 'order',
+    loadChildren: () => import('./components/order/order.module').then(m => m.OrderModule)
+  },
   {
     path: 'admin-product',
     loadChildren: () => import('./admin-components/admin-product/admin-product.module').then(m => m.AdminProductModule),
@@ -57,6 +68,7 @@ const routes: Routes = [
   { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
   { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
   { path: 'special-dish', loadChildren: () => import('./special-dish/special-dish.module').then(m => m.SpecialDishModule) },
+  { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
 
 ];
 
