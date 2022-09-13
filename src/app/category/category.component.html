@@ -1,1 +1,24 @@
-<p>category works!</p>
+<div class="category-content">
+    <mat-icon style="cursor:pointer" class="back-to-signin" [routerLink]="['/order']">
+        keyboard_return
+    </mat-icon>
+    <div class="category-inner">
+        <div *ngFor="let dish of (dishList$|async)" class="dish-list">
+            <img [src]="dish.file" >
+            {{dish.category}}
+            {{dish.name}}
+            {{dish.price}} ₾
+            <span>
+                <mat-icon (click)="incriceDish()" 
+                          style="cursor:pointer;float:right">
+                    add
+                </mat-icon>
+                <i (click)="decriceDish()" 
+                   style="cursor:pointer;float:right" 
+                   class='fas fa-minus'>
+                </i>
+            </span>
+           
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
     <div class="order-inner">
         <mat-spinner *ngIf="loader.isLoading|async"></mat-spinner>
         <div @fade class="order-list" *ngFor="let dish of (dishList$|async)"
-        [routerLink]="['/category/',dish.name]"
+        [routerLink]="['/category/',dish.category]"
         >
             <div style="border-radius: 50%">{{dish.name}}</div>
             <img [src]="dish.file">

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, from, map, Observable, tap } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MenuModule } from '../components/menu/menu.module';
 import { DishModel } from '../models/dishModel';
 import { employeeModel } from '../models/employee';
 import { Menu } from '../models/menu';
@@ -19,6 +18,7 @@ export class HttpService {
 
   guestTime: GuestTime[] = [];
   myReservations: TableReservationModel[] = [];
+  cartChanges:Subject<any>=new Subject()
 
   addPrivateEvent(event: PrivateDiningModel): Observable<PrivateDiningModel> {
     return this.http.post<PrivateDiningModel>(`${this.apiUrl}privateEvent.json`, event)
@@ -168,8 +168,8 @@ export class HttpService {
 
 
 
-  
-  deleteDish(key:any){
+
+  deleteDish(key: any) {
     return this.http.delete(`${this.apiUrl}dish/${key}.json`)
   };
 

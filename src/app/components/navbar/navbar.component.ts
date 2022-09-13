@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AdminPermission } from 'src/app/classes/admin-permission';
 import { LoginComponent } from 'src/app/login/login.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
 import { ReservationComponent } from '../reservation/reservation.component';
 
@@ -17,13 +18,20 @@ export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
   adminPanel: boolean = false;
+  cart: number=0
   constructor(public modal: MatDialog,
-    private http: AuthService,
+    private httpAdmin: AuthService,
+    private http: HttpService
+
   ) { }
 
   ngOnInit(): void {
     this.returnToken();
     this.userIsLoggedIn();
+    this.http.cartChanges.subscribe((QTY) => {
+      this.cart = QTY
+
+    })
   };
 
   adminChecking(adminMail: AdminPermission) {
@@ -33,7 +41,7 @@ export class NavbarComponent implements OnInit {
 
 
   userIsLoggedIn() {
-    this.http.userLoggedIn$.subscribe((adminMail) => {
+    this.httpAdmin.userLoggedIn$.subscribe((adminMail) => {
       this.adminChecking(adminMail)
       this.authStatusIsLoggedin = true;
     })
@@ -41,7 +49,7 @@ export class NavbarComponent implements OnInit {
 
 
   returnToken() {
-    this.http.getToken().subscribe((res) => {
+    this.httpAdmin.getToken().subscribe((res) => {
       if (res) {
         this.adminChecking(res.email)
         this.authStatusIsLoggedin = true;
@@ -53,9 +61,9 @@ export class NavbarComponent implements OnInit {
 
 
   openDialog() {
-    this.http.getToken().subscribe((res) => {
+    this.httpAdmin.getToken().subscribe((res) => {
       if (res) {
-        this.http.logOut();
+        this.httpAdmin.logOut();
         this.adminPanel = false;
         this.authStatusIsLoggedin = false;
       } else {
