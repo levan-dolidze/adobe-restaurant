@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
   adminPanel: boolean = false;
-  cart: number=0
+  cart: number = 0
   constructor(public modal: MatDialog,
     private httpAdmin: AuthService,
     private http: HttpService
@@ -26,6 +26,12 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let cart = localStorage.getItem('cart');
+    if (cart) {
+      this.cart = JSON.parse(cart)
+    }
+
+
     this.returnToken();
     this.userIsLoggedIn();
     this.http.cartChanges.subscribe((QTY) => {
