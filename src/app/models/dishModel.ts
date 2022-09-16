@@ -3,6 +3,7 @@ export class DishModel {
     name: string;
     category: string;
     price: number;
-    file: string
+    file: string;
+    inCart:number
 };
 

@@ -178,6 +178,7 @@ export class AdminProductComponent implements OnInit {
         name: this.dish.name,
         category: this.dish.category,
         price: this.dish.price,
+        inCart:this.dish.inCart
       })
 
     }

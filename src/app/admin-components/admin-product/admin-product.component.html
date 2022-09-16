@@ -213,6 +213,27 @@
   </div>
   <div>
     <label>
+        <input [(ngModel)]="dish.inCart" 
+        required 
+        pattern="[1-1]*"
+        name="inCart" 
+        class="form-control"
+        placeholder="In cart"
+        #inCart="ngModel">
+    </label>
+          <div class="text-danger f-12 m-t-8" *ngIf="dishForm.submitted&&inCart.errors?.['required']">
+              Required
+          </div> 
+          <div class="text-danger f-12 m-t-8" *ngIf="dishForm.submitted&&inCart.errors?.['pattern']">
+              Enter "1"
+          </div> 
+   </div>
+
+
+
+
+  <div>
+    <label>
         <input [(ngModel)]="dish.file"
                (change)="showPreview($event)" 
                accept="image/*"
