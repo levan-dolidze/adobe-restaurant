@@ -1,0 +1,31 @@
+<div @fade class="employee-inner" >
+    <div >
+        <h3>Your Cart List</h3>
+        <div *ngIf="dishList" class="employee-list">
+            <div class="employee-list-inner" *ngFor="let dish of dishList">
+                <div class="employeeInfo">
+                    <div class="employeeImage">
+                        <img [src]="dish.file">
+                    </div>
+
+                </div>
+                <div class="employee-personal-info">
+                    <h3>Dish Info</h3>
+                     <div>
+                        Name: {{dish.name}} Ctegory: {{dish.category}}
+                    </div>
+                    <div>
+                        Price {{dish.price}}
+                    </div> 
+
+                </div>
+                <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(dish.key)">
+                    delete</mat-icon>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+ 

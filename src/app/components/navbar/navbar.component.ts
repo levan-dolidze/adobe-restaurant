@@ -21,7 +21,8 @@ export class NavbarComponent implements OnInit {
   cart: number = 0
   constructor(public modal: MatDialog,
     private httpAdmin: AuthService,
-    private http: HttpService
+    private http: HttpService,
+    private router:Router
 
   ) { }
 
@@ -84,5 +85,8 @@ export class NavbarComponent implements OnInit {
       maxHeight: '90vh'
     })
   };
-
+  showCart() {
+    this.router.navigate(['/cart'])
+   
+  }
 };

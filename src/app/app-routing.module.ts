@@ -69,6 +69,7 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
   { path: 'special-dish', loadChildren: () => import('./special-dish/special-dish.module').then(m => m.SpecialDishModule) },
   { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
+  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
 
 ];
 

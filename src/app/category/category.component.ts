@@ -13,14 +13,12 @@ export class CategoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private http: HttpService) { }
-  dishList$: Observable<any[]>;
-  dishQTY: number = 0;
+    dishList$: Observable<any[]>;
+    dishQTY: number = 0;
 
   ngOnInit(): void {
     this.returnCategory();
     this.returnDush();
-
-
   };
 
   returnCategory(): string | null {
@@ -51,10 +49,10 @@ export class CategoryComponent implements OnInit {
       this.dishQTY += 1;
       this.http.cartChanges.next(this.dishQTY)
       localStorage.setItem('cart', JSON.stringify(this.dishQTY))
-    }
-  }
+    };
+  };
 
-  
+
   decriceDish() {
     let qty = localStorage.getItem('cart');
     if (qty) {
@@ -63,19 +61,9 @@ export class CategoryComponent implements OnInit {
       this.dishQTY -= 1
       this.http.cartChanges.next(this.dishQTY)
       localStorage.setItem('cart', JSON.stringify(this.dishQTY))
-    }
+    };
+  };
 
-
-  }
-
-
-  // returnProductDetails(key: any) {
-  //   let item = localStorage.getItem('dishes');
-  //   if (item) {
-  //     let selectedItem = JSON.parse(item);
-  //     this.dishArr = selectedItem;
-  //   };
-  // };
 
 
   addDishToCart(dish: any) {
