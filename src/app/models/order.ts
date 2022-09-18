@@ -1,13 +1,15 @@
 import { DishModel } from "./dishModel";
 
 export class OrderModel {
+    key?:any;
     customerName: string;
     customerSurname: string;
-    customerPN:string;
+    customerPN: string;
     customerAddress: string;
-    orderTime:any;
-    userId:string;
-    userEmail:string
-    orderList:DishModel;
+    customerMob: string;
+    orderTime: any;
+    userId: string;
+    userEmail: string
+    orderList: DishModel[];
 
 };

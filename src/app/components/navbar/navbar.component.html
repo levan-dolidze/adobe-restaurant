@@ -44,6 +44,7 @@
                         <mat-menu #userProfile="matMenu">
                             <div class="product-menu">
                                 <button mat-menu-item [routerLink]="['user-profile/my-reservation']">My Reservations</button>
+                                <button mat-menu-item [routerLink]="['user-profile/my-order']">My Online Orders</button>
                                 <button style="width: 100%" (click)="openDialog()" id="login" mat-stroked-button
                                     color="primary">
                                     {{"Logout"}}<span class="material-icons">{{"logout"}}</span>

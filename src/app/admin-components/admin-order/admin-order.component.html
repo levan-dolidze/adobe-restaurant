@@ -1,2 +1,55 @@
+<div class="admin-event-content">
+    <div class="admin-event-inner">
+    <mat-spinner class="loader-spinner"  *ngIf="loader.isLoading|async"></mat-spinner>
+
+        <div @fade class="dining-inner">
+
+            <h3>Private Dining List</h3>
+            <div @fade *ngIf="onlineOrderList$" class="dining-list">
+                <div class="dining-list-inner" *ngFor="let dish of (onlineOrderList$|async);let i =index" >
+                   <div class="order-info" >
+                    <div class="customerInfo">
+                        <h3>Personal Info</h3>
+                        <div>
+                            Name: {{dish.customerName}}
+                        </div>
+                        <div>
+                            Surname {{dish.customerSurname}}
+                        </div>
+                        <div>
+                            Phone {{dish.customerMob}}
+                        </div>
+                        <div>
+                            Address {{dish.customerAddress}}
+                        </div>
+                 
+                    </div>
+                    <div class="eventInfo" *ngFor="let dishDetails of dish.orderList" >
+                        <h3>Dish Info</h3>
+                        <div>
+                            <img [src]="dishDetails.file" >
+                        </div>
+                        <div>
+                           Dish Name {{dishDetails.name}}
+
+                        </div>
+                        <div>
+                           Dish Price {{dishDetails.price}}
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                    </div>
+               
 
 
+                <mat-icon   style="cursor: pointer;"  (click)="cancelOnlineOrder(dish.key)"> cancel</mat-icon>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

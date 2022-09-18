@@ -103,6 +103,21 @@ Required
 </div>
 
 </div>
+<div>
+    <input type="text"
+    [(ngModel)]="orderModel.customerMob"
+    required
+    name="customerMob"
+    #customerMob='ngModel'
+    class="form-control"
+    placeholder="Phone">
+  </div>
+<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
+<div *ngIf="customerMob.errors?.['required']">
+Required
+</div>
+
+</div>
 
  <button class="addEventBtn" type="submit" mat-raised-button color="primary">Order</button>
 </form>

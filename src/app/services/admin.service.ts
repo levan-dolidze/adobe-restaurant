@@ -137,8 +137,8 @@ export class AdminService {
 
   //return online order
 
-  getOnlineOrders(): Observable<OrderModel[]>  {
-   return this.http.get<OrderModel[]>(`${this.apiUrl}onlineDishOrder.json`).pipe(
+  getOnlineOrders(): Observable<OrderModel[]> {
+    return this.http.get<OrderModel[]>(`${this.apiUrl}onlineDishOrder.json`).pipe(
       map((res) => {
         if (res) {
           const array = [];
@@ -152,7 +152,11 @@ export class AdminService {
         }
       })
     )
-  }
+  };
 
+  //online order delete
+  deleteOrder(key: any) {
+    return this.http.delete(`${this.apiUrl}onlineDishOrder/${key}.json`)
+  };
 
 };

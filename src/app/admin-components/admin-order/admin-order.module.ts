@@ -5,6 +5,8 @@ import { AdminOrderRoutingModule } from './admin-order-routing.module';
 import { AdminOrderComponent } from './admin-order.component';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     AdminOrderRoutingModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatIconModule
   ]
 })
 export class AdminOrderModule { }

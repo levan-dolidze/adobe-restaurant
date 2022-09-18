@@ -25,8 +25,8 @@ const routes: Routes = [
   },
   {
 
-        path:'category/:category',
-        loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
+    path: 'category/:category',
+    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
 
 
 
@@ -69,11 +69,21 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
   { path: 'special-dish', loadChildren: () => import('./special-dish/special-dish.module').then(m => m.SpecialDishModule) },
   { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
-  { path: 'cart', 
-  loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
 
-},
-
+  },
+  {
+    path: 'user-profile',
+    canActivate: [UserIsLoggedinGuard],
+    children:[
+      {
+        path:'my-order',
+        loadChildren: () => import('./my-order/my-order.module').then(m => m.MyOrderModule)
+      }
+    ]
+  },
 ];
 
 @NgModule({

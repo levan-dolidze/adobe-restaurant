@@ -66,18 +66,19 @@ export class CartComponent implements OnInit {
         if (!res) {
           this.dialog.open(LoginComponent)
         } else {
-          let cart =localStorage.getItem('dishes');
-          if(cart){
-            let cartList=JSON.parse(cart)
+          let cart = localStorage.getItem('dishes');
+          if (cart) {
+            let cartList = JSON.parse(cart)
             const newOrder: OrderModel = {
               customerName: this.orderModel.customerName,
               customerSurname: this.orderModel.customerName,
               customerPN: this.orderModel.customerName,
               customerAddress: this.orderModel.customerName,
-              orderTime:new Date(),
-              userId:res.uid,
-              userEmail:res.email,
-              orderList:cartList
+              customerMob: this.orderModel.customerMob,
+              orderTime: new Date(),
+              userId: res.uid,
+              userEmail: res.email,
+              orderList: cartList
             }
             this.http.addNewDishOrder(newOrder).subscribe(() => {
               this.modalRef = this.dialog.open(OrderDoneMessageComponent, {
@@ -85,7 +86,8 @@ export class CartComponent implements OnInit {
                 maxHeight: '90vh',
                 data: { name: this.orderModel.customerName },
               });
-            })}
+            })
+          }
         }
       })
     }
