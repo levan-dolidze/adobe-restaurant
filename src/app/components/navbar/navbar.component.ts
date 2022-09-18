@@ -73,6 +73,7 @@ export class NavbarComponent implements OnInit {
         this.httpAdmin.logOut();
         this.adminPanel = false;
         this.authStatusIsLoggedin = false;
+        this.cart=0
       } else {
         this.modal.open(LoginComponent)
       };

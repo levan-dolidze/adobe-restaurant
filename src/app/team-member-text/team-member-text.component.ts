@@ -12,7 +12,6 @@ export class TeamMemberTextComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { employeeArr:any }) { }
 
   ngOnInit(): void {
-    console.log(this.data.employeeArr.name)
   }
 
 }

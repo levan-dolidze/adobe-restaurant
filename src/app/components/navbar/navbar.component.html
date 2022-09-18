@@ -22,7 +22,12 @@
                 <button mat-button [routerLink]="['/order']">Order Online </button>
 
                 <button *ngIf="adminPanel" mat-button [matMenuTriggerFor]="admin">Admin</button>
-                <span  (click)="showCart()" style="cursor: pointer">{{cart}}</span>
+         
+
+                <mat-icon *ngIf="cart>0" class="cart"  (click)="showCart()" [matBadge]='cart' matBadgeColor="warn"> shopping_cart</mat-icon>
+            
+             
+               
                 <mat-menu #admin="matMenu">
                     <div class="product-menu">
                         <button mat-menu-item [routerLink]="['/admin-reservation']">Table Bookings</button>

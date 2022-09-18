@@ -17,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     CartRoutingModule,
     MatIconModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    
   ]
 })
 export class CartModule { }

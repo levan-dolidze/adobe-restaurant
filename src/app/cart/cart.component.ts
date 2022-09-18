@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { filter, from, of, pipe, toArray } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { DishModel } from '../models/dishModel';
 import { OrderModel } from '../models/order';
+import { OrderDoneMessageComponent } from '../order-done-message/order-done-message.component';
 import { AuthService } from '../services/auth.service';
 import { HttpService } from '../services/http.service';
 import { fade } from '../shared/animations';
@@ -24,7 +25,7 @@ export class CartComponent implements OnInit {
 
   dishList: DishModel[];
   orderModel: OrderModel = new OrderModel()
-
+  modalRef: MatDialogRef<any>
   ngOnInit(): void {
     this.returnDishList();
   };
@@ -79,7 +80,11 @@ export class CartComponent implements OnInit {
               orderList:cartList
             }
             this.http.addNewDishOrder(newOrder).subscribe(() => {
-              //aq modali rom warmatebit sheukveta
+              this.modalRef = this.dialog.open(OrderDoneMessageComponent, {
+                width: '300px',
+                maxHeight: '90vh',
+                data: { name: this.orderModel.customerName },
+              });
             })}
         }
       })

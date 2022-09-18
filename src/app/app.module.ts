@@ -20,7 +20,8 @@ import { EventMessageComponent } from './event-message/event-message.component';
 import { TimemodalComponent } from './timemodal/timemodal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TeamMemberTextComponent } from './team-member-text/team-member-text.component';
-
+import {MatBadgeModule} from '@angular/material/badge';
+import { OrderDoneMessageComponent } from './order-done-message/order-done-message.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { TeamMemberTextComponent } from './team-member-text/team-member-text.com
     EventMessageComponent,
     TimemodalComponent,
     TeamMemberTextComponent,
+    OrderDoneMessageComponent,
 
 
   ],
@@ -46,7 +48,9 @@ import { TeamMemberTextComponent } from './team-member-text/team-member-text.com
     HttpClientModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatBadgeModule
+    
   
 
 

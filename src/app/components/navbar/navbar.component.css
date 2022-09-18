@@ -36,3 +36,8 @@
     position: sticky;
     top: 0;
 }
+
+.cart{
+    cursor: pointer;
+    margin: 0px 50px 0px 0px
+}
