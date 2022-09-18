@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { filter, from, of, pipe, toArray } from 'rxjs';
+import { LoginComponent } from '../login/login.component';
 import { DishModel } from '../models/dishModel';
+import { OrderModel } from '../models/order';
 import { AuthService } from '../services/auth.service';
 import { HttpService } from '../services/http.service';
 import { fade } from '../shared/animations';
@@ -13,9 +16,14 @@ import { fade } from '../shared/animations';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private httpAuth: AuthService,private http:HttpService) { }
+  constructor(private httpAuth: AuthService,
+    private http: HttpService,
+    private auth: AuthService,
+    private dialog: MatDialog
+  ) { }
 
   dishList: DishModel[];
+  orderModel: OrderModel = new OrderModel()
 
   ngOnInit(): void {
     this.returnDishList();
@@ -32,7 +40,7 @@ export class CartComponent implements OnInit {
         this.dishList = uniqueDishListPerUser
       })
     } else {
-      this.dishList = []
+      this.dishList = [];
     };
   };
 
@@ -41,17 +49,42 @@ export class CartComponent implements OnInit {
     if (dish) {
       let dishes = JSON.parse(dish);
       dishes.splice(i, 1)
-      this.dishList=dishes
+      this.dishList = dishes
       localStorage.setItem('dishes', JSON.stringify(this.dishList))
       localStorage.setItem('cart', JSON.stringify(this.dishList.length))
       this.http.cartChanges.next(this.dishList.length)
+    };
+  };
+
+  orderDish(dish: any) {
+    if (dish.invalid) {
+      return
     }
-
-
-
-
-
-  }
+    else {
+      this.auth.getToken().subscribe((res) => {
+        if (!res) {
+          this.dialog.open(LoginComponent)
+        } else {
+          let cart =localStorage.getItem('dishes');
+          if(cart){
+            let cartList=JSON.parse(cart)
+            const newOrder: OrderModel = {
+              customerName: this.orderModel.customerName,
+              customerSurname: this.orderModel.customerName,
+              customerPN: this.orderModel.customerName,
+              customerAddress: this.orderModel.customerName,
+              orderTime:new Date(),
+              userId:res.uid,
+              userEmail:res.email,
+              orderList:cartList
+            }
+            this.http.addNewDishOrder(newOrder).subscribe(() => {
+              //aq modali rom warmatebit sheukveta
+            })}
+        }
+      })
+    }
+  };
 
 
 

@@ -8,7 +8,6 @@
                         <div class="employeeImage">
                             <img [src]="dish.file">
                         </div>
-
                     </div>
                     <div class="employee-personal-info">
                         <h3>Dish Info</h3>
@@ -19,7 +18,6 @@
                             Price {{dish.price}}
                         </div> 
                     </div>
-              
                     <div>
                     </div>
                     <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(i)">
@@ -30,52 +28,85 @@
         
         <div @fade  class="add-dining-date-inner">
             <h2 class="event-title">Order Dish</h2>
-            <form style="padding:10px"  >
+            <form (ngSubmit)="orderDish(orderForm)" style="padding:10px" #orderForm="ngForm" >
           <div>
             <input type="text"
-    
+            [(ngModel)]="orderModel.customerName"
             required
             pattern="[a-z ]*"
-            name="eventType"
-        
+            name="customerName"
+            #customerName='ngModel'
             class="form-control"
-            placeholder="Event Type">
+            placeholder="Name">
           </div>
-    <!-- <div *ngIf="eventTypeForm.submitted" class="text-danger f-12 m-t-8" >
-    <div *ngIf="eventType.errors?.['required']"> -->
+    <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
+    <div *ngIf="customerName.errors?.['required']">
         Required
-    <!-- </div>
-    <div *ngIf="eventType.errors?.['pattern']">
+    </div>
+    <div *ngIf="customerName.errors?.['pattern']">
         Wrong Format
-    </div> -->
-    
-    <!-- </div> -->
-       
-          <div>
-            <input type="text"
-        
-            required
-            pattern="[0-9]*"
-            maxlength="3"
-            name="eventId"
-     
-            class="form-control"
-            placeholder="Event ID">
-          </div>
-          <!-- <div *ngIf="eventTypeForm.submitted" >
-            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['required']">
-              Required
-            </div>
-            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['pattern']">
-              Only Numbers Is Allowed
-            </div>
-    
-        </div> -->
-    
-            <button class="addEventBtn" type="submit" mat-raised-button color="primary">Order</button>
-        </form>
+    </div>
+    </div>
+
+
+    <div>
+        <input type="text"
+        [(ngModel)]="orderModel.customerSurname"
+        required
+        pattern="[a-z ]*"
+        name="surname"
+        #customerSurname='ngModel'
+        class="form-control"
+        placeholder="Surname">
+      </div>
+<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
+<div *ngIf="customerSurname.errors?.['required']">
+    Required
+</div>
+<div *ngIf="customerSurname.errors?.['pattern']">
+    Wrong Format
+</div>
+</div>
+
+
+
+<div>
+    <input type="text"
+    [(ngModel)]="orderModel.customerPN"
+    required
+    pattern="[0-9]*"
+    name="personalNumber"
+    #customerPN='ngModel'
+    class="form-control"
+    placeholder="PN">
+  </div>
+<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
+<div *ngIf="customerPN.errors?.['required']">
+Required
+</div>
+<div *ngIf="customerPN.errors?.['pattern']">
+Wrong Format
+</div>
+</div>
+<div>
+    <input type="text"
+    [(ngModel)]="orderModel.customerAddress"
+    required
+    name="customerAddress"
+    #customerAddress='ngModel'
+    class="form-control"
+    placeholder="Delivery Address">
+  </div>
+<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
+<div *ngIf="customerAddress.errors?.['required']">
+Required
+</div>
+
+</div>
+
+ <button class="addEventBtn" type="submit" mat-raised-button color="primary">Order</button>
+</form>
         </div>
     </div>
-<!-- <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner> -->
 </div>
 

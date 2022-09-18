@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { DishModel } from '../models/dishModel';
 import { employeeModel } from '../models/employee';
 import { Menu } from '../models/menu';
+import { OrderModel } from '../models/order';
 import { EventTypeModel, PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
 
@@ -18,7 +19,7 @@ export class HttpService {
 
   guestTime: GuestTime[] = [];
   myReservations: TableReservationModel[] = [];
-  cartChanges:Subject<any>=new Subject()
+  cartChanges: Subject<any> = new Subject()
 
   addPrivateEvent(event: PrivateDiningModel): Observable<PrivateDiningModel> {
     return this.http.post<PrivateDiningModel>(`${this.apiUrl}privateEvent.json`, event)
@@ -171,6 +172,13 @@ export class HttpService {
 
   deleteDish(key: any) {
     return this.http.delete(`${this.apiUrl}dish/${key}.json`)
+  };
+
+
+  //add dish order
+
+  addNewDishOrder(newOrder: OrderModel) {
+    return this.http.post(`${this.apiUrl}onlineDishOrder.json`, newOrder)
   };
 
 
