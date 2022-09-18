@@ -1,67 +1,6 @@
-.product-content{
-    width: 100%;
-    height: 100%;
-}
-.product-inner{
-    width: 100%;
-    height: 100%;
-    display: flex;
-}
-
-
-.employee-form label,
-textarea,
-.employeeBtn {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.image-content {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    margin-top: 10px;
-}
-
-.image-content img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.employee-form {
-    background-color: white;
-    padding: 10px;
-    width: 20%;
- 
-}
-.closedEmployeeForm{
-    width: 30px;
-    background-color: white;
-    padding: 10px;
-    height: 100%;
-}
-
-.fa-angle-left,.fa-angle-right {
-    float: right;
-    cursor: pointer;
-    align-items: center;
-    margin: 0 auto;
-    text-align: center;
-
-}
-.fa-angles-right,.fa-angles-left{
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-
-/* employee list */
-
 .admin-event-content {
     width: 100%;
     height: 100%;
-    overflow: scroll;
     
 }
 .admin-event-inner{
@@ -69,32 +8,53 @@ textarea,
     width: 100%;
 }
 
-.employee-list-inner {
+.dining-list-inner {
     display: flex;
     background-color: white;
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
 }
-
-.employee-inner{
+.dining-inner{
     overflow: auto;
     width: 75%;
-    padding: 10px;
 }
-
 
 .employeeImage{
     width: 100px;
     height: 100px;
 
 }
+.employee-personal-info{
+    width: 100%;
+    padding: 10px;
+}
+
+.customerInfo{
+    width: 10%;
+}
 .employeeImage img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.employee-personal-info{
-    padding: 10px;
-    width: 90%;
+.eventInfo{
+    width: 60%;
+
+}
+
+
+.add-dining-date-inner{
+    background-color: white;
+    text-align: center;
+    width: 20%;
+    position: sticky;
+    top: 0px;
+    height: 250px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.form-control,.addEventBtn{
+    margin-top: 10px;
 }

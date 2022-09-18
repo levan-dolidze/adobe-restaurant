@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { filter, from, of, pipe, toArray } from 'rxjs';
 import { DishModel } from '../models/dishModel';
 import { AuthService } from '../services/auth.service';
+import { HttpService } from '../services/http.service';
 import { fade } from '../shared/animations';
 
 @Component({
@@ -12,7 +13,7 @@ import { fade } from '../shared/animations';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private httpAuth: AuthService) { }
+  constructor(private httpAuth: AuthService,private http:HttpService) { }
 
   dishList: DishModel[];
 
@@ -35,7 +36,20 @@ export class CartComponent implements OnInit {
     };
   };
 
-  deleteDishList(key: any) {
+  deleteDishList(i: any) {
+    let dish = localStorage.getItem('dishes');
+    if (dish) {
+      let dishes = JSON.parse(dish);
+      dishes.splice(i, 1)
+      this.dishList=dishes
+      localStorage.setItem('dishes', JSON.stringify(this.dishList))
+      localStorage.setItem('cart', JSON.stringify(this.dishList.length))
+      this.http.cartChanges.next(this.dishList.length)
+    }
+
+
+
+
 
   }
 

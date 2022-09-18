@@ -1,31 +1,81 @@
-<div @fade class="employee-inner" >
-    <div >
-        <h3>Your Cart List</h3>
-        <div *ngIf="dishList" class="employee-list">
-            <div class="employee-list-inner" *ngFor="let dish of dishList">
-                <div class="employeeInfo">
-                    <div class="employeeImage">
-                        <img [src]="dish.file">
-                    </div>
+<div class="admin-event-content">
+    <div class="admin-event-inner">
+        <div @fade class="dining-inner">
+            <h3>Your Cart List</h3>
+            <div *ngIf="dishList" class="dining-list">
+                <div class="dining-list-inner" *ngFor="let dish of dishList;let i =index">
+                    <div class="employeeInfo">
+                        <div class="employeeImage">
+                            <img [src]="dish.file">
+                        </div>
 
-                </div>
-                <div class="employee-personal-info">
-                    <h3>Dish Info</h3>
-                     <div>
-                        Name: {{dish.name}} Ctegory: {{dish.category}}
                     </div>
+                    <div class="employee-personal-info">
+                        <h3>Dish Info</h3>
+                         <div>
+                            Name: {{dish.name}} Ctegory: {{dish.category}}
+                        </div>
+                        <div>
+                            Price {{dish.price}}
+                        </div> 
+                    </div>
+              
                     <div>
-                        Price {{dish.price}}
-                    </div> 
-
+                    </div>
+                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(i)">
+                        delete</mat-icon>
                 </div>
-                <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(dish.key)">
-                    delete</mat-icon>
             </div>
         </div>
+        
+        <div @fade  class="add-dining-date-inner">
+            <h2 class="event-title">Order Dish</h2>
+            <form style="padding:10px"  >
+          <div>
+            <input type="text"
+    
+            required
+            pattern="[a-z ]*"
+            name="eventType"
+        
+            class="form-control"
+            placeholder="Event Type">
+          </div>
+    <!-- <div *ngIf="eventTypeForm.submitted" class="text-danger f-12 m-t-8" >
+    <div *ngIf="eventType.errors?.['required']"> -->
+        Required
+    <!-- </div>
+    <div *ngIf="eventType.errors?.['pattern']">
+        Wrong Format
+    </div> -->
+    
+    <!-- </div> -->
+       
+          <div>
+            <input type="text"
+        
+            required
+            pattern="[0-9]*"
+            maxlength="3"
+            name="eventId"
+     
+            class="form-control"
+            placeholder="Event ID">
+          </div>
+          <!-- <div *ngIf="eventTypeForm.submitted" >
+            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['required']">
+              Required
+            </div>
+            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['pattern']">
+              Only Numbers Is Allowed
+            </div>
+    
+        </div> -->
+    
+            <button class="addEventBtn" type="submit" mat-raised-button color="primary">Order</button>
+        </form>
+        </div>
     </div>
+<!-- <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner> -->
+</div>
 
-
-
-    </div>
- 
