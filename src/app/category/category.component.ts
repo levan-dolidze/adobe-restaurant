@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, from, Observable, of, toArray } from 'rxjs';
 import { DishModel } from '../models/dishModel';
+import { AuthService } from '../services/auth.service';
 import { HttpService } from '../services/http.service';
 
 @Component({
@@ -12,7 +13,9 @@ import { HttpService } from '../services/http.service';
 export class CategoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private http: HttpService) { }
+    private http: HttpService,
+    private httpAuth:AuthService
+    ) { }
     dishList$: Observable<any[]>;
     dishQTY: number = 0;
 
@@ -67,18 +70,23 @@ export class CategoryComponent implements OnInit {
 
 
   addDishToCart(dish: any) {
-    let dishes = localStorage.getItem('dishes');
-    if (dishes) {
-      let dishInCart = JSON.parse(dishes);
-      dishInCart.push(dish)
-      const count = dishInCart.filter((obj: any) => obj.key === dish.key).length;
-      dish.inCart = count
-      localStorage.setItem('dishes', JSON.stringify(dishInCart));
-    } else {
-      let newDish = [];
-      newDish.push(dish)
-      localStorage.setItem('dishes', JSON.stringify(newDish));
-    };
+    this.httpAuth.getToken().subscribe((token)=>{
+      dish.uid=token.uid
+      let dishes = localStorage.getItem('dishes');
+      if (dishes) {
+        let dishInCart = JSON.parse(dishes);
+        dishInCart.push(dish)
+        const count = dishInCart.filter((obj: any) => obj.key === dish.key).length;
+        dish.inCart = count
+        localStorage.setItem('dishes', JSON.stringify(dishInCart));
+      } else {
+        let newDish = [];
+        newDish.push(dish)
+        localStorage.setItem('dishes', JSON.stringify(newDish));
+      };
+    })
+
+
   };
 
 

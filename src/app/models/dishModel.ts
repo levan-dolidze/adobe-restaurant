@@ -4,6 +4,7 @@ export class DishModel {
     category: string;
     price: number;
     file: string;
-    inCart:number
+    inCart: number
+    uid?: string;
 };
 
