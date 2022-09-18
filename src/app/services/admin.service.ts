@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
+import { OrderModel } from '../models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -133,6 +134,25 @@ export class AdminService {
   };
 
 
+
+  //return online order
+
+  getOnlineOrders(): Observable<OrderModel[]>  {
+   return this.http.get<OrderModel[]>(`${this.apiUrl}onlineDishOrder.json`).pipe(
+      map((res) => {
+        if (res) {
+          const array = [];
+          for (const key in res) {
+            array.push({ ...res[key], key: key })
+          }
+          return array
+        }
+        else {
+          return []
+        }
+      })
+    )
+  }
 
 
 };
