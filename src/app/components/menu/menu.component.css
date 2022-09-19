@@ -1,13 +1,37 @@
-.menu-content{
+.menu-content {
     width: 100%;
     height: 100%;
+    background: url('https://www.apfelhotel.com/site/assets/files/3024/500_-_apfelhotel_web_2000_px_emi_massmer_emotions.0x799.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
 }
 
-.menu-inner{
+.menu-inner {
     text-align: center;
-  
+
 }
-.menu-link{
-    color: black;
+
+.menu-link {
+    color: white;
     text-decoration: none;
+}
+
+.menu-btn {
+    margin: 10px;
+}
+
+.menu-text {
+    color: white;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 3rem;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
