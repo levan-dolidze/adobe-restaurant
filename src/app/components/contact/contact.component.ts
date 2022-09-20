@@ -3,11 +3,13 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CustomerMessageComponent } from 'src/app/customer-message/customer-message.component';
 import { CustomerMessageModel } from 'src/app/models/contact';
 import { HttpService } from 'src/app/services/http.service';
+import { fade } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.css'],
+  animations:[fade]
 })
 export class ContactComponent implements OnInit {
 
