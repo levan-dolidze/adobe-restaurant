@@ -1,1 +1,77 @@
-<p>contact works!</p>
+<div class="contact-content">
+    <div class="contact-inner">
+        <div class="title">
+            <h1>Contact Us</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi ea maxime voluptates hic dolore? Ullam
+                quia reprehenderit nesciunt totam quasi enim sint laborum minima optio debitis, voluptatem dolorem
+                perspiciatis iure, nobis sit vero ut, asperiores corporis sequi eos? Perferendis quis debitis veniam
+                tenetur dolore ipsam totam voluptate asperiores, dolorem impedit modi recusandae iusto ipsa pariatur
+                quos odit commodi eos fuga iure illo minima maiores unde. Eius nobis et dolorem id consequuntur nihil
+                nostrum vel obcaecati minus cumque, temporibus repellat, hic ut adipisci natus! Cumque cupiditate
+                magnam, molestias sunt esse veritatis hic labore. Praesentium ipsam sit amet laborum saepe laboriosam
+                vel </p>
+        </div>
+        <div class="contact-form">
+            <form (ngSubmit)="sendMessage(contactForm)"   #contactForm="ngForm" >
+
+                <input [(ngModel)]="contact.fullName" 
+                       required
+                       #fullname="ngModel"
+                       name="fullname"
+                       class="form-control" 
+                       type="text"
+                       placeholder="Fullname"
+                       >
+                       <div class="text-danger f-12 m-t-8" *ngIf="contactForm.submitted&&fullname.errors?.['required']">
+                        required
+                    </div>
+                <input [(ngModel)]="contact.email" 
+                       required
+                       #email="ngModel"
+                       name="email"
+                       class="form-control" 
+                       type="text"
+                       placeholder="Email"
+                       >
+                       <div class="text-danger f-12 m-t-8" *ngIf="contactForm.submitted&&email.errors?.['required']">
+                        required
+                    </div>
+                <input [(ngModel)]="contact.phoneNumber" 
+                       required
+                       #phoneNumber="ngModel"
+                       name="phoneNumber"
+                       class="form-control" 
+                       type="text"
+                       placeholder="Phone Number"
+                       >
+                       <div class="text-danger f-12 m-t-8" *ngIf="contactForm.submitted&&phoneNumber.errors?.['required']">
+                        required
+                    </div>
+                <textarea [(ngModel)]="contact.message" 
+                       required
+                       #message="ngModel"
+                       name="message"
+                       class="form-control" 
+                       type="text"
+                       cols="30" rows="5"
+                       placeholder="Your Message"
+                       >
+
+                ]</textarea>
+             
+                       <div class="text-danger f-12 m-t-8" *ngIf="contactForm.submitted&&message.errors?.['required']">
+                        required
+                    </div>
+
+
+      
+                <button class="send-btn" type="submit" mat-raised-button color="primary">Send</button>
+
+            </form>
+
+
+
+        </div>
+
+    </div>
+</div>

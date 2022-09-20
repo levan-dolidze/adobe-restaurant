@@ -1,0 +1,8 @@
+.customer-message-content{
+    width: 100%;
+    height: 100%;
+    background: url('https://kavlinano.ox.ac.uk/sites/default/files/styles/listing_landscape_textoverlay_left_bottom_image/public/kavli/images/media/contact-banner.jpg?itok=GJmp-22d');
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+}

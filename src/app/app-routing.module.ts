@@ -84,6 +84,7 @@ const routes: Routes = [
       }
     ]
   },
+  { path: 'customer-message', loadChildren: () => import('./customer-message/customer-message.module').then(m => m.CustomerMessageModule) },
 ];
 
 @NgModule({

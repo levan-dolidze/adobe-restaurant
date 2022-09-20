@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CustomerMessageModel } from '../models/contact';
 import { DishModel } from '../models/dishModel';
 import { employeeModel } from '../models/employee';
 import { Menu } from '../models/menu';
@@ -179,6 +180,12 @@ export class HttpService {
 
   addNewDishOrder(newOrder: OrderModel) {
     return this.http.post(`${this.apiUrl}onlineDishOrder.json`, newOrder)
+  };
+
+
+  //add customer message
+  addCustomerMessage(message: CustomerMessageModel) {
+    return this.http.post(`${this.apiUrl}customerMessage.json`, message)
   };
 
 
