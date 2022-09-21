@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit {
     private http: HttpService,
     private httpAuth:AuthService
     ) { }
-    dishList$: Observable<any[]>;
+    dishList$: Observable<DishModel[]>;
     dishQTY: number = 0;
 
   ngOnInit(): void {

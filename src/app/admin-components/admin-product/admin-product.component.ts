@@ -26,12 +26,12 @@ export class AdminProductComponent implements OnInit {
   employee: employeeModel = new employeeModel();
   dish: DishModel = new DishModel();
   menu: Menu = new Menu();
-  imgURL: any;
-  menuURL: any
-  dishURL: any;
-  selectedImage: any;
-  selectedMenu: any;
-  selectedDish: any;
+  imgURL: unknown;
+  menuURL: unknown
+  dishURL: unknown;
+  selectedImage: unknown;
+  selectedMenu: unknown;
+  selectedDish: unknown;
   
 
   viewMode: string = 'form'
