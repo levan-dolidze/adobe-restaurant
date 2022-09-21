@@ -15,18 +15,19 @@ export class AdminContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnCustomerMessage();
-  }
+  };
 
   returnCustomerMessage(){
     this.customerMessage$=this.httpAdmin.getCustomerMessage();
     this.customerMessage$.subscribe((res)=>{
       this.customerMessage$=of(res)
-
     })
-  }
+  };
 
   deleteMessage(key:any){
-
-  }
+    this.httpAdmin.deleteCustomerMessage(key).subscribe(()=>{ 
+      this.returnCustomerMessage()
+    })
+  };
 
 }

@@ -180,4 +180,8 @@ export class AdminService {
     )
   }
 
+  deleteCustomerMessage(key: any) {
+    return this.http.delete(`${this.apiUrl}customerMessage/${key}.json`)
+  };
+
 };

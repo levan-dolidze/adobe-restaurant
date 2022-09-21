@@ -12,7 +12,7 @@
 }
 
 .tableReserve-list {
-    width: 70%;
+    max-width: 70%;
 }
 
 .customerInfo{
