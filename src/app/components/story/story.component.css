@@ -10,6 +10,9 @@
 
 
 }
+.description-content{
+    padding: 20px;
+}
 .description-inner {
     width: 70%;
     margin: 0 auto;

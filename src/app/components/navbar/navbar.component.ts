@@ -18,26 +18,25 @@ export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
   adminPanel: boolean = false;
-  cart: number = 0
+  itemQTY: number = 0
   constructor(public modal: MatDialog,
     private httpAdmin: AuthService,
     private http: HttpService,
-    private router:Router
+    private router: Router
 
   ) { }
 
   ngOnInit(): void {
-    let cart = localStorage.getItem('cart');
-    if (cart) {
-      this.cart = JSON.parse(cart)
+    let dish = localStorage.getItem('dishes');
+    if (dish) {
+      this.itemQTY = JSON.parse(dish).length
     }
 
 
     this.returnToken();
     this.userIsLoggedIn();
     this.http.cartChanges.subscribe((QTY) => {
-      this.cart = QTY
-
+      this.itemQTY = QTY.length
     })
   };
 
@@ -73,7 +72,7 @@ export class NavbarComponent implements OnInit {
         this.httpAdmin.logOut();
         this.adminPanel = false;
         this.authStatusIsLoggedin = false;
-        this.cart=0
+        this.itemQTY = 0
       } else {
         this.modal.open(LoginComponent)
       };
@@ -88,6 +87,5 @@ export class NavbarComponent implements OnInit {
   };
   showCart() {
     this.router.navigate(['/cart'])
-   
-  }
+  };
 };

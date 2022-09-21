@@ -52,8 +52,7 @@ export class CartComponent implements OnInit {
       dishes.splice(i, 1)
       this.dishList = dishes
       localStorage.setItem('dishes', JSON.stringify(this.dishList))
-      localStorage.setItem('cart', JSON.stringify(this.dishList.length))
-      this.http.cartChanges.next(this.dishList.length)
+      this.http.cartChanges.next(this.dishList)
     };
   };
 

@@ -3,17 +3,17 @@
         keyboard_return
     </mat-icon>
     <div class="category-inner">
-        <div *ngFor="let dish of (dishList$|async)" class="dish-list"
+        <div *ngFor="let dish of (dishList$|async);let i =index" class="dish-list"
         >
             <img [src]="dish.file">
             {{dish.category}}
             {{dish.name}}
             {{dish.price}} ₾
             <span>
-                <mat-icon (click)="incriceDish();addDishToCart(dish)" style="cursor:pointer;float:right">
+                <mat-icon (click)="incriceDish(dish);addDishToCart(dish)" style="cursor:pointer;float:right">
                     add
                 </mat-icon>
-                <i (click)="decriceDish()" style="cursor:pointer;float:right" class='fas fa-minus'>
+                <i (click)="decriceDish(i)" style="cursor:pointer;float:right" class='fas fa-minus'>
                 </i>
             </span>
         </div>

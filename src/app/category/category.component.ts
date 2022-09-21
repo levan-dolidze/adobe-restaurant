@@ -14,10 +14,10 @@ export class CategoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private http: HttpService,
-    private httpAuth:AuthService
-    ) { }
-    dishList$: Observable<DishModel[]>;
-    dishQTY: number = 0;
+    private httpAuth: AuthService
+  ) { }
+  dishList$: Observable<DishModel[]>;
+  dishQTY: number = 0;
 
   ngOnInit(): void {
     this.returnCategory();
@@ -41,37 +41,42 @@ export class CategoryComponent implements OnInit {
     })
   };
 
-  incriceDish() {
-    let cart = localStorage.getItem('cart');
-    if (cart) {
-      this.dishQTY = JSON.parse(cart)
-      this.dishQTY += 1;
-      this.http.cartChanges.next(this.dishQTY)
-      localStorage.setItem('cart', JSON.stringify(this.dishQTY))
+  incriceDish(dish: any) {
+    let list = localStorage.getItem('dishes');
+    if (list) {
+      let cartList = JSON.parse(list)
+      cartList.push(dish)
+      // console.log(cartList)
+      this.http.cartChanges.next(cartList)
+      // localStorage.setItem('dishes', JSON.stringify(cartList))
     } else {
-      this.dishQTY += 1;
-      this.http.cartChanges.next(this.dishQTY)
-      localStorage.setItem('cart', JSON.stringify(this.dishQTY))
+      let newList=[]
+      newList.push(dish)
+      this.http.cartChanges.next(newList)
+      localStorage.setItem('dishes', JSON.stringify(newList))
     };
   };
 
 
-  decriceDish() {
-    let qty = localStorage.getItem('cart');
-    if (qty) {
-      const QTY = JSON.parse(qty)
-      this.dishQTY = QTY
-      this.dishQTY -= 1
-      this.http.cartChanges.next(this.dishQTY)
-      localStorage.setItem('cart', JSON.stringify(this.dishQTY))
+  decriceDish(i: any) {
+    let list = localStorage.getItem('dishes');
+    if (list) {
+      let cartList = JSON.parse(list)
+      if (cartList === 0) {
+        return
+      } else {
+        cartList.splice(i, 1)
+        this.http.cartChanges.next(cartList)
+        localStorage.setItem('dishes', JSON.stringify(cartList))
+      }
     };
   };
 
 
 
   addDishToCart(dish: any) {
-    this.httpAuth.getToken().subscribe((token)=>{
-      dish.uid=token.uid
+    this.httpAuth.getToken().subscribe((token) => {
+      dish.uid = token.uid
       let dishes = localStorage.getItem('dishes');
       if (dishes) {
         let dishInCart = JSON.parse(dishes);

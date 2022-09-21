@@ -24,7 +24,7 @@
                 <button *ngIf="adminPanel" mat-button [matMenuTriggerFor]="admin">Admin</button>
          
 
-                <mat-icon *ngIf="cart>0" class="cart"  (click)="showCart()" [matBadge]='cart' matBadgeColor="warn"> shopping_cart</mat-icon>
+                <mat-icon *ngIf="itemQTY>0" class="cart"  (click)="showCart()" [matBadge]='itemQTY' matBadgeColor="warn"> shopping_cart</mat-icon>
             
              
                
