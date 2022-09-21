@@ -7,6 +7,7 @@ import { PrivateDiningModel } from '../models/privateDiningModel';
 import { GuestTime, TableReservationModel } from '../models/reserve';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 import { OrderModel } from '../models/order';
+import { CustomerMessageModel } from '../models/contact';
 
 @Injectable({
   providedIn: 'root'
@@ -158,5 +159,25 @@ export class AdminService {
   deleteOrder(key: any) {
     return this.http.delete(`${this.apiUrl}onlineDishOrder/${key}.json`)
   };
+
+
+  // get customer message
+
+  getCustomerMessage(): Observable<CustomerMessageModel[]> {
+    return this.http.get<CustomerMessageModel[]>(`${this.apiUrl}customerMessage.json`).pipe(
+      map((res) => {
+        if (res) {
+          const array = [];
+          for (const key in res) {
+            array.push({ ...res[key], key: key })
+          }
+          return array
+        } else {
+          return []
+        }
+
+      })
+    )
+  }
 
 };

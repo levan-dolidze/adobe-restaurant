@@ -1,0 +1,51 @@
+<div *ngFor="let message of (customerMessage$|async)">
+    {{message.fullName}}
+
+</div>
+
+
+
+
+
+
+
+<div class="admin-tableReserve-content">
+    <div class="admin-tableReserve-inner">
+        <div @fade class="tableReserve-inner">
+            <h3>Customer Message List List</h3>
+            <div *ngIf="customerMessage$" class="tableReserve-list">
+                <div class="tableReserve-list-inner" *ngFor="let message of (customerMessage$|async)">
+                    <div class="customerInfo">
+                        <h3>Personal Info</h3>
+                        <div>
+                            Customer Email:{{message.email}}
+                        </div>
+                        <div>
+                            Full name {{message.fullName}}
+                        </div>
+                        <div>
+                            Phone {{message.phoneNumber}}
+                        </div>
+                    </div>
+
+                    <div class="eventInfo">
+                        <h3>Message:</h3>
+                    <div>
+                        {{message.message}}
+                    </div>
+
+
+                    </div>
+
+                    <div>
+                        <!-- price <span>{{i.price}}</span> -->
+                    </div>
+                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
+                        (click)="deleteMessage(message.key)">delete</mat-icon>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner> -->
+</div>
