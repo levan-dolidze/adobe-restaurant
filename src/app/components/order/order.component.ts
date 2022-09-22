@@ -33,6 +33,7 @@ export class OrderComponent implements OnInit {
         distinctUntilChanged((prev: any, curr: any) => { return (prev.category === curr.category)}),
         toArray()
       ).subscribe((res) => {
+        console.log(res)
         this.dishList$ = of(res)
       })
     })
