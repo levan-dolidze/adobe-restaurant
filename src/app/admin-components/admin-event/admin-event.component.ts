@@ -33,7 +33,6 @@ export class AdminEventComponent implements OnInit, OnDestroy {
     this.privateDining$ = this.httpAdmin.returnPrivateDining();
     this.privateDining$.subscribe((res) => {
       this.privateDining$ = of(res)
-
     })
   };
 

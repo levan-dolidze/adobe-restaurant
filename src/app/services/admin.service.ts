@@ -31,6 +31,8 @@ export class AdminService {
   imageDetailList: AngularFireList<any>
   menuList: AngularFireList<any>;
   dishList: AngularFireList<any>;
+  notification: Subject<any> = new Subject();
+
 
   returnPrivateDining(): Observable<PrivateDiningModel[]> {
     return this.http.get<PrivateDiningModel[]>(`${this.apiUrl}privateEvent.json`).pipe(

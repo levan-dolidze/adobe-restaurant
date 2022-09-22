@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { forkJoin, Observable, of, shareReplay, tap } from 'rxjs';
 import { AdminPermission } from 'src/app/classes/admin-permission';
 import { LoginComponent } from 'src/app/login/login.component';
+import { PrivateDiningModel } from 'src/app/models/privateDiningModel';
+import { Notifications } from 'src/app/models/shared';
+import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
@@ -18,27 +22,58 @@ export class NavbarComponent implements OnInit {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
   adminPanel: boolean = false;
-  itemQTY: number = 0
+  itemQTY: number = 0;
+  eventNotification: number = 0;
+  observable$: Observable<any>;
+  test$:Observable<any>
+  notifications: Notifications = new Notifications()
+
   constructor(public modal: MatDialog,
-    private httpAdmin: AuthService,
+    private httpAuth: AuthService,
     private http: HttpService,
+    private httpAdmin: AdminService,
     private router: Router
 
   ) { }
+  privateDining$: Observable<PrivateDiningModel[]>
 
   ngOnInit(): void {
+    this.returnTotifications();
     let dish = localStorage.getItem('dishes');
     if (dish) {
       this.itemQTY = JSON.parse(dish).length
-    }
-
-
+    };
     this.returnToken();
     this.userIsLoggedIn();
     this.http.cartChanges.subscribe((QTY) => {
       this.itemQTY = QTY.length
     })
   };
+
+
+  returnTotifications() {
+    this.observable$ = forkJoin({
+      event:this.httpAdmin.returnPrivateDining(),
+      table: this.httpAdmin.getTableReservations(),
+      orders: this.httpAdmin.getOnlineOrders(),
+      messages: this.httpAdmin.getCustomerMessage(),
+    }).pipe(
+      shareReplay()
+    )
+  };
+
+
+  showNotifications(){
+    this.test$ = this.observable$.pipe(
+      tap(() => console.log('one data exists')),
+      shareReplay()
+    )
+    this.test$.subscribe((res) => {
+      this.notifications = res
+    })
+  };
+
+
 
   adminChecking(adminMail: AdminPermission) {
     (this.adminPermission.adminPermission(adminMail)) ? this.adminPanel = true : this.adminPanel = false;
@@ -47,7 +82,7 @@ export class NavbarComponent implements OnInit {
 
 
   userIsLoggedIn() {
-    this.httpAdmin.userLoggedIn$.subscribe((adminMail) => {
+    this.httpAuth.userLoggedIn$.subscribe((adminMail) => {
       this.adminChecking(adminMail)
       this.authStatusIsLoggedin = true;
     })
@@ -55,7 +90,7 @@ export class NavbarComponent implements OnInit {
 
 
   returnToken() {
-    this.httpAdmin.getToken().subscribe((res) => {
+    this.httpAuth.getToken().subscribe((res) => {
       if (res) {
         this.adminChecking(res.email)
         this.authStatusIsLoggedin = true;
@@ -67,9 +102,9 @@ export class NavbarComponent implements OnInit {
 
 
   openDialog() {
-    this.httpAdmin.getToken().subscribe((res) => {
+    this.httpAuth.getToken().subscribe((res) => {
       if (res) {
-        this.httpAdmin.logOut();
+        this.httpAuth.logOut();
         this.adminPanel = false;
         this.authStatusIsLoggedin = false;
         this.itemQTY = 0

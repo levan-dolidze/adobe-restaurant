@@ -41,3 +41,15 @@
     cursor: pointer;
     margin: 0px 50px 0px 0px
 }
+
+.admin-icon{
+    cursor: pointer;
+    margin-right: 20px;
+}
+/* .product-menu{
+    width: 250px;
+ text-align: center;
+}
+.product-menu button{
+    width: 90%;
+} */

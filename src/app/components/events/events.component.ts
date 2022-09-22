@@ -6,6 +6,7 @@ import { EventMessageComponent } from 'src/app/event-message/event-message.compo
 import { LoginComponent } from 'src/app/login/login.component';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { DateRestriction } from 'src/app/models/reserve';
+import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
@@ -38,6 +39,7 @@ export class EventsComponent implements OnInit {
   ]
 
   constructor(private http: HttpService,
+    private httpAdmin: AdminService,
     private authService: AuthService,
     private dialog: MatDialog,
     config: NgbTimepickerConfig

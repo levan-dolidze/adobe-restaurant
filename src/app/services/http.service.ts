@@ -22,6 +22,8 @@ export class HttpService {
   myReservations: TableReservationModel[] = [];
   cartChanges: Subject<any> = new Subject()
 
+
+  
   addPrivateEvent(event: PrivateDiningModel): Observable<PrivateDiningModel> {
     return this.http.post<PrivateDiningModel>(`${this.apiUrl}privateEvent.json`, event)
   };
