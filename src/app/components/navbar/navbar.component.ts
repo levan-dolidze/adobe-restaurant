@@ -25,8 +25,9 @@ export class NavbarComponent implements OnInit {
   itemQTY: number = 0;
   eventNotification: number = 0;
   observable$: Observable<any>;
-  test$:Observable<any>
-  notifications: Notifications = new Notifications()
+  notificationObs$: Observable<any>
+  notifications: Notifications = new Notifications();
+  generalNotification: number;
 
   constructor(public modal: MatDialog,
     private httpAuth: AuthService,
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit {
   privateDining$: Observable<PrivateDiningModel[]>
 
   ngOnInit(): void {
-    this.returnTotifications();
+    this.returnNotifications();
     let dish = localStorage.getItem('dishes');
     if (dish) {
       this.itemQTY = JSON.parse(dish).length
@@ -51,28 +52,42 @@ export class NavbarComponent implements OnInit {
   };
 
 
-  returnTotifications() {
+  returnNotifications() {
     this.observable$ = forkJoin({
-      event:this.httpAdmin.returnPrivateDining(),
+      event: this.httpAdmin.returnPrivateDining(),
       table: this.httpAdmin.getTableReservations(),
       orders: this.httpAdmin.getOnlineOrders(),
       messages: this.httpAdmin.getCustomerMessage(),
     }).pipe(
       shareReplay()
     )
+    this.observable$.subscribe((notifications) => {
+      this.commonNotifications(notifications)
+    })
+
   };
 
 
-  showNotifications(){
-    this.test$ = this.observable$.pipe(
-      tap(() => console.log('one data exists')),
+  showNotifications() {
+    this.notificationObs$ = this.observable$.pipe(
+      // tap(() => console.log('one data exists')),
       shareReplay()
     )
-    this.test$.subscribe((res) => {
+    this.notificationObs$.subscribe((res) => {
       this.notifications = res
     })
   };
 
+  commonNotifications(i:any) {
+    let arr = [];
+    let notifications: Array<Array<object>> = [i.event, i.table, i.orders,i.messages]
+    for (const n of notifications) {
+      for (const i of n) {
+        arr.push(i)
+      }
+      this.generalNotification = arr.length
+    }
+  };
 
 
   adminChecking(adminMail: AdminPermission) {

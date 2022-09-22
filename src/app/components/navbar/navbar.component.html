@@ -22,7 +22,7 @@
                 <button mat-button [routerLink]="['/order']">Order Online </button>
 
                 <!-- <button  [matBadge]='itemQTY' matBadgeColor="warn" mat-button >Admin</button> -->
-                <mat-icon (click)="showNotifications()" *ngIf="adminPanel" class="admin-icon" [matMenuTriggerFor]="admin"> admin_panel_settings</mat-icon>
+                <mat-icon (click)="showNotifications()" [matBadge]='generalNotification' *ngIf="adminPanel" class="admin-icon" [matMenuTriggerFor]="admin"> admin_panel_settings</mat-icon>
 
                 <mat-icon *ngIf="itemQTY>0" class="cart"  (click)="showCart()" [matBadge]='itemQTY' matBadgeColor="accent"> shopping_cart</mat-icon>
             
@@ -31,16 +31,16 @@
                 <mat-menu #admin="matMenu">
                     <div class="product-menu">
                         <button mat-menu-item [routerLink]="['/admin-reservation']">Table Bookings
-                           <i *ngIf="notifications.table"  [matBadge]='notifications.table.length' matBadgeColor="warn"></i>
+                           <i *ngIf="notifications.table&&notifications.table.length>0"  [matBadge]='notifications.table.length' matBadgeColor="warn"></i>
                         </button>
                         <button   mat-menu-item [routerLink]="['/admin-event']">Event Bookings
-                           <i *ngIf="notifications.event"  [matBadge]='notifications.event.length' matBadgeColor="warn"></i>
+                           <i *ngIf="notifications.event&&notifications.event.length>0"  [matBadge]='notifications.event.length' matBadgeColor="warn"></i>
                         </button>
                         <button mat-menu-item [routerLink]="['/admin-order']">Online Orders
-                           <i *ngIf="notifications.orders"  [matBadge]='notifications.orders.length' matBadgeColor="warn"></i>
+                           <i *ngIf="notifications.orders&&notifications.orders.length>0"  [matBadge]='notifications.orders.length' matBadgeColor="warn"></i>
                         </button>
                         <button mat-menu-item [routerLink]="['/admin-contact']">Customer Message
-                           <i *ngIf="notifications.messages"  [matBadge]='notifications.messages.length'  matBadgeColor="warn"></i>
+                           <i *ngIf="notifications.messages&&notifications.messages.length>0"  [matBadge]='notifications.messages.length'  matBadgeColor="warn"></i>
                         </button>
                         <button mat-menu-item [routerLink]="['/admin-product']">Other changes
                            <i  matBadgeColor="warn"></i>
