@@ -17,12 +17,21 @@
                         <div>
                             Price {{dish.price}}
                         </div> 
+
+
+                    </div>
+                    <div>
+                      <h2>Total:{{dish.price*dish.inCart}}</h2>
+
                     </div>
                     <div>
                     </div>
                     <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(i)">
-                        delete</mat-icon>
+                        delete
+                    </mat-icon>
+
                 </div>
+            
             </div>
         </div>
         

@@ -17,7 +17,7 @@ export class CategoryComponent implements OnInit {
     private httpAuth: AuthService
   ) { }
   dishList$: Observable<DishModel[]>;
-  dishQTY: number = 0;
+  product: DishModel[]
 
   ngOnInit(): void {
     this.returnCategory();
@@ -41,58 +41,46 @@ export class CategoryComponent implements OnInit {
     })
   };
 
-  incriceDish(dish: any) {
-    let list = localStorage.getItem('dishes');
-    if (list) {
-      let cartList = JSON.parse(list)
-      cartList.push(dish)
-      // console.log(cartList)
-      this.http.cartChanges.next(cartList)
-      // localStorage.setItem('dishes', JSON.stringify(cartList))
-    } else {
-      let newList=[]
-      newList.push(dish)
-      this.http.cartChanges.next(newList)
-      localStorage.setItem('dishes', JSON.stringify(newList))
-    };
-  };
-
-
-  decriceDish(i: any) {
-    let list = localStorage.getItem('dishes');
-    if (list) {
-      let cartList = JSON.parse(list)
-      if (cartList === 0) {
-        return
-      } else {
-        cartList.splice(i, 1)
-        this.http.cartChanges.next(cartList)
-        localStorage.setItem('dishes', JSON.stringify(cartList))
-      }
-    };
-  };
-
-
-
+  
   addDishToCart(dish: any) {
     this.httpAuth.getToken().subscribe((token) => {
       dish.uid = token.uid
-      let dishes = localStorage.getItem('dishes');
-      if (dishes) {
-        let dishInCart = JSON.parse(dishes);
-        dishInCart.push(dish)
-        const count = dishInCart.filter((obj: any) => obj.key === dish.key).length;
+      let list = localStorage.getItem('dishes');
+      if (list) {
+        let dishList = JSON.parse(list);
+        const count = dishList.filter((obj: any) => obj.key === dish.key).length + 1;
         dish.inCart = count
-        localStorage.setItem('dishes', JSON.stringify(dishInCart));
-      } else {
+        dishList.push(dish);
+        this.http.cartChanges.next(dishList)
+        localStorage.setItem('dishes', JSON.stringify(dishList));
+      }
+      else {
         let newDish = [];
+        dish.inCart = 1
         newDish.push(dish)
+        this.http.cartChanges.next(newDish)
         localStorage.setItem('dishes', JSON.stringify(newDish));
-      };
+      }
     })
-
-
   };
+
+
+
+  // decriceDish(i: any) {
+  //   let list = localStorage.getItem('dishes');
+  //   if (list) {
+  //     let cartList = JSON.parse(list)
+  //     if (cartList === 0) {
+  //       return
+  //     } else {
+  //       cartList.splice(i, 1)
+  //       this.http.cartChanges.next(cartList)
+  //       localStorage.setItem('dishes', JSON.stringify(cartList))
+  //     }
+  //   };
+  // };
+
+
 
 
 

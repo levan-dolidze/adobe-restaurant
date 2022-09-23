@@ -23,37 +23,58 @@ export class CartComponent implements OnInit {
     private dialog: MatDialog
   ) { }
 
-  dishList: DishModel[];
+  dishList: Array<DishModel> = [];
   orderModel: OrderModel = new OrderModel()
   modalRef: MatDialogRef<any>
   ngOnInit(): void {
-    this.returnDishList();
+    this.returnDishList()
   };
+
+  // returnDishList() {
+  //   let dish = localStorage.getItem('dishes');
+  //   if (dish) {
+  //     let dishList = JSON.parse(dish);
+  //     this.httpAuth.getToken().subscribe((token: any) => {
+  //       const uniqueDishListPerUser = dishList.filter((item: any) => {
+  //         return item.uid === token.uid
+  //       })
+  //       this.dishList = uniqueDishListPerUser
+  //     })
+  //   } else {
+  //     this.dishList = [];
+  //   };
+  // };
 
   returnDishList() {
-    let dish = localStorage.getItem('dishes');
-    if (dish) {
-      let dishList = JSON.parse(dish);
-      this.httpAuth.getToken().subscribe((token: any) => {
-        const uniqueDishListPerUser = dishList.filter((item: any) => {
-          return item.uid === token.uid
-        })
-        this.dishList = uniqueDishListPerUser
-      })
-    } else {
-      this.dishList = [];
+    let tempArr = [];
+    let products = localStorage.getItem('dishes');
+    if (products) {
+      let dishList = JSON.parse(products)
+      tempArr = dishList
+      let uniqueProductsInCart: any = [
+        ...new Map(tempArr.map((item: any) => [item.key, item])).values(),
+      ];
+      this.dishList = this.returnUniques(uniqueProductsInCart)
     };
   };
 
-  deleteDishList(i: any) {
-    let dish = localStorage.getItem('dishes');
-    if (dish) {
-      let dishes = JSON.parse(dish);
-      dishes.splice(i, 1)
-      this.dishList = dishes
+
+  returnUniques(uniqueProductsInCart: Array<DishModel>):Array<DishModel>{
+    let uniqueDishListPerUser:Array<DishModel>=[]
+    this.httpAuth.getToken().subscribe((token: any) => {
+      uniqueDishListPerUser=  uniqueProductsInCart.filter((item: any) => {
+        return item.uid === token.uid
+      })
+    })
+    return uniqueDishListPerUser
+  };
+
+
+
+  deleteDishList(i:any) {
+    this.dishList.splice(i, 1)
       localStorage.setItem('dishes', JSON.stringify(this.dishList))
       this.http.cartChanges.next(this.dishList)
-    };
   };
 
   orderDish(dish: any) {

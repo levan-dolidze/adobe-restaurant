@@ -47,6 +47,7 @@ export class NavbarComponent implements OnInit {
     this.returnToken();
     this.userIsLoggedIn();
     this.http.cartChanges.subscribe((QTY) => {
+      console.log(QTY.length)
       this.itemQTY = QTY.length
     })
   };

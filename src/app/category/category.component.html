@@ -10,11 +10,11 @@
             {{dish.name}}
             {{dish.price}} ₾
             <span>
-                <mat-icon (click)="incriceDish(dish);addDishToCart(dish)" style="cursor:pointer;float:right">
+                <mat-icon (click)="addDishToCart(dish)" style="cursor:pointer;float:right">
                     add
                 </mat-icon>
-                <i (click)="decriceDish(i)" style="cursor:pointer;float:right" class='fas fa-minus'>
-                </i>
+                <!-- <i (click)="decriceDish(i)" style="cursor:pointer;float:right" class='fas fa-minus'>
+                </i> -->
             </span>
         </div>
     </div>
