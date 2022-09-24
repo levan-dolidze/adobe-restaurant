@@ -1,8 +1,10 @@
-$goldColor:rgb(171, 155, 86);
-$whiteColor:white;
+$goldColor: rgb(171, 155, 86);
+$whiteColor: white;
+$borderRadius: 5px;
+
 //Header
 @mixin navTitle {
-    background-color:$goldColor;
+    background-color: $goldColor;
     color: $whiteColor;
     padding: 5px;
     text-align: center;
@@ -11,14 +13,17 @@ $whiteColor:white;
 @mixin navbarInner {
     position: sticky;
     top: 0;
+
     .nav-inner {
         display: flex;
     }
 }
-@mixin navbarLogo{
+
+@mixin navbarLogo {
     height: 100px;
     width: 200px;
-    img{
+
+    img {
         height: 100%;
         width: 100%;
         cursor: pointer;
@@ -26,15 +31,17 @@ $whiteColor:white;
     }
 }
 
-@mixin  routerLinks {
+@mixin routerLinks {
     margin-left: auto;
     order: 2;
     padding: 30px;
-    .cart{
+
+    .cart {
         cursor: pointer;
         margin: 0px 20px 0px 0px
     }
-    .admin-icon{
+
+    .admin-icon {
         cursor: pointer;
         margin-right: 20px;
     }
@@ -44,7 +51,7 @@ $whiteColor:white;
 @mixin footerContent {
     width: 100%;
     height: 400px;
-    background-color:$goldColor;
+    background-color: $goldColor;
 }
 
 @mixin footerTitle {
@@ -77,3 +84,42 @@ $whiteColor:white;
     justify-content: center;
 }
 
+//admin
+@mixin adminList {
+    width: 100%;
+    height: 100%;
+
+    .admin-inner {
+        .list-title{
+            padding: 5px;
+        }
+        .admin-list-content {
+            width: 70%;
+            .admin-list-inner {
+                display: flex;
+                background-color: $whiteColor;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: $borderRadius;
+
+                .admin-list-inner {
+                    width: 70%;
+                }
+
+                .personal-info {
+                    width: 30%;
+                }
+
+                .event-Info {
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+}
+@mixin adminListCancelIcons{
+    float:right;
+    cursor:pointer;
+    opacity:0.8;
+}

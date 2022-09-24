@@ -1,0 +1,9 @@
+@import '/src/config.scss';
+
+.admin-content {
+   @include adminList
+}
+
+.cancel-icon{
+   @include adminListCancelIcons
+}

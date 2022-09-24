@@ -8,7 +8,7 @@ import { fade } from '../shared/animations';
 @Component({
   selector: 'app-admin-contact',
   templateUrl: './admin-contact.component.html',
-  styleUrls: ['./admin-contact.component.css'],
+  styleUrls: ['./admin-contact.component.scss'],
   animations: [fade]
 
 })

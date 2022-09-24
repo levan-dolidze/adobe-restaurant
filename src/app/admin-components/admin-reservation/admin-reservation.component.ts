@@ -9,7 +9,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-admin-reservation',
   templateUrl: './admin-reservation.component.html',
-  styleUrls: ['./admin-reservation.component.css'],
+  styleUrls: ['./admin-reservation.component.scss'],
   animations: [fade]
 
 })

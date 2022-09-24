@@ -1,41 +1,35 @@
 <div class="admin-content">
     <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
-        <div @fade class="tableReserve-inner">
-            <h3>Table Reservation List</h3>
-            <div *ngIf="tableReservations$" class="tableReserve-list">
-                <div class="tableReserve-list-inner" *ngFor="let table of (tableReservations$|async)">
-                    <div class="customerInfo">
-                        <h3>Personal Info</h3>
-                        <div>
-                            Customer Email:{{table.customer.customer}}
-                        </div>
-                        <div>
-                            Marketing {{table.customer.marketing}}
-                        </div>
-                    </div>
-
-                    <div class="eventInfo">
-                        <h3>Event Info</h3>
-                        <div>
-                            Place: {{table.place}}
-                        </div>
-                        <div>
-                            Date: {{table.date|json}}
-                        </div>
-                        <div>
-                            Start Time: {{table.time}} PM
-                        </div>
-
-
-                    </div>
-
+    <div @fade class="admin-inner">
+        <h3 class="list-title">Table Reservation List</h3>
+        <div class="admin-list-content" *ngIf="tableReservations$">
+            <div class="admin-list-inner" *ngFor="let table of (tableReservations$|async)">
+                <div class="personal-info">
+                    <h3>Personal Info</h3>
                     <div>
-                        <!-- price <span>{{i.price}}</span> -->
+                        Customer Email:{{table.customer.customer}}
                     </div>
-                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
-                        (click)="cancelTableBooking(table.key,table.deleteKey)">delete</mat-icon>
+                    <div>
+                        Marketing {{table.customer.marketing}}
+                    </div>
                 </div>
 
+                <div class="event-Info">
+                    <h3>Event Info</h3>
+                    <div>
+                        Place: {{table.place}}
+                    </div>
+                    <div>
+                        Date: {{table.date|json}}
+                    </div>
+                    <div>
+                        Start Time: {{table.time}} PM
+                    </div>
+                </div>
+
+                <mat-icon class="cancel-icon" (click)="cancelTableBooking(table.key,table.deleteKey)">cancel
+                </mat-icon>
             </div>
         </div>
+    </div>
 </div>

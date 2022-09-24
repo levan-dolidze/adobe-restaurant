@@ -2,7 +2,7 @@
 <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
     <div class="admin-inner">
         <div @fade class="dining-inner">
-            <h3>Private Dining List</h3>
+            <h3 class="list-title">Private Dining List</h3>
             <div *ngIf="privateDining$" class="dining-list">
                 <div class="dining-list-inner" *ngFor="let dining of ( privateDining$|async)">
                     <div class="customerInfo">
@@ -67,7 +67,7 @@
                     <div>
                     </div>
                     <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
-                    (click)="deleteDiningEvent(dining.ke)">delete</mat-icon>
+                    (click)="deleteDiningEvent(dining.ke)">cancel</mat-icon>
                 </div>
             </div>
         </div>
