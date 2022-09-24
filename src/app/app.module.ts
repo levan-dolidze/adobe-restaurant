@@ -22,6 +22,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TeamMemberTextComponent } from './team-member-text/team-member-text.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { OrderDoneMessageComponent } from './order-done-message/order-done-message.component';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,10 @@ import { OrderDoneMessageComponent } from './order-done-message/order-done-messa
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FontAwesomeModule,
-    MatBadgeModule
+    MatBadgeModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule
     
   
 

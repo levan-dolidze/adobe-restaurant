@@ -23,7 +23,6 @@
 
                 <!-- <button  [matBadge]='itemQTY' matBadgeColor="warn" mat-button >Admin</button> -->
                 <mat-icon (click)="showNotifications()" [matBadge]='generalNotification' *ngIf="adminPanel" class="admin-icon" [matMenuTriggerFor]="admin"> admin_panel_settings</mat-icon>
-
                 <mat-icon *ngIf="itemQTY>0" class="cart"  (click)="showCart()" [matBadge]='itemQTY' matBadgeColor="accent"> shopping_cart</mat-icon>
             
              
@@ -50,7 +49,7 @@
 
                 <ng-container [ngSwitch]="authStatusIsLoggedin">
                     <ng-container *ngSwitchCase="true">
-                        <i style="margin-right:10px;cursor:pointer;" [matMenuTriggerFor]="userProfile"
+                        <i style="cursor:pointer;" [matMenuTriggerFor]="userProfile"
                             class="fa-solid fa-user"></i>
                         <mat-menu #userProfile="matMenu">
                             <div class="product-menu">

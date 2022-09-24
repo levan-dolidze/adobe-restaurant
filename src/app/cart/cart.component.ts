@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
   ) { }
 
   dishList: Array<DishModel> = [];
-  orderModel: OrderModel = new OrderModel()
+  orderModel: OrderModel = new OrderModel();
   modalRef: MatDialogRef<any>
   ngOnInit(): void {
     this.returnDishList()
@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
 
 
   returnUniques(uniqueProductsInCart: Array<DishModel>):Array<DishModel>{
-    let uniqueDishListPerUser:Array<DishModel>=[]
+    let uniqueDishListPerUser:Array<DishModel>=[];
     this.httpAuth.getToken().subscribe((token: any) => {
       uniqueDishListPerUser=  uniqueProductsInCart.filter((item: any) => {
         return item.uid === token.uid

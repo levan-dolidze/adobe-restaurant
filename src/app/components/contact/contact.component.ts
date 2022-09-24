@@ -9,7 +9,7 @@ import { fade } from 'src/app/shared/animations';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
-  animations:[fade]
+  animations: [fade]
 })
 export class ContactComponent implements OnInit {
 
@@ -34,7 +34,7 @@ export class ContactComponent implements OnInit {
       }
 
       this.http.addCustomerMessage(message).subscribe((res) => {
-    this.modalRef = this.dialog.open(CustomerMessageComponent, {
+        this.modalRef = this.dialog.open(CustomerMessageComponent, {
           width: '300px',
           maxHeight: '90vh',
           data: { name: this.contact },

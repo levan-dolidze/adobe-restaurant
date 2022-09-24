@@ -24,6 +24,8 @@ export class HttpService {
 
 
   
+
+
   addPrivateEvent(event: PrivateDiningModel): Observable<PrivateDiningModel> {
     return this.http.post<PrivateDiningModel>(`${this.apiUrl}privateEvent.json`, event)
   };
