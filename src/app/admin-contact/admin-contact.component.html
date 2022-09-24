@@ -1,6 +1,6 @@
-<div class="admin-tableReserve-content">
-    <div class="admin-tableReserve-inner">
-        <div @fade class="tableReserve-inner">
+<div class="admin-content">
+    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
+        <div @fade class="admin-inner">
             <h3>Customer Message List List</h3>
             <div *ngIf="customerMessage$" class="tableReserve-list">
                 <div class="tableReserve-list-inner" *ngFor="let message of (customerMessage$|async)">
@@ -35,6 +35,4 @@
 
             </div>
         </div>
-    </div>
-    <!-- <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner> -->
 </div>

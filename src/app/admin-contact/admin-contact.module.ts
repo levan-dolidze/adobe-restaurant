@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminContactRoutingModule } from './admin-contact-routing.module';
 import { AdminContactComponent } from './admin-contact.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     AdminContactRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
+
   ]
 })
 export class AdminContactModule { }

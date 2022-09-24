@@ -2,15 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CustomerMessageModel } from '../models/contact';
 import { AdminService } from '../services/admin.service';
+import { LoaderService } from '../services/loader.service';
+import { fade } from '../shared/animations';
 
 @Component({
   selector: 'app-admin-contact',
   templateUrl: './admin-contact.component.html',
-  styleUrls: ['./admin-contact.component.css']
+  styleUrls: ['./admin-contact.component.css'],
+  animations: [fade]
+
 })
 export class AdminContactComponent implements OnInit {
 
-  constructor(private httpAdmin:AdminService) { }
+  constructor(private httpAdmin:AdminService,
+    public loader: LoaderService,
+    
+    ) { }
   customerMessage$: Observable<CustomerMessageModel[]>
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
-<div class="admin-tableReserve-content">
-    <div class="admin-tableReserve-inner">
+<div class="admin-content">
+    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
         <div @fade class="tableReserve-inner">
             <h3>Table Reservation List</h3>
             <div *ngIf="tableReservations$" class="tableReserve-list">
@@ -38,6 +38,4 @@
 
             </div>
         </div>
-    </div>
-    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
 </div>

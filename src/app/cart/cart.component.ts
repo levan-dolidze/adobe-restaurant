@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { filter, from, of, pipe, toArray } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { DishModel } from '../models/dishModel';
 import { OrderModel } from '../models/order';

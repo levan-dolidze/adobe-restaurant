@@ -1,5 +1,5 @@
-<div class="product-content">
-    <div [ngSwitch]="viewMode" class="product-inner">
+<div class="admin-content">
+    <div [ngSwitch]="viewMode" class="admin-inner">
 
 <!-- add employee -->
         <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"

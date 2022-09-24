@@ -1,4 +1,4 @@
-.admin-event-content {
+.admin-content {
     width: 100%;
     height: 100%;
 }
@@ -10,6 +10,7 @@
     padding: 10px;
     margin-top: 10px;
 }
+
 
 .dining-list {
     width: 70%;

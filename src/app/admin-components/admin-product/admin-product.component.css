@@ -1,8 +1,8 @@
-.product-content{
+.admin-content{
     width: 100%;
     height: 100%;
 }
-.product-inner{
+.admin-inner{
     width: 100%;
     height: 100%;
     display: flex;
