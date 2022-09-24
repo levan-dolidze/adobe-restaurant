@@ -25,6 +25,7 @@ import { OrderDoneMessageComponent } from './order-done-message/order-done-messa
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
     TimemodalComponent,
     TeamMemberTextComponent,
     OrderDoneMessageComponent,
+
 
 
   ],
