@@ -84,17 +84,27 @@ $borderRadius: 5px;
     justify-content: center;
 }
 
-//admin
-@mixin adminList {
+//admin list
+@mixin adminList($PinfoWidth,$EinfoWidth) {
     width: 100%;
     height: 100%;
 
+    .admin-flex {
+        display: flex;
+        width: 100%;
+
+    }
+
     .admin-inner {
-        .list-title{
+        width: 70%;
+
+        .list-title {
             padding: 5px;
         }
+
         .admin-list-content {
-            width: 70%;
+            width: 100%;
+
             .admin-list-inner {
                 display: flex;
                 background-color: $whiteColor;
@@ -103,23 +113,39 @@ $borderRadius: 5px;
                 border-radius: $borderRadius;
 
                 .admin-list-inner {
-                    width: 70%;
+                    width: 100%;
                 }
 
                 .personal-info {
-                    width: 30%;
+                    width: $PinfoWidth;
                 }
 
                 .event-Info {
-                    width: 70%;
+                    width: $EinfoWidth
                 }
             }
         }
+
+
     }
 
+    .add-dining-date-inner {
+        background-color: $whiteColor;
+        border-radius: $borderRadius;
+        text-align: center;
+        width: 20%;
+        position: sticky;
+        top: 0px;
+        margin: 10px 0px 0px 20px;
+    }
 }
-@mixin adminListCancelIcons{
-    float:right;
-    cursor:pointer;
-    opacity:0.8;
+
+@mixin adminListCancelIcons {
+    float: right;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+@function marginTop($size) {
+    @return $size
 }

@@ -9,7 +9,7 @@ import { fade, show } from 'src/app/shared/animations';
 @Component({
   selector: 'app-admin-event',
   templateUrl: './admin-event.component.html',
-  styleUrls: ['./admin-event.component.css'],
+  styleUrls: ['./admin-event.component.scss'],
   animations: [fade, show]
 
 })

@@ -1,11 +1,12 @@
 <div class="admin-content">
-<mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
-    <div class="admin-inner">
-        <div @fade class="dining-inner">
+    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
+       <div class="admin-flex">
+
+        <div @fade class="admin-inner">
             <h3 class="list-title">Private Dining List</h3>
-            <div *ngIf="privateDining$" class="dining-list">
-                <div class="dining-list-inner" *ngFor="let dining of ( privateDining$|async)">
-                    <div class="customerInfo">
+            <div class="admin-list-content" *ngIf="privateDining$">
+                <div class="admin-list-inner" *ngFor="let dining of ( privateDining$|async)">
+                    <div class="personal-info">
                         <h3>Personal Info</h3>
                         <div>
                             Full name:{{dining.firstName}} {{dining.surname}}
@@ -16,42 +17,42 @@
                         <div>
                             Phone: {{dining.phoneNumber}}
                         </div>
-                    
+
 
                     </div>
-                    <div class="eventInfo">
+                    <div class="event-Info">
                         <h3>Event Info</h3>
                         <div>
                             Order Date: {{dining?.orderDate|date:"short"}}
                         </div>
                         <div>
                             Event Date: {{dining.eventDate.day}}
-                              {{dining.eventDate.month}}
+                            {{dining.eventDate.month}}
                             {{dining.eventDate.year}}
                         </div>
                         <div>
                             Start Time :
-                            <ng-container >
-                                {{dining.startTime.hour}} : 
+                            <ng-container>
+                                {{dining.startTime.hour}} :
                             </ng-container>
-                         
-                            <ng-container *ngIf="dining.startTime.minute===0;else isnotNull"  >
-                              0{{dining.startTime.minute}}
+
+                            <ng-container *ngIf="dining.startTime.minute===0;else isnotNull">
+                                0{{dining.startTime.minute}}
                             </ng-container>
-                            <ng-template #isnotNull >
+                            <ng-template #isnotNull>
                                 {{dining.startTime.minute}}
                             </ng-template>
-                        
 
-                            <ng-container *ngIf="dining.startTime.hour<=12;else PM" >
+
+                            <ng-container *ngIf="dining.startTime.hour<=12;else PM">
                                 AM
                             </ng-container>
-                            <ng-template #PM >
+                            <ng-template #PM>
                                 PM
                             </ng-template>
-                       
-                       
-                          
+
+
+
                         </div>
                         <div>
                             Number Of People: {{dining.phoneNumber}}
@@ -63,62 +64,47 @@
                             AdditionalInfo:{{dining.additionalInfo}}
                         </div>
                     </div>
-              
+
                     <div>
                     </div>
-                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;"
-                    (click)="deleteDiningEvent(dining.ke)">cancel</mat-icon>
+                    <mat-icon (click)="deleteDiningEvent(dining.ke)">cancel
+                    </mat-icon>
                 </div>
             </div>
         </div>
-        
-        <div @fade  class="add-dining-date-inner">
+
+        <div @fade class="add-dining-date-inner">
             <h2 class="event-title">Add New Event</h2>
-            <form style="padding:10px" (ngSubmit)="addNewEventType(eventTypeForm)"#eventTypeForm='ngForm' >
-          <div>
-            <input type="text"
-            [(ngModel)]="eventTypeModel.eventType"
-            required
-            pattern="[a-z ]*"
-            name="eventType"
-            #eventType="ngModel"
-            class="form-control"
-            placeholder="Event Type">
-          </div>
-<div *ngIf="eventTypeForm.submitted" class="text-danger f-12 m-t-8" >
-    <div *ngIf="eventType.errors?.['required']">
-        Required
-    </div>
-    <div *ngIf="eventType.errors?.['pattern']">
-        Wrong Format
-    </div>
+            <form style="padding:10px" (ngSubmit)="addNewEventType(eventTypeForm)" #eventTypeForm='ngForm'>
+                <div>
+                    <input type="text" [(ngModel)]="eventTypeModel.eventType" required pattern="[a-z ]*"
+                        name="eventType" #eventType="ngModel" class="form-control" placeholder="Event Type">
+                </div>
+                <div *ngIf="eventTypeForm.submitted" class="text-danger f-12 m-t-8">
+                    <div *ngIf="eventType.errors?.['required']">
+                        Required
+                    </div>
+                    <div *ngIf="eventType.errors?.['pattern']">
+                        Wrong Format
+                    </div>
 
-</div>
-       
-          <div>
-            <input type="text"
-            [(ngModel)]="eventTypeModel.eventId"
-            required
-            pattern="[0-9]*"
-            maxlength="3"
-            name="eventId"
-            #eventId="ngModel"
-            class="form-control"
-            placeholder="Event ID">
-          </div>
-          <div *ngIf="eventTypeForm.submitted" >
-            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['required']">
-              Required
-            </div>
-            <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['pattern']">
-              Only Numbers Is Allowed
-            </div>
+                </div>
 
-        </div>
-    
-            <button class="addEventBtn" type="submit" mat-raised-button color="primary">Add New Event</button>
-        </form>
+                <div>
+                    <input type="text" [(ngModel)]="eventTypeModel.eventId" required pattern="[0-9]*" maxlength="3"
+                        name="eventId" #eventId="ngModel" class="form-control" placeholder="Event ID">
+                </div>
+                <div *ngIf="eventTypeForm.submitted">
+                    <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['required']">
+                        Required
+                    </div>
+                    <div class="text-danger f-12 m-t-8" *ngIf="eventId.errors?.['pattern']">
+                        Only Numbers Is Allowed
+                    </div>
+
+                </div>
+                <button class="addEventBtn" type="submit" mat-raised-button color="primary">Add New Event</button>
+            </form>
         </div>
     </div>
 </div>
-
