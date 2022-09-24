@@ -1,9 +1,9 @@
 @import '/src/config.scss';
 
 .admin-content {
-   @include adminList(70%,30%)
+   @include adminList(30%, 70%)
 }
 
-.cancel-icon{
+.cancel-icon {
    @include adminListCancelIcons
 }

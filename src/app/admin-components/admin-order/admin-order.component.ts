@@ -9,7 +9,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-admin-order',
   templateUrl: './admin-order.component.html',
-  styleUrls: ['./admin-order.component.css'],
+  styleUrls: ['./admin-order.component.scss'],
   animations: [fade]
 })
 export class AdminOrderComponent implements OnInit {

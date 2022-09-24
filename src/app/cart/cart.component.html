@@ -1,11 +1,11 @@
-<div class="admin-event-content">
-    <div class="admin-event-inner">
-        <div @fade class="dining-inner">
-            <h3>Your Cart List</h3>
-            <div *ngIf="dishList" class="dining-list">
-                <div class="dining-list-inner" *ngFor="let dish of dishList;let i =index">
-                    <div class="employeeInfo">
-                        <div class="employeeImage">
+<div class="admin-content">
+    <div class="admin-inner">
+        <div @fade class="cart-inner">
+            <h3 class="list-title">Your Cart List</h3>
+            <div *ngIf="dishList">
+                <div class="list-inner" *ngFor="let dish of dishList;let i=index">
+                    <div class="employee-Info">
+                        <div class="employee-image">
                             <img [src]="dish.file">
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                     </div>
                     <div>
                     </div>
-                    <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(i)">
+                    <mat-icon class="cancel-icon"  (click)="deleteDishList(i)">
                         cancel
                     </mat-icon>
 
@@ -35,7 +35,7 @@
             </div>
         </div>
         
-        <div @fade  class="add-dining-date-inner">
+        <div @fade  class="input-form">
             <h2 class="event-title">Order Dish</h2>
             <form (ngSubmit)="orderDish(orderForm)" style="padding:0px 10px 10px 10px" #orderForm="ngForm" >
           <div>

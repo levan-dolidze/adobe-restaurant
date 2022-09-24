@@ -1,0 +1,15 @@
+@import '/src/config.scss';
+
+
+
+
+
+.admin-content {
+    @include cart
+}
+
+.input-form {
+    @include admin-form
+}
+
+

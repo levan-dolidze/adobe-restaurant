@@ -12,3 +12,8 @@
 .addEventBtn {
     margin-top: marginTop(10px);
 }
+
+.input-form{
+    @include admin-form
+ 
+ }

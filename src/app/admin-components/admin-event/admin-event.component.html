@@ -73,8 +73,8 @@
             </div>
         </div>
 
-        <div @fade class="add-dining-date-inner">
-            <h2 class="event-title">Add New Event</h2>
+        <div @fade class="input-form">
+            <h3 class="list-title">Add New Event</h3>
             <form style="padding:10px" (ngSubmit)="addNewEventType(eventTypeForm)" #eventTypeForm='ngForm'>
                 <div>
                     <input type="text" [(ngModel)]="eventTypeModel.eventType" required pattern="[a-z ]*"

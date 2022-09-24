@@ -1,0 +1,16 @@
+
+@import '/src/config.scss';
+
+.admin-content {
+   @include adminList(20%,15%)
+}
+
+.cancel-icon{
+   @include adminListCancelIcons
+}
+
+.order-info{
+    display: flex;
+    width: 100%;
+}
+
