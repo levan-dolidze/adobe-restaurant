@@ -1,0 +1,27 @@
+<form (ngSubmit)="submitForm()" [formGroup]="homeForm">
+    <div>
+        <label>
+            <input required class="form-control" type="text" formControlName="user">
+
+        </label>
+        <div class="text-danger f-12 m-t-8">
+            {{submitForm()}}
+        </div>
+
+    </div>
+
+     <div>
+        <label>
+            <input class="form-control" type="text" formControlName="pass">
+
+        </label>
+        <div *ngIf="homeForm.get('user')?.invalid" class="text-danger f-12 m-t-8">
+            required
+        </div>
+    </div>
+
+
+
+    <button type="submit" mat-raised-button>submit</button>
+
+</form>
