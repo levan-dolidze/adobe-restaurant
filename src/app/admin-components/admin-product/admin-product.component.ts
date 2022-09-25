@@ -13,7 +13,7 @@ import { Service } from 'src/app/models/shared';
 @Component({
   selector: 'app-admin-product',
   templateUrl: './admin-product.component.html',
-  styleUrls: ['./admin-product.component.css'],
+  styleUrls: ['./admin-product.component.scss'],
   animations: [menu, fade]
 })
 export class AdminProductComponent implements OnInit {

@@ -5,7 +5,7 @@ import { AdminService } from '../services/admin.service';
 @Component({
   selector: 'app-timemodal',
   templateUrl: './timemodal.component.html',
-  styleUrls: ['./timemodal.component.css']
+  styleUrls: ['./timemodal.component.scss']
 })
 export class TimemodalComponent implements OnInit {
 

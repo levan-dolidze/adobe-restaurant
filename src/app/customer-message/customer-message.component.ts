@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-customer-message',
   templateUrl: './customer-message.component.html',
-  styleUrls: ['./customer-message.component.css']
+  styleUrls: ['./customer-message.component.scss']
 })
 export class CustomerMessageComponent implements OnInit {
 

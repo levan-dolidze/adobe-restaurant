@@ -14,7 +14,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css'],
+  styleUrls: ['./events.component.scss'],
   animations: [fade]
 })
 export class EventsComponent implements OnInit {

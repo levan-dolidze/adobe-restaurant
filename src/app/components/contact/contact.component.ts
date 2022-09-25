@@ -8,7 +8,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'],
+  styleUrls: ['./contact.component.scss'],
   animations: [fade]
 })
 export class ContactComponent implements OnInit {

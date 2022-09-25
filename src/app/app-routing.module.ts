@@ -33,9 +33,7 @@ const routes: Routes = [
   },
 
   { path: 'home', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule) },
-  { path: 'about', loadChildren: () => import('./components/about/about.module').then(m => m.AboutModule) },
   { path: 'menu', loadChildren: () => import('./components/menu/menu.module').then(m => m.MenuModule) },
-  { path: 'news', loadChildren: () => import('./components/news/news.module').then(m => m.NewsModule) },
   { path: 'contact', loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule) },
   { path: 'reservation', loadChildren: () => import('./components/reservation/reservation.module').then(m => m.ReservationModule) },
   { path: 'events', loadChildren: () => import('./components/events/events.module').then(m => m.EventsModule) },
@@ -66,7 +64,6 @@ const routes: Routes = [
   },
   { path: 'gallery', loadChildren: () => import('./components/gallery/gallery.module').then(m => m.GalleryModule) },
   { path: 'story', loadChildren: () => import('./components/story/story.module').then(m => m.StoryModule) },
-  { path: 'signup', loadChildren: () => import('./components/signup/signup.module').then(m => m.SignupModule) },
   { path: 'special-dish', loadChildren: () => import('./special-dish/special-dish.module').then(m => m.SpecialDishModule) },
   { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
   {

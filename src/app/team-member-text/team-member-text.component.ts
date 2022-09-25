@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-team-member-text',
   templateUrl: './team-member-text.component.html',
-  styleUrls: ['./team-member-text.component.css'],
+  styleUrls: ['./team-member-text.component.scss'],
 })
 
 export class TeamMemberTextComponent implements OnInit {

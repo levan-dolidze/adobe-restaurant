@@ -10,7 +10,7 @@ import { TeamMemberTextComponent } from 'src/app/team-member-text/team-member-te
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.css'],
+  styleUrls: ['./story.component.scss'],
   animations: [fade, show]
 })
 export class StoryComponent implements OnInit {

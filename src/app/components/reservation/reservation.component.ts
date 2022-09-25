@@ -11,7 +11,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
-  styleUrls: ['./reservation.component.css'],
+  styleUrls: ['./reservation.component.scss'],
   animations: [fade]
 })
 
