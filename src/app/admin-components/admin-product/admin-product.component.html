@@ -59,7 +59,6 @@
         <div @menu *ngSwitchCase="'colosedForm'" class="closedEmployeeForm">
             <i (click)="viewMode='form'" class="fa-solid fa-angle-right"></i>
             <div>
-                <!-- <i class="fa-solid fa-people-roof"></i> -->
             </div>
         </div>
 
@@ -247,6 +246,7 @@
  <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Dish</button>
      </form>
 
+<!-- lists -->
         <div @fade class="employee-inner" [ngSwitch]="viewMode">
             <div *ngSwitchCase="'form'" >
                 <h3>Employee List</h3>
