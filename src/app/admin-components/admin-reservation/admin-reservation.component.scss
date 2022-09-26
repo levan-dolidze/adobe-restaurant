@@ -2,8 +2,8 @@
 
 .admin-content {
    @include adminList(30%, 70%)
-}
+};
 
 .cancel-icon {
-   @include adminListCancelIcons
-}
+   @include adminListCancelIcons;
+};

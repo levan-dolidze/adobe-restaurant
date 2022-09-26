@@ -1,3 +1,5 @@
+@import '/src/config.scss';
+
 .contact-content{
     width: 100%;
     height: 100%;
@@ -5,24 +7,25 @@
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
-    color: white;
-}
+    color: $whiteColor;
+    .contact-inner{
+        width: 60%;
+        margin: 0 auto;
+    }
+};
 
-.contact-inner{
-    width: 60%;
-    margin: 0 auto;
-}
 .title ,.contact-form{
     text-align: center;
-}
+};
 .contact-form{
     padding: 20px;
-}
-.form-control{
-    margin:10px
-}
+    .form-control{
+        margin:10px
+    }
+};
+
 .send-btn{
     float: right;
-}
+};
 
 
