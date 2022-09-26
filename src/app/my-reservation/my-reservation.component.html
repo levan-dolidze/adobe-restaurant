@@ -1,19 +1,16 @@
-<div class="admin-event-content">
-    <div class="admin-event-inner">
-        <div @fade class="dining-inner">
-            <h3>Private Dining List</h3>
-            <div @fade *ngIf="myReservations$" class="dining-list">
-                <div class="dining-list-inner" *ngFor="let reserve of (myReservations$|async)">
-                    <div class="customerInfo">
+<div class="admin-content">
+    <mat-spinner class="loader-spinner" *ngIf="loaderSpin"></mat-spinner>
+    <div @fade class="admin-inner">
+            <h3 class="list-title">Private Dining List</h3>
+                <div class="admin-list-content" *ngIf="myReservations$"  >
+                  <div class="admin-list-inner" *ngFor="let reserve of (myReservations$|async)">
+                    <div class="personal-info">
                         <h3>Personal Info</h3>
                         <div>
                             Mail: {{reserve.customer.customer}}
                         </div>
-                        <!-- <div>
-                            Email# {{reserve.place}}
-                        </div> -->
                     </div>
-                    <div class="eventInfo">
+                    <div class="event-Info">
                         <h3>My Reservation Info</h3>
                         <div>
                             Start Date: {{reserve.date.day}}
@@ -27,20 +24,13 @@
                         <div>
                             Place: {{reserve.place}}
                         </div>
-
                     </div>
 
-                    <div>
-                    </div>
                         <button (click)="cancelTableBooking(reserve.key,reserve.deleteKey)" 
                                 class="cancelBtn" 
                                 type="submit" mat-raised-button
                                 color="warn">Cancel Reservation</button>
                 </div>
-
-            </div>
-
-        </div>
+            </div>    
     </div>
-    <mat-spinner class="loader-spinner" *ngIf="loader1"></mat-spinner>
 </div>

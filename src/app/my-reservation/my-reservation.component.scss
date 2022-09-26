@@ -1,0 +1,14 @@
+@import '/src/config.scss';
+
+.admin-content {
+   @include adminList(30%, 60%)
+};
+
+
+
+
+.cancelBtn{
+    float: right;
+    cursor: pointer;
+    height: 40px;
+};

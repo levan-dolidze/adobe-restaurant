@@ -11,7 +11,7 @@ import { fade } from '../shared/animations';
 @Component({
   selector: 'app-my-reservation',
   templateUrl: './my-reservation.component.html',
-  styleUrls: ['./my-reservation.component.css'],
+  styleUrls: ['./my-reservation.component.scss'],
   animations: [fade]
 })
 export class MyReservationComponent implements OnInit, AfterViewInit {
@@ -22,7 +22,7 @@ export class MyReservationComponent implements OnInit, AfterViewInit {
     private httpAdmin: AdminService
   ) { }
   myReservations$: Observable<TableReservationModel[]>;
-  loader1: boolean = false;
+  loaderSpin: boolean = false;
   ngOnInit(): void {
     this.returnMyReservations();
   };
@@ -30,7 +30,7 @@ export class MyReservationComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.loader.isLoading.subscribe((res) => {
       setTimeout(() => {
-        this.loader1 = res
+        this.loaderSpin = res
       }, 0);
 
     })

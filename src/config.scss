@@ -104,24 +104,19 @@ $borderRadius: 5px;
 
     .admin-inner {
         width: 70%;
-
         .list-title {
             padding: 5px;
         }
 
         .admin-list-content {
             width: 100%;
-
             .admin-list-inner {
                 display: flex;
                 background-color: $whiteColor;
                 padding: 10px;
                 margin-top: 10px;
                 border-radius: $borderRadius;
-
-                .admin-list-inner {
-                    width: 100%;
-                }
+                width: 100%;
 
                 .personal-info {
                     width: $PinfoWidth;

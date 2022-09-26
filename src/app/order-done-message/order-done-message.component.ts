@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-order-done-message',
   templateUrl: './order-done-message.component.html',
-  styleUrls: ['./order-done-message.component.css']
+  styleUrls: ['./order-done-message.component.scss']
 })
 export class OrderDoneMessageComponent implements OnInit {
 
