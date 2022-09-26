@@ -1,8 +1,8 @@
 @import '/src/config.scss';
 
+
 .contact-content{
-    width: 100%;
-    height: 100%;
+    @include absoluteSizes;
     background: url('https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/vyiuyfhsyjzlct6lcxuw.jpg');
     background-repeat: no-repeat;
     background-size: cover;

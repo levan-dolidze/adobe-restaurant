@@ -1,13 +1,10 @@
+@import '/src/config.scss';
 .reservation-content {
-    width: 100%;
-    height: 100%;
-   
-}
-
-.reservation-inner {
+   @include absoluteSizes;
+   .reservation-inner {
     margin: 0 auto;
-
 }
+};
 
 
 

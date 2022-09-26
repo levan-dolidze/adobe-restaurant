@@ -1,19 +1,19 @@
 @import '/src/config.scss';
 
 .nav-title {
-    @include navTitle
-}
+    @include navTitle;
+};
 
 .navbar-inner {
-  @include navbarInner
-}
+  @include navbarInner;
+};
 
 .logo {
-  @include navbarLogo
-}
+  @include navbarLogo;
+};
 
 .router-links {
-  @include routerLinks
-}
+  @include routerLinks;
+};
 
 

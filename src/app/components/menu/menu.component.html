@@ -2,15 +2,10 @@
     <h1 class="title">Menus</h1>
     <div class="menu-inner">
         <button class="menu-btn" *ngFor="let menu of (menuList$|async)" mat-flat-button color="primary">
-
             <a class="menu-link" [href]="menu.file" target="_blank">{{menu.name}}</a>
-
         </button>
-
     </div>
     <div class="menu-text">
-       
     </div>
-
 
 </div>

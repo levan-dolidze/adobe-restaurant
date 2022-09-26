@@ -37,9 +37,6 @@
         <div (click)="authorizationModal=false;registrationModal=true" style="cursor:pointer;margin-top: 5px;"
             mat-dialog-content>Sign Up</div>
         <button type="submit" class="enterBtn" mat-raised-button color="primary">Enter</button>
-
-
-
     </form>
 
 
@@ -111,9 +108,6 @@
                            placeholder="Age" #userAge='ngModel' name="user-birthDay" 
                         [class.borderError]="registrationForm.submitted&&userEmail.errors?.['required']"
                       >
-
-                    <!-- <mat-icon class="birth-date-manu" (click)="d.toggle()">menu</mat-icon> -->
-
                 </div>
                 <div class="text-danger f-12 m-t-8" *ngIf="registrationForm.submitted&&userAge.errors?.['required']">
                     required
@@ -123,24 +117,4 @@
 
         <button type="submit" class="enterBtn" mat-raised-button color="primary">Sign Up</button>
     </form>
-
-
-
-    <!-- <form *ngIf="confirmAuthModal" (ngSubmit)="confirmAuth(confirmAuthForm)" #confirmAuthForm="ngForm">
- 
-                  
-                     <div>
-                   <h3 style="text-align: center;">{{"confirmEmail"|translate}}</h3>
-                   {{"confirmText"|translate}}  {{registration.email}}
-                     </div>
-                 
-
-        </form>
-
-
-        <div *ngIf="Emailconfirmed">
-         დადასტურებულია
-        </div>  -->
-
-
 </div>

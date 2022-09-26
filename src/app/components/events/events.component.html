@@ -1,5 +1,4 @@
 <div @fade class="private-event-content">
-    <div clas="event-div">
         <div class="event-fotos">
             <div class="event-table" *ngFor="let foto of eventTableArray">
                 <img  [src]="foto.image">
@@ -18,19 +17,16 @@
 
             For all buyouts and private dining inquiries, please fill out the form below and we’ll be in touch soon.
             Please click here for additional information about private dining.
-
         </div>
        
 
-    </div>
-<h1 style="text-align:center">Reservation Form</h1>
-
+    
+<h1 class="form-title" >Reservation Form</h1>
     <div class="private-event-inner">
-
         <div class="event-form">
             <form (ngSubmit)="submitPrivateEvent(privateDinerForm)" #privateDinerForm="ngForm">
-                <div class="personalInfo">
-                    <div class="first">
+                <div class="personal-info">
+                    <div class="form-blok-1">
                         <input [(ngModel)]="privateDiningModel.firstName" 
                                required name="firstname"
                                #firstname="ngModel"
@@ -76,7 +72,7 @@
                             Required
                         </div>
                     </div>
-                    <div class="second">
+                    <div class="form-block-2">
 
                         <input [(ngModel)]="privateDiningModel.surname" 
                                required 

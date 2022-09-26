@@ -2,24 +2,24 @@
 
 .footer-content {
     @include footerContent
-}
+};
 
 .footer-title {
     @include footerTitle
-}
+};
 
 .footer-welcome-title {
     @include footerWelcomeTitle
-}
+};
 
 .footer-inner {
     @include footerInner
-}
+};
 
 .copy-right {
     @include copyRights
-}
+};
 
 .restBtn {
     @include footerBtns
-}
+};

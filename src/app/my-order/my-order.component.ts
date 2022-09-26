@@ -11,7 +11,7 @@ import { fade } from '../shared/animations';
 @Component({
   selector: 'app-my-order',
   templateUrl: './my-order.component.html',
-  styleUrls: ['./my-order.component.css'],
+  styleUrls: ['./my-order.component.scss'],
   animations:[fade]
 })
 export class MyOrderComponent implements OnInit {

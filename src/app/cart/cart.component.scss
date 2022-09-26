@@ -3,10 +3,18 @@
 
 .admin-content {
     @include cart
-};
+}
+
+;
 
 .input-form {
     @include admin-form
-};
+}
 
+;
 
+.form-control,
+.orderBtn {
+    margin-top: 10px;
+    width: 100%;
+}
