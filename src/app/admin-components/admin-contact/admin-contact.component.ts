@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CustomerMessageModel } from '../models/contact';
-import { AdminService } from '../services/admin.service';
-import { LoaderService } from '../services/loader.service';
-import { fade } from '../shared/animations';
+import { CustomerMessageModel } from '../../models/contact';
+import { AdminService } from '../../services/admin.service';
+import { LoaderService } from '../../services/loader.service';
+import { fade } from '../../shared/animations';
 
 @Component({
   selector: 'app-admin-contact',
