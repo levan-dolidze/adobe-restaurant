@@ -7,7 +7,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css'],
+  styleUrls: ['./order.component.scss'],
   animations: [fade]
 })
 export class OrderComponent implements OnInit {

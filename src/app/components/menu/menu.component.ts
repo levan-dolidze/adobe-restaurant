@@ -7,7 +7,7 @@ import { fade } from 'src/app/shared/animations';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
+  styleUrls: ['./menu.component.scss'],
   animations:[fade]
 })
 export class MenuComponent implements OnInit {
