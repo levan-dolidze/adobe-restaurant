@@ -1,7 +1,11 @@
 <div class="reservation-content">
     <div [ngSwitch]="viewMode" class="reservation-inner">
         <form *ngSwitchCase="'selectDay'" (ngSubmit)="findTable(findTableForm)" #findTableForm="ngForm">
-            <h3>reservation</h3>
+            <h3>Reservation
+                <mat-icon mat-dialog-close style="float: right;cursor: pointer;" aria-hidden="false" fontIcon="close">
+                </mat-icon>
+            </h3>
+           
             <div>
                 <label>
                     <select class="form-control" [(ngModel)]="reserveModel.people" name="people">

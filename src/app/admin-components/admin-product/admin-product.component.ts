@@ -9,6 +9,8 @@ import { Menu } from 'src/app/models/menu';
 import { DateRestriction, GuestTime } from 'src/app/models/reserve';
 import { DishModel } from 'src/app/models/dishModel';
 import { Service } from 'src/app/models/shared';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AdminMessageComponent } from 'src/app/admin-message/admin-message.component';
 
 @Component({
   selector: 'app-admin-product',
@@ -21,6 +23,8 @@ export class AdminProductComponent implements OnInit {
   constructor(private storage: AngularFireStorage,
     private httpAdmin: AdminService,
     private http: HttpService,
+    private dialog: MatDialog,
+    
 
   ) { }
   employee: employeeModel = new employeeModel();
@@ -43,7 +47,7 @@ export class AdminProductComponent implements OnInit {
   guestTime: GuestTime = new GuestTime();
   guestTimes: Array<GuestTime> = [];
 
-
+  modalRef: MatDialogRef<any>
 
   ngOnInit(): void {
     this.httpAdmin.getImageDetailList();
@@ -79,6 +83,13 @@ export class AdminProductComponent implements OnInit {
         position: this.employee.position,
         description: this.employee.description,
       })
+
+      this.modalRef = this.dialog.open(AdminMessageComponent, {
+        width: '300px',
+        maxHeight: '90vh',
+        data: { event: this.employee.name },
+      });
+
     };
   };
 
@@ -118,6 +129,11 @@ export class AdminProductComponent implements OnInit {
     } else {
       localStorage.setItem('service', 'menu')
       this.addFile(this.selectedMenu, { name: this.menu.name.toLocaleUpperCase()})
+      this.modalRef = this.dialog.open(AdminMessageComponent, {
+        width: '300px',
+        maxHeight: '90vh',
+        data: { event: this.menu.name },
+      });
     };
   };
 
@@ -163,6 +179,11 @@ export class AdminProductComponent implements OnInit {
         date: this.guestTime.date
       }
       this.httpAdmin.addGuestTime(time).subscribe((res) => {
+        this.modalRef = this.dialog.open(AdminMessageComponent, {
+          width: '300px',
+          maxHeight: '90vh',
+          data: { event: this.guestTime.time},
+        });
       })
     }
   };
@@ -172,7 +193,6 @@ export class AdminProductComponent implements OnInit {
     if (form.invalid) {
       return
     } else {
-      // this.dishChecker = true
       localStorage.setItem('service', 'dish')
       this.addFile(this.selectedDish, {
         name: this.dish.name,
@@ -180,6 +200,11 @@ export class AdminProductComponent implements OnInit {
         price: this.dish.price,
         inCart:this.dish.inCart
       })
+      this.modalRef = this.dialog.open(AdminMessageComponent, {
+        width: '300px',
+        maxHeight: '90vh',
+        data: { event: this.dish.name},
+      });
 
     }
   };

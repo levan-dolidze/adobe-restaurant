@@ -13,6 +13,7 @@ export class AdminMessageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
   }
 
 }
