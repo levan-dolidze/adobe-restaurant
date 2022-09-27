@@ -37,4 +37,4 @@ export class AdminContactComponent implements OnInit {
     })
   };
 
-}
+};

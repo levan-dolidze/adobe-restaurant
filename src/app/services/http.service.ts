@@ -20,7 +20,7 @@ export class HttpService {
 
   guestTime: GuestTime[] = [];
   myReservations: TableReservationModel[] = [];
-  cartChanges: Subject<any> = new Subject()
+  cartChanges: Subject<any> = new Subject();
 
 
   

@@ -26,23 +26,9 @@ export class CartComponent implements OnInit {
   orderModel: OrderModel = new OrderModel();
   modalRef: MatDialogRef<any>
   ngOnInit(): void {
-    this.returnDishList()
+    this.returnDishList();
   };
 
-  // returnDishList() {
-  //   let dish = localStorage.getItem('dishes');
-  //   if (dish) {
-  //     let dishList = JSON.parse(dish);
-  //     this.httpAuth.getToken().subscribe((token: any) => {
-  //       const uniqueDishListPerUser = dishList.filter((item: any) => {
-  //         return item.uid === token.uid
-  //       })
-  //       this.dishList = uniqueDishListPerUser
-  //     })
-  //   } else {
-  //     this.dishList = [];
-  //   };
-  // };
 
   returnDishList() {
     let tempArr = [];

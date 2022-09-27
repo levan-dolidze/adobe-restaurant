@@ -83,6 +83,7 @@ const routes: Routes = [
   },
   { path: 'customer-message', loadChildren: () => import('./customer-message/customer-message.module').then(m => m.CustomerMessageModule) },
   { path: 'admin-contact', loadChildren: () => import('./admin-components/admin-contact/admin-contact.module').then(m => m.AdminContactModule) },
+  { path: 'admin-message', loadChildren: () => import('./admin-message/admin-message.module').then(m => m.AdminMessageModule) },
 ];
 
 @NgModule({

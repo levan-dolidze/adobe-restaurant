@@ -39,7 +39,6 @@ export class EventsComponent implements OnInit {
   ]
 
   constructor(private http: HttpService,
-    private httpAdmin: AdminService,
     private authService: AuthService,
     private dialog: MatDialog,
     config: NgbTimepickerConfig
