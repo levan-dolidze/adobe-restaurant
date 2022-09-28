@@ -10,8 +10,10 @@ import { LoginComponent } from 'src/app/login/login.component';
 export class FooterComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
+  date:Date;
 
   ngOnInit(): void {
+    this.date=new Date();
   }
 
   openSignup() {
