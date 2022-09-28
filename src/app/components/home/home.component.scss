@@ -1,0 +1,66 @@
+@import '/src/config.scss';
+
+.view-menu {
+    .home-content {
+        @include absoluteSizes;
+
+        .home-welcome-text {
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px
+        };
+    };
+
+    .menu-btn {
+        width: 100%;
+        height: 300px;
+        background: url('https://www.apfelhotel.com/site/assets/files/3024/500_-_apfelhotel_web_2000_px_emi_massmer_emotions.0x799.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
+        position: relative;
+        
+        .menue {
+            text-align: center;
+            @include centerElement;
+            h1{color: $whiteColor}
+        }
+    }
+     .order-now{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        height: 300px;
+        object-fit: $borderRadius;
+        padding: 40px;
+
+        .dish-foto{
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/A_traditional_indian_dish_of_bengal%28pulao-mangsha_with_misti_doi%29.jpg/800px-A_traditional_indian_dish_of_bengal%28pulao-mangsha_with_misti_doi%29.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: cover;
+            width: 50%;
+            border: 10px solid rgb(215, 215, 88);
+        }
+        .order-now-btn{
+            background-color: $whiteColor;
+            width: 50%;
+            position: relative;
+            border: 10px solid rgb(215, 215, 88);
+            border-radius: 0px 30px 30px 0px;
+            background-color: rgb(245, 245, 206);
+
+            button{
+                @include centerElement;
+            };
+        };
+    };
+};
+
+.picsum-img-wrapper{
+    height: 400px;
+    img{
+        @include absoluteSizes;
+        object-fit: cover;
+    };
+};

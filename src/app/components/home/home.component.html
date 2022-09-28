@@ -1,27 +1,60 @@
-<form (ngSubmit)="submitForm()" [formGroup]="homeForm">
-    <div>
-        <label>
-            <input required class="form-control" type="text" formControlName="user">
+<div @fade>
 
-        </label>
-        <div class="text-danger f-12 m-t-8">
-            {{submitForm()}}
+
+<ngb-carousel style="height:400px"  *ngIf="images">
+    <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+            <img [src]="image">
+        </div>
+        <div class="carousel-caption">
+            <h3>Adobe Restaurant</h3>
+            <p>Welcome</p>
+        </div>
+    </ng-template>
+
+</ngb-carousel>
+
+<div class="view-menu">
+    <div class="home-content">
+        <div class="home-welcome-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, quaerat! Necessitatibus voluptatum architecto,
+            fugiat aut veritatis iure quisquam, doloremque mollitia soluta ipsum quibusdam molestias, tenetur quam iste
+            vel voluptatibus vero suscipit autem atque enim ad? Soluta maiores eligendi at, repellat voluptatem fugit,
+            accusantium cum quam eius magnam nisi, ut mollitia dolore odit. Aut autem odit ipsa optio, molestias, ad
+            nulla voluptates animi harum quibusdam voluptas. Dolorum deserunt iusto reprehenderit temporibus blanditiis
+            eos perferendis libero omnis quo repudiandae, delectus quidem cupiditate velit quasi explicabo id! At hic et
+            delectus odit dolor magni? Totam nam architecto eligendi sit soluta voluptatum dolorem sint earum voluptas
+            in? Incidunt voluptas repellat rerum repudiandae nihil ea repellendus? Ex ducimus autem reprehenderit
+            consequuntur nostrum dolorem facere quisquam.
+
+        </div>
+        <div class="menu-btn">
+            <div class="menue">
+                <h1>Curated Global Cuisine</h1>
+                <button [routerLink]="['/menu']"  mat-flat-button color="primary">
+                  Menus
+                </button>
+            </div>
+         
+        </div>
+
+        <div class="order-now">
+            <div class="dish-foto">
+                
+            </div>
+            <div class="order-now-btn">
+                <button [routerLink]="['/order']"  mat-button color="primary">
+                    Order now
+                  </button>
+            </div>
+
+
         </div>
 
     </div>
 
-     <div>
-        <label>
-            <input class="form-control" type="text" formControlName="pass">
-
-        </label>
-        <div *ngIf="homeForm.get('user')?.invalid" class="text-danger f-12 m-t-8">
-            required
-        </div>
-    </div>
 
 
+</div>
 
-    <button type="submit" mat-raised-button>submit</button>
-
-</form>
+</div>

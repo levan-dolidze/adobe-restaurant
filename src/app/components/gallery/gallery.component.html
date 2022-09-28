@@ -1,13 +1,14 @@
-        <ngb-carousel *ngIf="images">
-            <ng-template ngbSlide  *ngFor="let image of images">
-                <div class="picsum-img-wrapper">
-                    <img [src]="image">
-                </div>
-                <div class="carousel-caption">
-                    <h3>title</h3>
-                    <p>description</p>
-                </div>
-            </ng-template>
-     
-         
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+            <img [src]="image">
+        </div>
+        <div class="carousel-caption">
+            <h3>title</h3>
+            <p>description</p>
+        </div>
+    </ng-template>
 
+
+
+   
