@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { countFee } from 'src/app/models/typeScript';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
 
@@ -29,6 +30,10 @@ export class HomeComponent implements OnInit {
   ]
   ngOnInit(): void {
 
+    const fixed = countFee({type:'fixedFee',fixed:10},100)
+    const variabled = countFee({type:'variableFee',multiplier:5},100)
+    console.log(fixed)
+    console.log(variabled)
 
 
   }
