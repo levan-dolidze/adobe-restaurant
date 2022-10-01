@@ -4,8 +4,8 @@
     </mat-icon>
     <div class="category-inner">
         <div class="dish-list" *ngFor="let dish of (dishList$|async);let i =index"
-        (click)="dishDescription(dish)">
-            <img [src]="dish.file">
+        >
+            <img [src]="dish.file" (click)="dishDescription(dish)">
             {{dish.category}}
             {{dish.name}}
             {{dish.price}} ₾

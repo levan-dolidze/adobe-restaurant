@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { distinct, distinctUntilChanged, from, Observable, of, tap, toArray } from 'rxjs';
+import { distinct, distinctUntilChanged, from, interval, Observable, of, take, tap, toArray } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
@@ -23,6 +23,11 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnDishList();
+    const numbers = interval(300);
+
+    const takeFourNumbers = numbers.pipe(take(4));
+
+    takeFourNumbers.subscribe(x => console.log('Next: ', x));
   };
 
 
@@ -31,7 +36,7 @@ export class OrderComponent implements OnInit {
     this.dishList$ = this.http.getDishList();
     this.dishList$.subscribe((res) => {
       from(res).pipe(
-        distinct(x=>x.category),
+        distinct(x => x.category),
         toArray(),
       ).subscribe((res) => {
         this.dishList$ = of(res)
