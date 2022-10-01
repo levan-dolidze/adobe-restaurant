@@ -34,9 +34,17 @@
                         placeholder="Position" type="text" class="form-control">
                 </label>
             </div>
-            <div class="image-content">
+
+            <textarea [(ngModel)]="employee.description" 
+            placeholder="Working Experience" 
+            name="employeeDescription"
+            #employeeDescription="ngModel" 
+            cols="30" rows="5">
+  </textarea>
+
+            <!-- <div class="image-content">
                 <img [src]="imgURL">
-            </div>
+            </div> -->
             <div>
                 <label>
                     <input [(ngModel)]="employee.file" 
@@ -47,12 +55,7 @@
                            type="file" class="form-control">
                 </label>
             </div>
-            <textarea [(ngModel)]="employee.description" 
-                      placeholder="Working Experience" 
-                      name="employeeDescription"
-                      #employeeDescription="ngModel" 
-                      cols="30" rows="5">
-            </textarea>
+        
             <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Employee</button>
         </form>
 
@@ -188,7 +191,7 @@
       <label>
           <input [(ngModel)]="dish.category" 
           required 
-          name="type" 
+          name="dishType" 
           class="form-control"
           placeholder="Category"
           #dishType="ngModel" >
@@ -228,8 +231,18 @@
           </div> 
    </div>
 
+<div>
+    <label>
+   
+    <textarea [(ngModel)]="dish.description" 
+              name="dishDescription" 
+              #dishDescription="ngModel"
+              placeholder="Dish Description"
+              id="" cols="30" rows="5"> 
+    </textarea>
+    </label>
 
-
+</div>
 
   <div>
     <label>
@@ -260,11 +273,11 @@
                         </div>
                         <div class="employee-personal-info">
                             <h3>Personal Info</h3>
-                            <div>
-                                Full name:{{employee.name}} {{employee.surname}}
+                            <div class="name-title">
+                                Name:{{employee.name}} {{employee.surname}}
                             </div>
-                            <div>
-                                Email# {{employee.position}}
+                            <div class="pisition-title">
+                                {{employee.position}}
                             </div>
     
                         </div>

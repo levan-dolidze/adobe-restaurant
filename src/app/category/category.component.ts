@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { filter, from, Observable, of, toArray } from 'rxjs';
+import { DishDescriptionMessageComponent } from '../dish-description-message/dish-description-message.component';
 import { DishModel } from '../models/dishModel';
 import { AuthService } from '../services/auth.service';
 import { HttpService } from '../services/http.service';
@@ -14,15 +16,26 @@ export class CategoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private http: HttpService,
-    private httpAuth: AuthService
+    private httpAuth: AuthService,
+    public modal: MatDialog,
   ) { }
   dishList$: Observable<DishModel[]>;
-  product: DishModel[]
+  product: DishModel[];
+  modalRef: MatDialogRef<any>
 
   ngOnInit(): void {
     this.returnCategory();
     this.returnDush();
   };
+
+  dishDescription(dish: DishModel) {
+    this.modalRef = this.modal.open(DishDescriptionMessageComponent, {
+      width: '30%',
+      maxHeight: '90vh',
+      data: { chousenDish: dish },
+    });
+
+  }
 
   returnCategory(): string | null {
     const category = this.route.snapshot.paramMap.get('category')
@@ -41,7 +54,7 @@ export class CategoryComponent implements OnInit {
     })
   };
 
-  
+
   addDishToCart(dish: any) {
     this.httpAuth.getToken().subscribe((token) => {
       dish.uid = token.uid

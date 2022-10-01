@@ -198,7 +198,8 @@ export class AdminProductComponent implements OnInit {
         name: this.dish.name,
         category: this.dish.category,
         price: this.dish.price,
-        inCart:this.dish.inCart
+        inCart:this.dish.inCart,
+        description:this.dish.description
       })
       this.modalRef = this.dialog.open(AdminMessageComponent, {
         width: '300px',

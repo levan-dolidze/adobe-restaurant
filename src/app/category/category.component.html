@@ -3,7 +3,8 @@
         keyboard_return
     </mat-icon>
     <div class="category-inner">
-        <div class="dish-list" *ngFor="let dish of (dishList$|async);let i =index">
+        <div class="dish-list" *ngFor="let dish of (dishList$|async);let i =index"
+        (click)="dishDescription(dish)">
             <img [src]="dish.file">
             {{dish.category}}
             {{dish.name}}

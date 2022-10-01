@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { distinctUntilChanged, from, Observable, of, toArray } from 'rxjs';
+import { distinct, distinctUntilChanged, from, Observable, of, tap, toArray } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
+import { DishModel } from 'src/app/models/dishModel';
 
 @Component({
   selector: 'app-order',
@@ -18,7 +19,7 @@ export class OrderComponent implements OnInit {
 
   ) { }
 
-  dishList$: Observable<any>;
+  dishList$: Observable<DishModel[]>;
 
   ngOnInit(): void {
     this.returnDishList();
@@ -30,8 +31,8 @@ export class OrderComponent implements OnInit {
     this.dishList$ = this.http.getDishList();
     this.dishList$.subscribe((res) => {
       from(res).pipe(
-        distinctUntilChanged((prev: any, curr: any) => { return (prev.category === curr.category)}),
-        toArray()
+        distinct(x=>x.category),
+        toArray(),
       ).subscribe((res) => {
         this.dishList$ = of(res)
       })
