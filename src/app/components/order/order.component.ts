@@ -23,11 +23,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnDishList();
-    const numbers = interval(300);
 
-    const takeFourNumbers = numbers.pipe(take(4));
-
-    takeFourNumbers.subscribe(x => console.log('Next: ', x));
   };
 
 

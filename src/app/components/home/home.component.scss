@@ -61,6 +61,6 @@
     height: 400px;
     img{
         @include absoluteSizes;
-        // object-fit: cover;
+        object-fit: cover;
     };
 };

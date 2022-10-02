@@ -76,9 +76,9 @@ export class CartComponent implements OnInit {
             let cartList = JSON.parse(cart)
             const newOrder: OrderModel = {
               customerName: this.orderModel.customerName,
-              customerSurname: this.orderModel.customerName,
-              customerPN: this.orderModel.customerName,
-              customerAddress: this.orderModel.customerName,
+              customerSurname: this.orderModel.customerSurname,
+              customerPN: this.orderModel.customerPN,
+              customerAddress: this.orderModel.customerAddress,
               customerMob: this.orderModel.customerMob,
               orderTime: new Date(),
               userId: res.uid,
