@@ -8,6 +8,7 @@ import { GuestTime, TableReservationModel } from '../models/reserve';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 import { OrderModel } from '../models/order';
 import { CustomerMessageModel } from '../models/contact';
+import { Menu } from '../models/menu';
 
 @Injectable({
   providedIn: 'root'
@@ -185,5 +186,8 @@ export class AdminService {
   deleteCustomerMessage(key: any) {
     return this.http.delete(`${this.apiUrl}customerMessage/${key}.json`)
   };
+
+
+
 
 };

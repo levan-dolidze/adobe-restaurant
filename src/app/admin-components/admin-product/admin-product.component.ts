@@ -24,7 +24,7 @@ export class AdminProductComponent implements OnInit {
     private httpAdmin: AdminService,
     private http: HttpService,
     private dialog: MatDialog,
-    
+
 
   ) { }
   employee: employeeModel = new employeeModel();
@@ -36,11 +36,12 @@ export class AdminProductComponent implements OnInit {
   selectedImage: unknown;
   selectedMenu: unknown;
   selectedDish: unknown;
-  
+
 
   viewMode: string = 'form'
   employeeList$: Observable<employeeModel[]>;
   dishList$: Observable<DishModel[]>;
+  menuList$: Observable<Menu[]>
   currentDate = new DateRestriction();
 
 
@@ -55,9 +56,23 @@ export class AdminProductComponent implements OnInit {
     this.httpAdmin.getDishList();
     this.returnEmployees();
     this.returnDishList();
+    this.returnMenus()
   };
 
+  returnMenus() {
+    this.menuList$ = this.http.getMenu();
+    this.menuList$.subscribe((res) => {
+      this.menuList$ = of(res)
 
+    })
+  }
+
+  deleteMenu(key: any) {
+    this.http.deleteMenu(key).subscribe((res) => {
+      this.returnMenus()
+    })
+  }
+  
   returnEmployees() {
     this.employeeList$ = this.http.getEmployeeInfo();
     this.employeeList$.subscribe((res) => {
@@ -128,7 +143,7 @@ export class AdminProductComponent implements OnInit {
       return
     } else {
       localStorage.setItem('service', 'menu')
-      this.addFile(this.selectedMenu, { name: this.menu.name.toLocaleUpperCase()})
+      this.addFile(this.selectedMenu, { name: this.menu.name.toLocaleUpperCase() })
       this.modalRef = this.dialog.open(AdminMessageComponent, {
         width: '300px',
         maxHeight: '90vh',
@@ -182,7 +197,7 @@ export class AdminProductComponent implements OnInit {
         this.modalRef = this.dialog.open(AdminMessageComponent, {
           width: '300px',
           maxHeight: '90vh',
-          data: { event: this.guestTime.time},
+          data: { event: this.guestTime.time },
         });
       })
     }
@@ -198,13 +213,13 @@ export class AdminProductComponent implements OnInit {
         name: this.dish.name,
         category: this.dish.category,
         price: this.dish.price,
-        inCart:this.dish.inCart,
-        description:this.dish.description
+        inCart: this.dish.inCart,
+        description: this.dish.description
       })
       this.modalRef = this.dialog.open(AdminMessageComponent, {
         width: '300px',
         maxHeight: '90vh',
-        data: { event: this.dish.name},
+        data: { event: this.dish.name },
       });
 
     }

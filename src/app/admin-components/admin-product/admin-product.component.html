@@ -289,6 +289,31 @@
 
             <div *ngSwitchCase="'menuForm'" >
                  Menu list
+                 <div class="employee-list-inner" *ngFor="let menu of (menuList$|async)">
+
+                    <div class="employeeInfo">
+                        <div class="employeeImage">
+                            <!-- <img [src]="menu.file"> -->
+                        </div>
+
+                    </div>
+                    <div class="employee-personal-info">
+                        <h3>Menu Info</h3>
+                        <div>
+                            Name:{{menu.name}} 
+                        </div>
+                        <div>
+                            Type {{menu.key}}
+                        </div>
+                       
+
+                    </div>
+                    <mat-icon (click)="deleteMenu(menu.key)" style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(dish.key)">
+                        cancel
+                    </mat-icon>
+                 
+
+                 </div>
             </div>
             <div *ngSwitchCase="'timeForm'" >
                  Time list
@@ -317,7 +342,8 @@
     
                         </div>
                         <mat-icon style="float:right;cursor:pointer;opacity:0.8;" (click)="deleteDishList(dish.key)">
-                            delete</mat-icon>
+                            delete
+                        </mat-icon>
                     </div>
                 </div>
                  

@@ -153,6 +153,11 @@ export class HttpService {
     )
   };
 
+deleteMenu(key:string){
+  return this.http.delete(`${this.apiUrl}menu/${key}.json`)
+}
+
+
   getDishList(): Observable<DishModel[]> {
     return this.http.get<DishModel[]>(`${this.apiUrl}dish.json`).pipe(
       map((res) => {

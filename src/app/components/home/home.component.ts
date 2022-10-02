@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { countFee } from 'src/app/models/typeScript';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
+import { ReservationComponent } from '../reservation/reservation.component';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: HttpService,
     config: NgbCarouselConfig,
+    public modal: MatDialog,
     
 
   ) { 
@@ -29,13 +32,15 @@ export class HomeComponent implements OnInit {
     'https://www.kilkennyormonde.com/upload/slide_images/savour-2000px.jpg'
   ]
   ngOnInit(): void {
-
-    const fixed = countFee({type:'fixedFee',fixed:10},100)
-    const variabled = countFee({type:'variableFee',multiplier:5},100)
-    console.log(fixed)
-    console.log(variabled)
-
-
+   
   }
+
+
+  openReserve() {
+    this.modal.open(ReservationComponent, {
+      autoFocus: false,
+      maxHeight: '90vh'
+    })
+  };
 
 }

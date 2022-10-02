@@ -1,4 +1,5 @@
 @import '/src/config.scss';
+$homeBoxFoto: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/A_traditional_indian_dish_of_bengal%28pulao-mangsha_with_misti_doi%29.jpg/800px-A_traditional_indian_dish_of_bengal%28pulao-mangsha_with_misti_doi%29.jpg');
 
 .view-menu {
     .home-content {
@@ -8,8 +9,12 @@
             width: 80%;
             margin: 0 auto;
             padding: 50px
-        };
-    };
+        }
+
+        ;
+    }
+
+    ;
 
     .menu-btn {
         width: 100%;
@@ -19,48 +24,60 @@
         background-size: cover;
         object-fit: cover;
         position: relative;
-        
+
         .menue {
             text-align: center;
             @include centerElement;
-            h1{color: $whiteColor}
+
+            h1 {
+                color: $whiteColor
+            }
         }
     }
-     .order-now{
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        height: 300px;
-        object-fit: $borderRadius;
-        padding: 40px;
 
-        .dish-foto{
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/A_traditional_indian_dish_of_bengal%28pulao-mangsha_with_misti_doi%29.jpg/800px-A_traditional_indian_dish_of_bengal%28pulao-mangsha_with_misti_doi%29.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            object-fit: cover;
-            width: 50%;
-            border: 10px solid rgb(215, 215, 88);
+    .order-now {
+        @include homeBoxParent;
+        .dish-foto {
+            @include homeBox($homeBoxFoto, null, null);
         }
-        .order-now-btn{
-            background-color: $whiteColor;
+
+        .order-now-btn {
+            @include homeBox(null, 0px 30px 30px 0px, $whiteColor);
             width: 50%;
             position: relative;
-            border: 10px solid rgb(215, 215, 88);
-            border-radius: 0px 30px 30px 0px;
-            background-color: rgb(245, 245, 206);
 
-            button{
+            button {
+                @include centerElement;
+            }
+        }
+    };
+
+    
+
+    .reserve-now {
+     @include homeBoxParent;
+        .reserve-now-btn {
+            @include homeBox(null, 30px 0px 0 30px, $whiteColor);
+            width: 50%;
+            position: relative;
+
+            button {
                 @include centerElement;
             };
+        };
+
+        .reserve-foto {
+            @include homeBox($homeBoxFoto, null, null);
         };
     };
 };
 
-.picsum-img-wrapper{
+
+.picsum-img-wrapper {
     height: 400px;
-    img{
+    img {
         @include absoluteSizes;
         object-fit: cover;
-    };
+    }
 };
+

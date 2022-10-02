@@ -208,7 +208,26 @@ $borderRadius: 5px;
 };
 
 
-//admin-product component
+//Home-component
+@mixin homeBoxParent {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    height: 300px;
+    object-fit: $borderRadius;
+    padding: 40px;
+};
+
+@mixin homeBox($background:backImage,$borderRadius:borderRad,$backgrountColor:backColor) {
+    background: $background;
+    background-color:$backgrountColor ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    border-radius:$borderRadius;
+    width: 50%;
+    border: 10px solid rgb(215, 215, 88);
+};
 
 
 
