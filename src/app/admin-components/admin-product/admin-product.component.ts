@@ -41,7 +41,8 @@ export class AdminProductComponent implements OnInit {
   viewMode: string = 'form'
   employeeList$: Observable<employeeModel[]>;
   dishList$: Observable<DishModel[]>;
-  menuList$: Observable<Menu[]>
+  menuList$: Observable<Menu[]>;
+  timeList$: Observable<GuestTime[]>;
   currentDate = new DateRestriction();
 
 
@@ -56,8 +57,18 @@ export class AdminProductComponent implements OnInit {
     this.httpAdmin.getDishList();
     this.returnEmployees();
     this.returnDishList();
-    this.returnMenus()
+    this.returnMenus();
+    this.returnTimes()
   };
+
+  returnTimes() {
+   this.timeList$ = this.http.getGuestTime();
+   this.timeList$.subscribe((res)=>{
+    console.log(res)
+   this.timeList$=of(res)
+
+   })
+  }
 
   returnMenus() {
     this.menuList$ = this.http.getMenu();
@@ -72,7 +83,7 @@ export class AdminProductComponent implements OnInit {
       this.returnMenus()
     })
   }
-  
+
   returnEmployees() {
     this.employeeList$ = this.http.getEmployeeInfo();
     this.employeeList$.subscribe((res) => {

@@ -318,6 +318,14 @@
             </div>
             <div *ngSwitchCase="'timeForm'" >
                  Time list
+                 <div *ngIf="timeList$" class="employee-list">
+                    <div *ngFor="let time of (timeList$|async)">
+                        {{time.date|json}}
+
+                    </div>
+
+
+                </div>
             </div>
             <div *ngSwitchCase="'dishForm'" >
                  Dish list

@@ -5,7 +5,7 @@ import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDining
 import { AdminService } from 'src/app/services/admin.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade, show } from 'src/app/shared/animations';
-import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AdminMessageComponent } from 'src/app/admin-message/admin-message.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class AdminEventComponent implements OnInit, OnDestroy {
     private http: HttpService,
     public loader: LoaderService,
     private dialog: MatDialog,
-    
+
   ) { }
 
   privateDining$: Observable<PrivateDiningModel[]>
@@ -69,11 +69,11 @@ export class AdminEventComponent implements OnInit, OnDestroy {
               eventId: this.eventTypeModel.eventId
             }
             this.http.addEventType(newEvent).subscribe((response) => {
-        
+
               this.modalRef = this.dialog.open(AdminMessageComponent, {
                 width: '300px',
                 maxHeight: '90vh',
-                data: { event:this.eventTypeModel.eventType },
+                data: { event: this.eventTypeModel.eventType },
               });
             })
           };

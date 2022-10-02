@@ -14,27 +14,26 @@ import { fade } from '../../shared/animations';
 })
 export class AdminContactComponent implements OnInit {
 
-  constructor(private httpAdmin:AdminService,
+  constructor(private httpAdmin: AdminService,
     public loader: LoaderService,
-    
-    ) { }
+
+  ) { }
   customerMessage$: Observable<CustomerMessageModel[]>
 
   ngOnInit(): void {
     this.returnCustomerMessage();
   };
 
-  returnCustomerMessage(){
-    this.customerMessage$=this.httpAdmin.getCustomerMessage();
-    this.customerMessage$.subscribe((res)=>{
-      this.customerMessage$=of(res)
+  returnCustomerMessage() {
+    this.customerMessage$ = this.httpAdmin.getCustomerMessage();
+    this.customerMessage$.subscribe((res) => {
+      this.customerMessage$ = of(res)
     })
   };
 
-  deleteMessage(key:any){
-    this.httpAdmin.deleteCustomerMessage(key).subscribe(()=>{ 
+  deleteMessage(key: any) {
+    this.httpAdmin.deleteCustomerMessage(key).subscribe(() => {
       this.returnCustomerMessage()
     })
   };
-
 };
