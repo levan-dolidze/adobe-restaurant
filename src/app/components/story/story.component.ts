@@ -39,18 +39,9 @@ export class StoryComponent implements OnInit {
       maxHeight: '90vh',
       data: { employeeArr: this.employeeList[i] },
     });
-    // this.modalRef.afterClosed().subscribe((res)=>{
-    //   alert('modal has closed')
-
-    // })
-  }
-
-
-  downloadMenu() {
-    let menuUrl = this.employeeList[0].file
-
 
   }
+
 
 
 

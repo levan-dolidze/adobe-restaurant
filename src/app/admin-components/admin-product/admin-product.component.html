@@ -289,11 +289,11 @@
 
             <div *ngSwitchCase="'menuForm'" >
                  Menu list
+                 <div *ngIf="menuList$" class="employee-list">
                  <div class="employee-list-inner" *ngFor="let menu of (menuList$|async)">
-
                     <div class="employeeInfo">
                         <div class="employeeImage">
-                            <!-- <img [src]="menu.file"> -->
+                            <img src="https://cdn2.vectorstock.com/i/1000x1000/02/61/restaurant-cafe-logo-menu-dish-food-vector-8420261.jpg">
                         </div>
 
                     </div>
@@ -313,6 +313,7 @@
                     </mat-icon>
                  
 
+                 </div>
                  </div>
             </div>
             <div *ngSwitchCase="'timeForm'" >
