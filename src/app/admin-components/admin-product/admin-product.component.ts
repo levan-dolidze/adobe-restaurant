@@ -81,7 +81,7 @@ export class AdminProductComponent implements OnInit {
 
 
   changeDate() {
-    this.returnTimes()
+    this.returnTimes();
     this.timeList$.subscribe((res) => {
       const filtred = res.filter((item) => {
         return item.date?.day === this.reserveModel.date.day &&
