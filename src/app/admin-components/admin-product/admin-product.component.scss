@@ -89,3 +89,75 @@
 .employeeBtn{
     margin-top: 5px;
 }
+
+
+
+
+
+
+//caldendar
+
+.date-manu {
+    cursor: pointer;
+    position: absolute;
+    color: rgb(197, 203, 197);
+}
+
+.timeMode {
+    color: red
+}
+
+.timeSelect {
+    display: flex;
+    justify-content: center;
+
+}
+.guest-table-content{
+    overflow: auto;
+}
+.timeSelect .form-control {
+    margin-left: 5px;
+}
+
+.time-content {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+.time-inner{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+
+.time-div div {
+    padding: 10px;
+    width: 200px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+
+.reserved{
+    background-color: red;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+.available{
+    background-color: rgb(117, 218, 112);
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.available:hover{
+    background-color: rgb(197, 62, 193);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}

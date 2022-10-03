@@ -6,7 +6,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { fade, menu } from 'src/app/shared/animations';
 import { HttpService } from 'src/app/services/http.service';
 import { Menu } from 'src/app/models/menu';
-import { DateRestriction, GuestTime } from 'src/app/models/reserve';
+import { DateRestriction, GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { DishModel } from 'src/app/models/dishModel';
 import { Service } from 'src/app/models/shared';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -49,7 +49,9 @@ export class AdminProductComponent implements OnInit {
   guestTime: GuestTime = new GuestTime();
   guestTimes: Array<GuestTime> = [];
 
-  modalRef: MatDialogRef<any>
+  modalRef: MatDialogRef<any>;
+  reserveModel: ReserveModel = new ReserveModel();
+
 
   ngOnInit(): void {
     this.httpAdmin.getImageDetailList();
@@ -59,16 +61,45 @@ export class AdminProductComponent implements OnInit {
     this.returnDishList();
     this.returnMenus();
     this.returnTimes()
+    const d = new Date();
+    this.reserveModel.date = { year: d.getFullYear(), month:  d.getMonth()+1, day: d.getDate()}
   };
 
-  returnTimes() {
-   this.timeList$ = this.http.getGuestTime();
-   this.timeList$.subscribe((res)=>{
-    console.log(res)
-   this.timeList$=of(res)
 
-   })
+  returnTimes() {
+    this.timeList$ = this.http.getGuestTime();
+    this.timeList$.subscribe((res) => {
+      const filtred = res.filter((item) => {
+        return item.date?.day === this.reserveModel.date.day &&
+          item.date?.month === this.reserveModel.date.month &&
+          item.date?.year === this.reserveModel.date.year
+      })
+      this.timeList$ = of(filtred)
+
+    })
   }
+
+
+  changeDate() {
+    this.returnTimes()
+    this.timeList$.subscribe((res) => {
+      const filtred = res.filter((item) => {
+        return item.date?.day === this.reserveModel.date.day &&
+          item.date?.month === this.reserveModel.date.month &&
+          item.date?.year === this.reserveModel.date.year
+      })
+      this.timeList$ = of(filtred)
+
+    })
+  }
+
+
+
+
+
+
+
+
 
   returnMenus() {
     this.menuList$ = this.http.getMenu();

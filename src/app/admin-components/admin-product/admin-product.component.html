@@ -318,14 +318,50 @@
             </div>
             <div *ngSwitchCase="'timeForm'" >
                  Time list
-                 <div *ngIf="timeList$" class="employee-list">
+                 <!-- <div *ngIf="timeList$" class="employee-list">
                     <div *ngFor="let time of (timeList$|async)">
-                        {{time.date|json}}
+                        {{time.date?.day}}
+                        {{time.date?.month}}
+                        {{time.date?.year}}
+                    </div>
+                </div> -->
+
+
+                <input [(ngModel)]="reserveModel.date" 
+                required name="date" 
+                style="cursor:pointer" 
+                class="form-control"
+                #date="ngModel" 
+                placeholder="yyyy-mm-dd" 
+                [minDate]="{year: currentDate.year, 
+                 month: currentDate.month, 
+                 day: currentDate.day
+                }"
+                ngbDatepicker #d="ngbDatepicker" 
+                (ngModelChange)="changeDate()"
+                (click)="d.toggle()">
+
+                <form *ngFor="let time of (timeList$|async)">
+                    <div @fade [class.reserved]="time.status===false" 
+                         [class.available]="time.status===true"
+                      >
+                        <div class="time-div">
+                            <div>
+                                {{time.time}}PM
+                                {{time.place}}
+                            </div>
+                        </div>
 
                     </div>
 
+                </form>
 
-                </div>
+
+
+
+
+
+
             </div>
             <div *ngSwitchCase="'dishForm'" >
                  Dish list
