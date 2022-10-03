@@ -189,5 +189,11 @@ export class AdminService {
 
 
 
+  reservByAdmin(reserve: GuestTime) {
+    return this.http.post(`${this.apiUrl}guestTime.json`, reserve)
+  };
+
+
+
 
 };

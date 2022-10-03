@@ -11,6 +11,7 @@ import { DishModel } from 'src/app/models/dishModel';
 import { Service } from 'src/app/models/shared';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AdminMessageComponent } from 'src/app/admin-message/admin-message.component';
+import { ReserveInputMessageComponent } from 'src/app/reserve-input-message/reserve-input-message.component';
 
 @Component({
   selector: 'app-admin-product',
@@ -267,7 +268,14 @@ export class AdminProductComponent implements OnInit {
     }
   };
 
+startReserve(time:any){
+  this.modalRef = this.dialog.open(ReserveInputMessageComponent, {
+    width: '300px',
+    maxHeight: '90vh',
+    data: { reserveDate: time },
+  });
 
+}
 
 
 };

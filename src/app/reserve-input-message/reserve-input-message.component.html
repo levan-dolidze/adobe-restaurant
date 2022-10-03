@@ -1,0 +1,52 @@
+<div class="reserve-input-content">
+    <mat-icon mat-dialog-close style="float: right;cursor: pointer;" aria-hidden="false" fontIcon="close">
+    </mat-icon>
+    <div>
+        <div>
+            {{reservation.status}}
+        </div>
+        <div>
+            {{reservation.place}}
+
+        </div>
+        <div>
+            {{reservation.time}}
+
+        </div>
+
+        {{reservation.date?.day}} {{reservation.date?.month}} {{reservation.date?.year}}
+
+    </div>
+
+    <form>
+        <div>
+            <label for="">
+                <input class="form-control" type="text"
+                placeholder="Full name"
+                >
+
+            </label>
+        </div>
+        <div>
+            <label for="">
+                <input class="form-control" type="text"
+                placeholder="Phone"
+                
+                >
+
+            </label>
+        </div>
+        <div>
+            <label for="">
+                <input class="form-control" type="text"
+                placeholder="Email"
+                >
+
+            </label>
+        </div>
+        <button class="menu-btn" mat-flat-button color="primary">
+            save reserve
+        </button>
+    </form>
+
+</div>

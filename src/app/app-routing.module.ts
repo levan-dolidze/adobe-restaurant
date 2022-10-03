@@ -85,6 +85,7 @@ const routes: Routes = [
   { path: 'admin-contact', loadChildren: () => import('./admin-components/admin-contact/admin-contact.module').then(m => m.AdminContactModule) },
   { path: 'admin-message', loadChildren: () => import('./admin-message/admin-message.module').then(m => m.AdminMessageModule) },
   { path: 'dish-description-message', loadChildren: () => import('./dish-description-message/dish-description-message.module').then(m => m.DishDescriptionMessageModule) },
+  { path: 'reserve-input-message', loadChildren: () => import('./reserve-input-message/reserve-input-message.module').then(m => m.ReserveInputMessageModule) },
 ];
 
 @NgModule({
