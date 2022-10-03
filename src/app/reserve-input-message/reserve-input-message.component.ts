@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GuestTime } from '../models/reserve';
+import { AdminService } from '../services/admin.service';
 import { HttpService } from '../services/http.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { HttpService } from '../services/http.service';
 export class ReserveInputMessageComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { reserveDate: any },
-    private http: HttpService
+    private adminHttp: AdminService
 
   ) { }
   reservation: GuestTime;
@@ -20,14 +21,26 @@ export class ReserveInputMessageComponent implements OnInit {
 
   }
 
-  addReserve() {
-    // const newReservation: GuestTime = {
-      
+  addReserve(form:any) {
+    if(form.invalid){
+      return
+    }
+    else{
+      const newReservation: GuestTime = {
+        place: this.reservation.place,
+        time: this.reservation.time,
+        status: false,
+        date: this.reservation.date,
+        marketingConsent: this.reservation.marketingConsent,
+        fullName: this.reservation.fullName,
+        phone: this.reservation.phone,
+        email: this.reservation.email
+      }
+      this.adminHttp.reservByAdmin(newReservation).subscribe(() => {
+  
+      })
+    }
 
-    // }
-    // this.http.reservByAdmin().subscribe(() => {
-
-    // })
 
   }
 

@@ -17,6 +17,9 @@ export class GuestTime {
     date?: NgbDateStruct;
     key?: string;
     marketingConsent?: boolean;
+    fullName?:string;
+    phone?:string;
+    email?:string;
     constructor() {
         this.marketingConsent = false;
 

@@ -6,6 +6,7 @@ import { ReserveInputMessageComponent } from './reserve-input-message.component'
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReserveInputMessageRoutingModule,
     FormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ]
 })
 export class ReserveInputMessageModule { }

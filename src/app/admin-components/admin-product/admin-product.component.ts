@@ -269,11 +269,16 @@ export class AdminProductComponent implements OnInit {
   };
 
 startReserve(time:any){
-  this.modalRef = this.dialog.open(ReserveInputMessageComponent, {
-    width: '300px',
-    maxHeight: '90vh',
-    data: { reserveDate: time },
-  });
+  if(time.status===false){
+    return
+  }else{
+    this.modalRef = this.dialog.open(ReserveInputMessageComponent, {
+      width: '300px',
+      maxHeight: '90vh',
+      data: { reserveDate: time },
+    });
+  
+  }
 
 }
 

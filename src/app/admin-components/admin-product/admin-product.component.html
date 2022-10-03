@@ -318,7 +318,7 @@
             </div>
             <div *ngSwitchCase="'timeForm'" >
                  Time list
-                <input [(ngModel)]="reserveModel.date" 
+                <input style="padding:10px" [(ngModel)]="reserveModel.date" 
                 required name="date" 
                 style="cursor:pointer" 
                 class="form-control"
@@ -340,6 +340,9 @@
                             <div>
                                 {{time.time}}PM
                                 {{time.place}}
+                                {{time.fullName}}
+                                {{time.phone}}
+                                {{time.email}}
                             </div>
                         </div>
 

@@ -3,46 +3,66 @@
     </mat-icon>
     <div>
         <div>
-            {{reservation.status}}
+            {{reservation.status?'avalable':'reserved'}}
         </div>
         <div>
-            {{reservation.place}}
+           place: {{reservation.place}}
 
         </div>
         <div>
-            {{reservation.time}}
+          time: {{reservation.time}}
 
         </div>
 
-        {{reservation.date?.day}} {{reservation.date?.month}} {{reservation.date?.year}}
+      date: {{reservation.date?.day}} {{reservation.date?.month}} {{reservation.date?.year}}
 
     </div>
 
-    <form>
+    <form (ngSubmit)='addReserve(reserveForm)' #reserveForm="ngForm">
         <div>
             <label for="">
-                <input class="form-control" type="text"
-                placeholder="Full name"
-                >
-
+                <input [(ngModel)]="reservation.fullName"
+                required
+                name="fullName"
+                #fullName="ngModel"
+                class="form-control" type="text"
+                placeholder="Full name">
             </label>
+            <div  class="text-danger f-12 m-t-8" *ngIf="reserveForm.submitted&&fullName.errors?.['required']">
+                Required
+            </div>
         </div>
         <div>
             <label for="">
-                <input class="form-control" type="text"
+                <input  [(ngModel)]="reservation.phone"
+                required
+                name="phone"
+                #phone="ngModel"
+                class="form-control" 
+                type="text"
                 placeholder="Phone"
                 
                 >
 
             </label>
+            <div  class="text-danger f-12 m-t-8" *ngIf="reserveForm.submitted&&phone.errors?.['required']">
+                Required
+            </div>
         </div>
         <div>
             <label for="">
-                <input class="form-control" type="text"
+                <input [(ngModel)]="reservation.email"
+                required
+                name="email"
+                #email="ngModel"
                 placeholder="Email"
+                class="form-control" type="text"
                 >
 
             </label>
+            <div  class="text-danger f-12 m-t-8" *ngIf="reserveForm.submitted&&email.errors?.['required']">
+                Required
+            </div>
         </div>
         <button class="menu-btn" mat-flat-button color="primary">
             save reserve
