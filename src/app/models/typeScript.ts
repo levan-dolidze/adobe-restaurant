@@ -19,7 +19,7 @@ export function countFee(fee: PaymentFee, itemPrice: any): any {
             break;
 
         case 'variableFee':
-            return (itemPrice/100*fee.multiplier)+itemPrice
+            return (itemPrice / 100 * fee.multiplier) + itemPrice
             break;
 
         default:
