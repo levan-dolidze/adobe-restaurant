@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, Subject } from 'rxjs';
+import { filter, from, map, Observable, of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CustomerMessageModel } from '../models/contact';
 import { DishModel } from '../models/dishModel';
@@ -23,7 +23,7 @@ export class HttpService {
   cartChanges: Subject<any> = new Subject();
 
 
-  
+
 
 
   addPrivateEvent(event: PrivateDiningModel): Observable<PrivateDiningModel> {
@@ -153,9 +153,9 @@ export class HttpService {
     )
   };
 
-deleteMenu(key:string){
-  return this.http.delete(`${this.apiUrl}menu/${key}.json`)
-}
+  deleteMenu(key: string) {
+    return this.http.delete(`${this.apiUrl}menu/${key}.json`)
+  }
 
 
   getDishList(): Observable<DishModel[]> {
@@ -196,6 +196,5 @@ deleteMenu(key:string){
   addCustomerMessage(message: CustomerMessageModel) {
     return this.http.post(`${this.apiUrl}customerMessage.json`, message)
   };
-
 
 };

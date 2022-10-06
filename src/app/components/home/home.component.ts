@@ -10,16 +10,16 @@ import { ReservationComponent } from '../reservation/reservation.component';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations:[fade]
+  animations: [fade]
 })
 export class HomeComponent implements OnInit {
 
   constructor(private http: HttpService,
     config: NgbCarouselConfig,
     public modal: MatDialog,
-    
 
-  ) { 
+
+  ) {
     config.interval = 2000;
     config.wrap = false;
     config.keyboard = false;
@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
     'https://www.kilkennyormonde.com/upload/slide_images/savour-2000px.jpg'
   ]
   ngOnInit(): void {
-   
+ 
+
   }
 
 

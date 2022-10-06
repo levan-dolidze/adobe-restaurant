@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize, Observable, of } from 'rxjs';
+import { finalize, from, map, Observable, of } from 'rxjs';
 import { employeeModel } from 'src/app/models/employee';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AdminService } from 'src/app/services/admin.service';
@@ -49,7 +49,6 @@ export class AdminProductComponent implements OnInit {
 
   guestTime: GuestTime = new GuestTime();
   guestTimes: Array<GuestTime> = [];
-
   modalRef: MatDialogRef<any>;
   reserveModel: ReserveModel = new ReserveModel();
 
@@ -62,8 +61,10 @@ export class AdminProductComponent implements OnInit {
     this.returnDishList();
     this.returnMenus();
     this.returnTimes()
+
+  
     const d = new Date();
-    this.reserveModel.date = { year: d.getFullYear(), month:  d.getMonth()+1, day: d.getDate()}
+    this.reserveModel.date = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }
   };
 
 
@@ -268,19 +269,19 @@ export class AdminProductComponent implements OnInit {
     }
   };
 
-startReserve(time:any){
-  if(time.status===false){
-    return
-  }else{
-    this.modalRef = this.dialog.open(ReserveInputMessageComponent, {
-      width: '300px',
-      maxHeight: '90vh',
-      data: { reserveDate: time },
-    });
-  
-  }
+  startReserve(time: any) {
+    if (time.status === false) {
+      return
+    } else {
+      this.modalRef = this.dialog.open(ReserveInputMessageComponent, {
+        width: '300px',
+        maxHeight: '90vh',
+        data: { reserveDate: time },
+      });
 
-}
+    }
+
+  }
 
 
 };

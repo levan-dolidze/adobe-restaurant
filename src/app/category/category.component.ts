@@ -77,26 +77,6 @@ export class CategoryComponent implements OnInit {
     })
   };
 
-
-
-  // decriceDish(i: any) {
-  //   let list = localStorage.getItem('dishes');
-  //   if (list) {
-  //     let cartList = JSON.parse(list)
-  //     if (cartList === 0) {
-  //       return
-  //     } else {
-  //       cartList.splice(i, 1)
-  //       this.http.cartChanges.next(cartList)
-  //       localStorage.setItem('dishes', JSON.stringify(cartList))
-  //     }
-  //   };
-  // };
-
-
-
-
-
 };
 
 
