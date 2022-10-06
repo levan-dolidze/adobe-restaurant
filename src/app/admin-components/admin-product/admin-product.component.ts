@@ -96,13 +96,6 @@ export class AdminProductComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
   returnMenus() {
     this.menuList$ = this.http.getMenu();
     this.menuList$.subscribe((res) => {

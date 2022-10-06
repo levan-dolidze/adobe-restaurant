@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { countFee } from 'src/app/models/typeScript';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
 import { ReservationComponent } from '../reservation/reservation.component';
@@ -31,12 +31,29 @@ export class HomeComponent implements OnInit {
     'https://www.gordonramsayrestaurants.com/assets/Uploads/_resampled/CroppedFocusedImage160055050-50-GRBG-Sim-Shoot-2-2000px.jpg',
     'https://www.kilkennyormonde.com/upload/slide_images/savour-2000px.jpg'
   ]
-  ngOnInit(): void {
- 
 
+  submitForm: FormGroup;
+
+  ngOnInit(): void {
+    this.creteForm()
   }
 
 
+  creteForm() {
+    this.submitForm = new FormGroup({
+      userName: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+      array: new FormArray([])
+    })
+  }
+
+  getFormControls() {
+    return (<FormArray>this.submitForm.get('array')).controls
+  }
+
+  submit() {
+    const newFormControl = new FormControl(null);
+    (<FormArray>this.submitForm.get('array')).push(newFormControl)
+  }
   openReserve() {
     this.modal.open(ReservationComponent, {
       autoFocus: false,
