@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 import { EventMessageComponent } from 'src/app/event-message/event-message.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { DateRestriction } from 'src/app/models/reserve';
-import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';

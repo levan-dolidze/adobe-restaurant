@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { distinct, distinctUntilChanged, from, interval, Observable, of, take, tap, toArray } from 'rxjs';
+import { distinct, from,Observable, of, toArray } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';

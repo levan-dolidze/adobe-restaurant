@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { forkJoin, Observable, of, shareReplay, tap } from 'rxjs';
+import { forkJoin, Observable,shareReplay} from 'rxjs';
 import { AdminPermission } from 'src/app/classes/admin-permission';
 import { LoginComponent } from 'src/app/login/login.component';
 import { PrivateDiningModel } from 'src/app/models/privateDiningModel';

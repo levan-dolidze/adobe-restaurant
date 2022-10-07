@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Menu } from 'src/app/models/menu';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
