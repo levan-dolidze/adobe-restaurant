@@ -24,12 +24,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
   async userSignIn(form: any) {
     if (form.innvalid) {
       return
@@ -44,9 +38,7 @@ export class LoginComponent implements OnInit {
           else {
             return
           }
-
         })
-
       })
     };
   };
@@ -71,7 +63,6 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
           }, 3000);
         });
-
     }
-  }
-}
+  };
+};

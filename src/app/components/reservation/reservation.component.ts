@@ -52,7 +52,6 @@ export class ReservationComponent implements OnInit {
 
   returnGuestTimes() {
     this.timeList$ = this.http.getGuestTime();
-    this.timeList$.subscribe((res) => {})
   }
 
 

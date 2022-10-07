@@ -14,9 +14,8 @@ import { fade } from 'src/app/shared/animations';
 })
 export class AdminOrderComponent implements OnInit {
 
-  constructor(private modal: MatDialog,
-    private httpAdmin: AdminService,
-    public loader: LoaderService,
+  constructor(private httpAdmin: AdminService,
+              public loader: LoaderService,
 
   ) { }
 

@@ -8,15 +8,14 @@ import { GuestTime, TableReservationModel } from '../models/reserve';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database'
 import { OrderModel } from '../models/order';
 import { CustomerMessageModel } from '../models/contact';
-import { Menu } from '../models/menu';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
   readonly apiUrl = environment.apiURL;
-  //privatze unda gadavaketo tu ar gaaerorebs
-  constructor(public firebaseAuth: AngularFireAuth,
+  //privatze gadavakete publicidan tu bagi ar agmochnda davtovot
+  constructor(private firebaseAuth: AngularFireAuth,
     private http: HttpClient,
     private firebase: AngularFireDatabase
   ) { }
@@ -95,8 +94,6 @@ export class AdminService {
     //es key ar aris romelic shecvlis statuss
     return this.http.delete(`${this.apiUrl}completeReservations/${key}.json`).pipe(
       tap(() => {
-        const index = this.tableReservations.map((item) => item.key).indexOf(key);
-        this.tableReservations.splice(index, 1)
         this.tableReservationDetele$.next(of(this.tableReservations))
       })
     )
@@ -104,12 +101,8 @@ export class AdminService {
 
 
   cancelTableTime(key: any) {
-    return this.http.patch(`${this.apiUrl}guestTime/${key}.json`, { status: true }).pipe(
-      // tap(()=>{
-      //   const index =this.guestTime.map((item)=>item.key).indexOf(reserveTime.key)
-      //   this.guestTime[index]=reserveTime
-      // })
-    )
+    return this.http.patch(`${this.apiUrl}guestTime/${key}.json`, { status: true })
+    
   };
 
 

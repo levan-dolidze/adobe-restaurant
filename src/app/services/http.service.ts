@@ -74,6 +74,7 @@ export class HttpService {
           for (const key in res) {
             arr.push({ ...res[key], deleteKey: key })
           }
+          
           this.myReservations = arr
           return this.myReservations;
         } else {

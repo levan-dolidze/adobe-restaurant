@@ -53,4 +53,4 @@ export class MyOrderComponent implements OnInit {
     })
   };
 
-}
+};

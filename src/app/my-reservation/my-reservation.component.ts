@@ -55,7 +55,6 @@ export class MyReservationComponent implements OnInit, AfterViewInit {
     this.http.deleteMyTableReservation(deleteKey).subscribe((res: any) => {
       this.returnMyReservations();
     })
-
   };
 
 

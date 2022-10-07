@@ -102,9 +102,9 @@ export class AdminProductComponent implements OnInit {
 
   deleteMenu(key: any) {
     this.http.deleteMenu(key).subscribe((res) => {
-      this.returnMenus()
+      this.returnMenus();
     })
-  }
+  };
 
   returnEmployees() {
     this.employeeList$ = this.http.getEmployeeInfo();

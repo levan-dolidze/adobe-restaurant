@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {  Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { TableReservationModel } from 'src/app/models/reserve';
 import { AdminService } from 'src/app/services/admin.service';
-import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
 
 @Component({
@@ -17,7 +16,6 @@ export class AdminReservationComponent implements OnInit {
 
   constructor(private httpAdmin: AdminService,
     public loader: LoaderService,
-    private httpService: HttpService
 
   ) { }
 
@@ -29,6 +27,7 @@ export class AdminReservationComponent implements OnInit {
 
   returnTableReservations() {
     this.tableReservations$ = this.httpAdmin.getTableReservations();
+
   };
 
   deleteTableReservation(deleteKey: any) {

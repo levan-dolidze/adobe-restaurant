@@ -35,19 +35,20 @@
         <div class="team-content">
             <div @fade @show class="team-inner">
                 <div class="team-member" *ngFor="let member of (membersArray$|async);let i=index">
-                    <img (click)="openEmployeeInfo(i)" [src]="member.file" alt="">
+                    <img (click)="openEmployeeInfo(i)" [src]="member.file">
                     {{member.name}} {{member.surname}}
                     <div>
-                       <h2> {{member.position}}</h2>
+                        <h2> {{member.position}}</h2>
                     </div>
-     
-    </div>
+
                 </div>
+            </div>
 
-       </div>
-
-       <div class="restaurant-foto-content">
-        <img src="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/08/0/0/Chilis.jpg?ve=1&tl=1">
-       </div>
         </div>
+
+        <div @fade class="restaurant-foto-content">
+            <img *ngIf="employeeFotoLoaded"
+                src="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/08/0/0/Chilis.jpg?ve=1&tl=1">
+        </div>
+    </div>
 </div>
