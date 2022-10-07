@@ -21,10 +21,6 @@ export class MenuComponent implements OnInit {
 
   returnMenuList(){
     this.menuList$=this.http.getMenu();
-    this.menuList$.subscribe((res)=>{
-      this.menuList$=of(res)
-    })
-    
   };
 
 }

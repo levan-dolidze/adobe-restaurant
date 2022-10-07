@@ -98,10 +98,6 @@ export class AdminProductComponent implements OnInit {
 
   returnMenus() {
     this.menuList$ = this.http.getMenu();
-    this.menuList$.subscribe((res) => {
-      this.menuList$ = of(res)
-
-    })
   }
 
   deleteMenu(key: any) {
@@ -112,16 +108,10 @@ export class AdminProductComponent implements OnInit {
 
   returnEmployees() {
     this.employeeList$ = this.http.getEmployeeInfo();
-    this.employeeList$.subscribe((res) => {
-      this.employeeList$ = of(res)
-    })
   };
 
   returnDishList() {
     this.dishList$ = this.http.getDishList();
-    this.dishList$.subscribe((res) => {
-      this.selectedDish = of(res)
-    })
   };
 
   addEmployee(form: any) {

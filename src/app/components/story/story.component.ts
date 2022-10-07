@@ -29,8 +29,6 @@ export class StoryComponent implements OnInit {
     this.membersArray$ = this.http.getEmployeeInfo();
     this.membersArray$.subscribe((res) => {
       this.employeeList = res
-      this.membersArray$ = of(res)
-
     })
   };
   openEmployeeInfo(i: any) {

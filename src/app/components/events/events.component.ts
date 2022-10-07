@@ -54,14 +54,9 @@ export class EventsComponent implements OnInit {
 
   returnEventTypes() {
     this.eventTypes$ = this.http.getEventTypes();
-    this.eventTypes$.subscribe((res) => {
-      this.eventTypes$ = of(res)
-
-    })
   };
 
   submitPrivateEvent(form: any) {
-    console.log(this.privateDiningModel.startTime)
     if (form.invalid) {
       return
     } else {

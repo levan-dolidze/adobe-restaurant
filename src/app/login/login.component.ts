@@ -69,9 +69,6 @@ export class LoginComponent implements OnInit {
       sendEmailVerification(auth.currentUser)
         .then(() => {
           setTimeout(() => {
-            // this.dialog.closeAll()
-            // this.authServise.userIsLogedin.next(true);
-            // this.router.navigate([''])
           }, 3000);
         });
 

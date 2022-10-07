@@ -11,11 +11,6 @@ export class TimemodalComponent implements OnInit {
 
   constructor(private http: AdminService) { }
 
-
-
-
-
-
   ngOnInit(): void {
 
   };

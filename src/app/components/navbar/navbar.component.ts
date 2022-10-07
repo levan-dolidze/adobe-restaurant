@@ -47,7 +47,6 @@ export class NavbarComponent implements OnInit {
     this.returnToken();
     this.userIsLoggedIn();
     this.http.cartChanges.subscribe((QTY) => {
-      console.log(QTY.length)
       this.itemQTY = QTY.length
     })
   };
@@ -71,7 +70,6 @@ export class NavbarComponent implements OnInit {
 
   showNotifications() {
     this.notificationObs$ = this.observable$.pipe(
-      // tap(() => console.log('one data exists')),
       shareReplay()
     )
     this.notificationObs$.subscribe((res) => {

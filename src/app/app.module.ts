@@ -60,8 +60,6 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
     AngularFireMessagingModule
     
   
-
-
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

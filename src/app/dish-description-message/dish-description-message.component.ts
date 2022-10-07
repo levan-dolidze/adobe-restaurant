@@ -15,7 +15,6 @@ export class DishDescriptionMessageComponent implements OnInit {
   dish: DishModel;
 
   ngOnInit(): void {
-    console.log(this.dish.description)
   }
   
 

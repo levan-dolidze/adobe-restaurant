@@ -52,9 +52,7 @@ export class ReservationComponent implements OnInit {
 
   returnGuestTimes() {
     this.timeList$ = this.http.getGuestTime();
-    this.timeList$.subscribe((res) => {
-    })
-
+    this.timeList$.subscribe((res) => {})
   }
 
 
@@ -127,9 +125,7 @@ export class ReservationComponent implements OnInit {
   };
 
   addReservation(reservation: any) {
-    this.http.completeReservation(reservation).subscribe((res) => {
-
-    })
+    this.http.completeReservation(reservation).subscribe((res) => {})
   };
 
 

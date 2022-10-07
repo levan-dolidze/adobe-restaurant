@@ -53,6 +53,8 @@ export class HomeComponent implements OnInit {
   submit() {
     const newFormControl = new FormControl(null);
     (<FormArray>this.submitForm.get('array')).push(newFormControl)
+  
+  
   }
   openReserve() {
     this.modal.open(ReservationComponent, {

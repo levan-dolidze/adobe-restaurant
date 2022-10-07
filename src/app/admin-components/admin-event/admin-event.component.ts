@@ -35,9 +35,6 @@ export class AdminEventComponent implements OnInit, OnDestroy {
 
   returnDining() {
     this.privateDining$ = this.httpAdmin.returnPrivateDining();
-    this.privateDining$.subscribe((res) => {
-      this.privateDining$ = of(res)
-    })
   };
 
   deleteDiningEvent(key: any) {

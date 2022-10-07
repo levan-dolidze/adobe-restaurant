@@ -29,9 +29,6 @@ export class AdminReservationComponent implements OnInit {
 
   returnTableReservations() {
     this.tableReservations$ = this.httpAdmin.getTableReservations();
-    this.tableReservations$.subscribe((res) => {
-      this.tableReservations$ = of(res)
-    })
   };
 
   deleteTableReservation(deleteKey: any) {

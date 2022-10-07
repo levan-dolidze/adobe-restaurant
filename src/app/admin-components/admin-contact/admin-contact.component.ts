@@ -26,9 +26,6 @@ export class AdminContactComponent implements OnInit {
 
   returnCustomerMessage() {
     this.customerMessage$ = this.httpAdmin.getCustomerMessage();
-    this.customerMessage$.subscribe((res) => {
-      this.customerMessage$ = of(res)
-    })
   };
 
   deleteMessage(key: any) {

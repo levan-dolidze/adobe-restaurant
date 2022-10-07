@@ -28,9 +28,6 @@ export class AdminOrderComponent implements OnInit {
 
   returnOnlineOrders() {
     this.onlineOrderList$ = this.httpAdmin.getOnlineOrders()
-    this.onlineOrderList$.subscribe((res) => {
-      this.onlineOrderList$ = of(res)
-    })
   };
 
   cancelOnlineOrder(key: any) {

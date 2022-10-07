@@ -32,11 +32,8 @@ export class MyReservationComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.loaderSpin = res
       }, 0);
-
     })
-
-
-  }
+  };
 
   returnMyReservations() {
     this.myReservations$ = this.http.getMyReservations();
@@ -56,8 +53,7 @@ export class MyReservationComponent implements OnInit, AfterViewInit {
 
   cancelReservation(deleteKey: any) {
     this.http.deleteMyTableReservation(deleteKey).subscribe((res: any) => {
-      this.returnMyReservations()
-
+      this.returnMyReservations();
     })
 
   };
