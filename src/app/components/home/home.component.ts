@@ -32,30 +32,11 @@ export class HomeComponent implements OnInit {
     'https://www.kilkennyormonde.com/upload/slide_images/savour-2000px.jpg'
   ]
 
-  submitForm: FormGroup;
 
   ngOnInit(): void {
-    this.creteForm()
   }
 
 
-  creteForm() {
-    this.submitForm = new FormGroup({
-      userName: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-      array: new FormArray([])
-    })
-  }
-
-  getFormControls() {
-    return (<FormArray>this.submitForm.get('array')).controls
-  }
-
-  submit() {
-    const newFormControl = new FormControl(null);
-    (<FormArray>this.submitForm.get('array')).push(newFormControl)
-  
-  
-  }
   openReserve() {
     this.modal.open(ReservationComponent, {
       autoFocus: false,
