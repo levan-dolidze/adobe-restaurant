@@ -1,7 +1,8 @@
 <div class="admin-content">
     <div class="admin-inner">
         <div @fade class="cart-inner">
-            <h3 class="list-title">Your Cart List</h3>
+            <h3 class="list-title">Your Cart List</h3> 
+
             <div *ngIf="dishList">
                 <div class="list-inner" *ngFor="let dish of dishList;let i=index">
                     <div class="employee-Info">
@@ -11,126 +12,101 @@
                     </div>
                     <div class="employee-personal-info">
                         <h3>Dish Info</h3>
-                         <div>
+                        <div>
                             Name: {{dish.name}} Ctegory: {{dish.category}}
                         </div>
                         <div>
-                            Price {{dish.price}}
-                        </div> 
+                            QTY: {{dish.inCart}}
+                        </div>
+                        <div>
+                            Price: {{dish.price|currency:'USD'}}
+                        </div>
 
 
                     </div>
                     <div>
-                      <h2>Total:{{dish.price*dish.inCart}}</h2>
+                        <h3>Total: {{dish.price*dish.inCart|currency:'USD'}}</h3>
 
                     </div>
-                    <div>
-                    </div>
-                    <mat-icon class="cancel-icon"  (click)="deleteDishList(i)">
+                 
+                    <mat-icon class="cancel-icon" (click)="deleteDishList(i)">
                         cancel
                     </mat-icon>
 
                 </div>
-            
+
+
             </div>
         </div>
-        
-        <div @fade  class="input-form">
-            <h2 class="event-title">Order Dish</h2>
-            <form (ngSubmit)="orderDish(orderForm)" style="padding:0px 10px 10px 10px" #orderForm="ngForm" >
-          <div>
-            <input type="text"
-            [(ngModel)]="orderModel.customerName"
-            required
-            pattern="[a-z ]*"
-            name="customerName"
-            #customerName='ngModel'
-            class="form-control"
-            placeholder="Name">
-          </div>
-    <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
-    <div *ngIf="customerName.errors?.['required']">
-        Required
-    </div>
-    <div *ngIf="customerName.errors?.['pattern']">
-        Wrong Format
-    </div>
-    </div>
+
+        <div @fade class="input-form">
+            <h3 class="event-title">Order Dish </h3>
+            <h2>Total Price: {{countTotalPrice|currency:'USD'}}</h2>
+            <form (ngSubmit)="orderDish(orderForm)" style="padding:0px 10px 10px 10px" #orderForm="ngForm">
+                <div>
+                    <input type="text" [(ngModel)]="orderModel.customerName" required pattern="[a-z ]*"
+                        name="customerName" #customerName='ngModel' class="form-control" placeholder="Name">
+                </div>
+                <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8">
+                    <div *ngIf="customerName.errors?.['required']">
+                        Required
+                    </div>
+                    <div *ngIf="customerName.errors?.['pattern']">
+                        Wrong Format
+                    </div>
+                </div>
 
 
-    <div>
-        <input type="text"
-        [(ngModel)]="orderModel.customerSurname"
-        required
-        pattern="[a-z ]*"
-        name="surname"
-        #customerSurname='ngModel'
-        class="form-control"
-        placeholder="Surname">
-      </div>
-<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
-<div *ngIf="customerSurname.errors?.['required']">
-    Required
-</div>
-<div *ngIf="customerSurname.errors?.['pattern']">
-    Wrong Format
-</div>
-</div>
+                <div>
+                    <input type="text" [(ngModel)]="orderModel.customerSurname" required pattern="[a-z ]*"
+                        name="surname" #customerSurname='ngModel' class="form-control" placeholder="Surname">
+                </div>
+                <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8">
+                    <div *ngIf="customerSurname.errors?.['required']">
+                        Required
+                    </div>
+                    <div *ngIf="customerSurname.errors?.['pattern']">
+                        Wrong Format
+                    </div>
+                </div>
 
 
 
-<div>
-    <input type="text"
-    [(ngModel)]="orderModel.customerPN"
-    required
-    pattern="[0-9]*"
-    name="personalNumber"
-    #customerPN='ngModel'
-    class="form-control"
-    placeholder="PN">
-  </div>
-<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
-<div *ngIf="customerPN.errors?.['required']">
-Required
-</div>
-<div *ngIf="customerPN.errors?.['pattern']">
-Wrong Format
-</div>
-</div>
-<div>
-    <input type="text"
-    [(ngModel)]="orderModel.customerAddress"
-    required
-    name="customerAddress"
-    #customerAddress='ngModel'
-    class="form-control"
-    placeholder="Delivery Address">
-  </div>
-<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
-<div *ngIf="customerAddress.errors?.['required']">
-Required
-</div>
+                <div>
+                    <input type="text" [(ngModel)]="orderModel.customerPN" required pattern="[0-9]*"
+                        name="personalNumber" #customerPN='ngModel' class="form-control" placeholder="PN">
+                </div>
+                <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8">
+                    <div *ngIf="customerPN.errors?.['required']">
+                        Required
+                    </div>
+                    <div *ngIf="customerPN.errors?.['pattern']">
+                        Wrong Format
+                    </div>
+                </div>
+                <div>
+                    <input type="text" [(ngModel)]="orderModel.customerAddress" required name="customerAddress"
+                        #customerAddress='ngModel' class="form-control" placeholder="Delivery Address">
+                </div>
+                <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8">
+                    <div *ngIf="customerAddress.errors?.['required']">
+                        Required
+                    </div>
 
-</div>
-<div>
-    <input type="text"
-    [(ngModel)]="orderModel.customerMob"
-    required
-    name="customerMob"
-    #customerMob='ngModel'
-    class="form-control"
-    placeholder="Phone">
-  </div>
-<div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8" >
-<div *ngIf="customerMob.errors?.['required']">
-Required
-</div>
+                </div>
+                <div>
+                    <input type="text" [(ngModel)]="orderModel.customerMob" required name="customerMob"
+                        #customerMob='ngModel' class="form-control" placeholder="Phone">
+                </div>
+                <div *ngIf="orderForm.submitted" class="text-danger f-12 m-t-8">
+                    <div *ngIf="customerMob.errors?.['required']">
+                        Required
+                    </div>
 
-</div>
+                </div>
 
- <button class="orderBtn" type="submit" mat-raised-button color="primary">Order</button>
-</form>
+                <button class="orderBtn" type="submit" mat-raised-button color="primary">Order</button>
+            </form>
         </div>
     </div>
 </div>
-

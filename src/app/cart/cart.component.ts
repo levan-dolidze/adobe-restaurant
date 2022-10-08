@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { from, map } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { DishModel } from '../models/dishModel';
 import { OrderModel } from '../models/order';
@@ -44,10 +45,10 @@ export class CartComponent implements OnInit {
   };
 
 
-  returnUniques(uniqueProductsInCart: Array<DishModel>):Array<DishModel>{
-    let uniqueDishListPerUser:Array<DishModel>=[];
+  returnUniques(uniqueProductsInCart: Array<DishModel>): Array<DishModel> {
+    let uniqueDishListPerUser: Array<DishModel> = [];
     this.httpAuth.getToken().subscribe((token: any) => {
-      uniqueDishListPerUser=  uniqueProductsInCart.filter((item: any) => {
+      uniqueDishListPerUser = uniqueProductsInCart.filter((item: any) => {
         return item.uid === token.uid
       })
     })
@@ -56,10 +57,10 @@ export class CartComponent implements OnInit {
 
 
 
-  deleteDishList(i:any) {
+  deleteDishList(i: any) {
     this.dishList.splice(i, 1)
-      localStorage.setItem('dishes', JSON.stringify(this.dishList))
-      this.http.cartChanges.next(this.dishList)
+    localStorage.setItem('dishes', JSON.stringify(this.dishList))
+    this.http.cartChanges.next(this.dishList)
   };
 
   orderDish(dish: any) {
@@ -98,6 +99,16 @@ export class CartComponent implements OnInit {
     }
   };
 
+
+  get countTotalPrice() {
+    let totalPrice = 0;
+    from(this.dishList).pipe(
+      map((x => totalPrice += (x.price * x.inCart)))
+    ).subscribe((res) => {
+      totalPrice = res;
+    })
+    return totalPrice
+  };
 
 
 };
