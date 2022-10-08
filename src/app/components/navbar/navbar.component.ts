@@ -64,7 +64,6 @@ export class NavbarComponent implements OnInit {
     this.observable$.subscribe((notifications) => {
       this.commonNotifications(notifications)
     })
-
   };
 
 

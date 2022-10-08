@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { from, map } from 'rxjs';
+import { from,of, switchMap } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { DishModel } from '../models/dishModel';
 import { OrderModel } from '../models/order';
@@ -75,37 +75,43 @@ export class CartComponent implements OnInit {
           let cart = localStorage.getItem('dishes');
           if (cart) {
             let cartList = JSON.parse(cart)
-            const newOrder: OrderModel = {
-              customerName: this.orderModel.customerName,
-              customerSurname: this.orderModel.customerSurname,
-              customerPN: this.orderModel.customerPN,
-              customerAddress: this.orderModel.customerAddress,
-              customerMob: this.orderModel.customerMob,
-              orderTime: new Date(),
-              userId: res.uid,
-              userEmail: res.email,
-              orderList: cartList
-            }
-            this.http.addNewDishOrder(newOrder).subscribe(() => {
+            this.http.addNewDishOrder(this.returnNewOrderModel(res, cartList)).subscribe(() => {
               this.modalRef = this.dialog.open(OrderDoneMessageComponent, {
                 width: '300px',
                 maxHeight: '90vh',
                 data: { name: this.orderModel.customerName },
               });
             })
-          }
-        }
+          };
+        };
       })
-    }
+    };
   };
+
+  returnNewOrderModel(response: any, cartList: any) {
+    const newOrder: OrderModel = {
+      customerName: this.orderModel.customerName,
+      customerSurname: this.orderModel.customerSurname,
+      customerPN: this.orderModel.customerPN,
+      customerAddress: this.orderModel.customerAddress,
+      customerMob: this.orderModel.customerMob,
+      orderTime: new Date(),
+      userId: response.uid,
+      userEmail: response.email,
+      orderList: cartList
+    }
+    return newOrder
+  };
+
+
 
 
   get countTotalPrice() {
     let totalPrice = 0;
     from(this.dishList).pipe(
-      map((x => totalPrice += (x.price * x.inCart)))
+      switchMap(x => of(totalPrice += (x.price, x.price * x.inCart)))
     ).subscribe((res) => {
-      totalPrice = res;
+      totalPrice = res
     })
     return totalPrice
   };

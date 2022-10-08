@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { from, map, Observable, of, switchMap, toArray, zip } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { fade } from 'src/app/shared/animations';
 import { ReservationComponent } from '../reservation/reservation.component';
@@ -14,13 +14,28 @@ import { ReservationComponent } from '../reservation/reservation.component';
 export class HomeComponent implements OnInit {
 
   constructor(public modal: MatDialog,
-  private shared: SharedService) { }
-  
+    private shared: SharedService) { }
+
   images$: Observable<string[]>
 
 
   ngOnInit(): void {
     this.returnImages();
+
+
+
+    
+    zip(of(27, 25, 29), of('Foo', 'Bar', 'Beer'), of(true, true, 'Beer')).pipe(
+      map(([age, name, isDev]) => ({ age, name, isDev })),
+      toArray()
+
+    ).subscribe((res) => {
+
+      console.log(res)
+
+    })
+
+
   };
 
 
