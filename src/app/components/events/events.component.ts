@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Observable} from 'rxjs';
@@ -8,13 +8,15 @@ import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDining
 import { DateRestriction } from 'src/app/models/reserve';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { fade } from 'src/app/shared/animations';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class EventsComponent implements OnInit {
 
@@ -40,7 +42,8 @@ export class EventsComponent implements OnInit {
   constructor(private http: HttpService,
     private authService: AuthService,
     private dialog: MatDialog,
-    config: NgbTimepickerConfig
+    config: NgbTimepickerConfig,
+    private sharedService:SharedService
 
   ) {
     config.spinners = false;
@@ -76,6 +79,7 @@ export class EventsComponent implements OnInit {
           this.http.addPrivateEvent(obj).subscribe((res) => {
             this.dialog.open(EventMessageComponent)
           })
+          this.sharedService.notificationChange.next();
         }
         else {
           this.dialog.open(LoginComponent)

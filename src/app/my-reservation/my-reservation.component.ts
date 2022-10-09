@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { AfterViewInit, Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { filter, from, Observable, of, toArray } from 'rxjs';
 import { LoaderService } from '../services/loader.service';
 import { TableReservationModel } from '../models/reserve';
@@ -12,7 +11,8 @@ import { fade } from '../shared/animations';
   selector: 'app-my-reservation',
   templateUrl: './my-reservation.component.html',
   styleUrls: ['./my-reservation.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class MyReservationComponent implements OnInit, AfterViewInit {
 

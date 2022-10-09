@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CustomerMessageComponent } from 'src/app/customer-message/customer-message.component';
 import { CustomerMessageModel } from 'src/app/models/contact';
@@ -9,7 +9,8 @@ import { fade } from 'src/app/shared/animations';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ContactComponent implements OnInit {
 

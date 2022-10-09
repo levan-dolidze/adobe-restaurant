@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { Observable,from,of } from 'rxjs';
 import { filter ,toArray} from 'rxjs/operators';
 import { OrderModel } from '../models/order';
@@ -8,11 +8,13 @@ import { HttpService } from '../services/http.service';
 import { LoaderService } from '../services/loader.service';
 import { fade } from '../shared/animations';
 
+
 @Component({
   selector: 'app-my-order',
   templateUrl: './my-order.component.html',
   styleUrls: ['./my-order.component.scss'],
-  animations:[fade]
+  animations:[fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class MyOrderComponent implements OnInit {
 

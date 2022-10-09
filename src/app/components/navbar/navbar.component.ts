@@ -9,6 +9,7 @@ import { Notifications } from 'src/app/models/shared';
 import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { fade } from 'src/app/shared/animations';
 import { ReservationComponent } from '../reservation/reservation.component';
 
@@ -33,12 +34,17 @@ export class NavbarComponent implements OnInit {
     private httpAuth: AuthService,
     private http: HttpService,
     private httpAdmin: AdminService,
-    private router: Router
+    private router: Router,
+    private sharedService:SharedService
 
   ) { }
   privateDining$: Observable<PrivateDiningModel[]>
 
   ngOnInit(): void {
+    this.sharedService.notificationChange.subscribe(()=>{
+    this.returnNotifications();
+
+    })
     this.returnNotifications();
     let dish = localStorage.getItem('dishes');
     if (dish) {

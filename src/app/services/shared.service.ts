@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of } from 'rxjs'
+import { Observable, of, Subject } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class SharedService {
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = true;
-   };
+  };
 
 
   returnCarouselImages(): Observable<string[]> {
@@ -24,6 +24,6 @@ export class SharedService {
 
   }
 
-
+  notificationChange: Subject<void> = new Subject();
 
 }

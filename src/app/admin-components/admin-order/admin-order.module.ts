@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdminOrderRoutingModule } from './admin-order-routing.module';
 import { AdminOrderComponent } from './admin-order.component';
 import { FormsModule } from '@angular/forms';

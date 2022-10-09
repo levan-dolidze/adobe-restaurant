@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy} from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { SharedService } from 'src/app/services/shared.service';
 import { CustomerMessageModel } from '../../models/contact';
 import { AdminService } from '../../services/admin.service';
 import { LoaderService } from '../../services/loader.service';
@@ -9,13 +10,15 @@ import { fade } from '../../shared/animations';
   selector: 'app-admin-contact',
   templateUrl: './admin-contact.component.html',
   styleUrls: ['./admin-contact.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 
 })
 export class AdminContactComponent implements OnInit {
 
   constructor(private httpAdmin: AdminService,
     public loader: LoaderService,
+    private sharedService:SharedService
 
   ) { }
   customerMessage$: Observable<CustomerMessageModel[]>
@@ -30,6 +33,7 @@ export class AdminContactComponent implements OnInit {
 
   deleteMessage(key: any) {
     this.httpAdmin.deleteCustomerMessage(key).subscribe(() => {
+      this.sharedService.notificationChange.next();
       this.returnCustomerMessage()
     })
   };

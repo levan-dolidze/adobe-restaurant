@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy} from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { TableReservationModel } from 'src/app/models/reserve';
 import { AdminService } from 'src/app/services/admin.service';
 import { fade } from 'src/app/shared/animations';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-admin-reservation',
   templateUrl: './admin-reservation.component.html',
   styleUrls: ['./admin-reservation.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 
 })
 export class AdminReservationComponent implements OnInit {
 
   constructor(private httpAdmin: AdminService,
     public loader: LoaderService,
+    private sharedService:SharedService
 
   ) { }
 
@@ -32,6 +35,7 @@ export class AdminReservationComponent implements OnInit {
 
   deleteTableReservation(deleteKey: any) {
     this.httpAdmin.deleteTableReservation(deleteKey).subscribe((res) => {
+      this.sharedService.notificationChange.next();
     })
   };
 

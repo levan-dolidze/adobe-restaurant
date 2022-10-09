@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { finalize, from, map, Observable, of } from 'rxjs';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { finalize, Observable, of } from 'rxjs';
 import { employeeModel } from 'src/app/models/employee';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AdminService } from 'src/app/services/admin.service';
@@ -17,7 +17,8 @@ import { ReserveInputMessageComponent } from 'src/app/reserve-input-message/rese
   selector: 'app-admin-product',
   templateUrl: './admin-product.component.html',
   styleUrls: ['./admin-product.component.scss'],
-  animations: [menu, fade]
+  animations: [menu, fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class AdminProductComponent implements OnInit {
 

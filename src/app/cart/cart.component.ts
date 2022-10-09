@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { from,of, switchMap } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
@@ -7,20 +7,23 @@ import { OrderModel } from '../models/order';
 import { OrderDoneMessageComponent } from '../order-done-message/order-done-message.component';
 import { AuthService } from '../services/auth.service';
 import { HttpService } from '../services/http.service';
+import { SharedService } from '../services/shared.service';
 import { fade } from '../shared/animations';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class CartComponent implements OnInit {
 
   constructor(private httpAuth: AuthService,
     private http: HttpService,
     private auth: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sharedService:SharedService
   ) { }
 
   dishList: Array<DishModel> = [];
@@ -81,6 +84,9 @@ export class CartComponent implements OnInit {
                 maxHeight: '90vh',
                 data: { name: this.orderModel.customerName },
               });
+              this.sharedService.notificationChange.next()
+
+
             })
           };
         };

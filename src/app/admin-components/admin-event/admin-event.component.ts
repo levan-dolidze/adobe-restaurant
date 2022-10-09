@@ -1,5 +1,5 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { filter, from, Observable, of, Subscription, toArray } from 'rxjs';
+import { Component,OnDestroy, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { filter, from, Observable, Subscription, toArray } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { EventTypeModel, PrivateDiningModel } from 'src/app/models/privateDiningModel';
 import { AdminService } from 'src/app/services/admin.service';
@@ -7,12 +7,14 @@ import { HttpService } from 'src/app/services/http.service';
 import { fade, show } from 'src/app/shared/animations';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AdminMessageComponent } from 'src/app/admin-message/admin-message.component';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-admin-event',
   templateUrl: './admin-event.component.html',
   styleUrls: ['./admin-event.component.scss'],
-  animations: [fade, show]
+  animations: [fade, show],
+  changeDetection:ChangeDetectionStrategy.OnPush
 
 })
 export class AdminEventComponent implements OnInit, OnDestroy {
@@ -21,6 +23,7 @@ export class AdminEventComponent implements OnInit, OnDestroy {
     private http: HttpService,
     public loader: LoaderService,
     private dialog: MatDialog,
+    private sharedService:SharedService
 
   ) { }
 
@@ -38,9 +41,12 @@ export class AdminEventComponent implements OnInit, OnDestroy {
   };
 
   deleteDiningEvent(key: any) {
-    this.httpAdmin.deleteOrderedDiningEvent(key).subscribe((res) => { })
+    this.httpAdmin.deleteOrderedDiningEvent(key).subscribe((res) => { 
+      this.sharedService.notificationChange.next()
+    })
     this.orderedDiningDelete$ = this.httpAdmin.orderedDiningDelete$.subscribe((response) => {
       this.privateDining$ = response;
+
       this.returnDining();
     })
   };

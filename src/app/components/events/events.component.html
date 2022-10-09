@@ -34,8 +34,6 @@
                                type="text" 
                                placeholder="firstname" 
                                autocomplete="off">
-
-
                         <div class="text-danger f-12 m-t-8"
                             *ngIf="privateDinerForm.submitted&&firstname.errors?.['required']">
                             Required
@@ -88,6 +86,7 @@
                         </div>
                         <input [(ngModel)]="privateDiningModel.email" 
                                required 
+                               pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                name="email" 
                                #email="ngModel"
                                class="form-control" 
@@ -97,6 +96,10 @@
                         <div class="text-danger f-12 m-t-8"
                             *ngIf="privateDinerForm.submitted&&email.errors?.['required']">
                             Required
+                        </div>
+                        <div class="text-danger f-12 m-t-8"
+                            *ngIf="privateDinerForm.submitted&&email.errors?.['pattern']">
+                            Wrong format
                         </div>
 
                         <div style="margin:10px 0px 0px 30%">

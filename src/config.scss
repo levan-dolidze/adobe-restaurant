@@ -60,12 +60,12 @@ $borderRadius: 5px;
 //footer
 @mixin footerContent {
     width: 100%;
-    height: 400px;
+    height: 320px;
     background-color: $goldColor;
 }
 
 @mixin footerTitle {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
     padding: 50px;
 }
@@ -78,7 +78,7 @@ $borderRadius: 5px;
 @mixin footerInner {
     position: absolute;
     text-align: center;
-    bottom: -400px;
+    bottom: -320px;
     width: 100%;
     padding: 5px;
     border-top: 0.5px solid rgb(232, 232, 232);

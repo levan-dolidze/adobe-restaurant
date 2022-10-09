@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable} from 'rxjs';
 import { employeeModel } from 'src/app/models/employee';
@@ -10,7 +10,8 @@ import { TeamMemberTextComponent } from 'src/app/team-member-text/team-member-te
   selector: 'app-story',
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss'],
-  animations: [fade, show]
+  animations: [fade, show],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class StoryComponent implements OnInit {
   membersArray$: Observable<employeeModel[]>

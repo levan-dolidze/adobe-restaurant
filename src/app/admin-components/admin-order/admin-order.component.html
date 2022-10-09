@@ -1,10 +1,10 @@
 <div class="admin-content">
-    <mat-spinner class="loader-spinner"  *ngIf="loader.isLoading|async"></mat-spinner>
-        <div @fade class="admin-inner">
-            <h3 class="list-title">Private Dining List</h3>
-            <div class="admin-list-content" *ngIf="onlineOrderList$" >
-                <div class="admin-list-inner" *ngFor="let dish of (onlineOrderList$|async);let i =index" >
-                   <div class="order-info">
+    <mat-spinner class="loader-spinner" *ngIf="loader.isLoading|async"></mat-spinner>
+    <div @fade class="admin-inner">
+        <h3 class="list-title">Private Dining List</h3>
+        <div class="admin-list-content" *ngIf="onlineOrderList$">
+            <div class="admin-list-inner" *ngFor="let dish of (onlineOrderList$|async);let i =index">
+                <div class="order-info">
                     <div class="personal-info">
                         <h3>Personal Info</h3>
                         <div>
@@ -19,30 +19,37 @@
                         <div>
                             Address {{dish.customerAddress}}
                         </div>
-                 
+
                     </div>
-                    <div class="event-Info" *ngFor="let dishDetails of dish.orderList" >
+                    <div class="event-Info" *ngFor="let dishDetails of dish.orderList">
                         <h3>Dish Info:</h3>
                         <div>
-                            <img [src]="dishDetails.file" >
+                            <img [src]="dishDetails.file">
                         </div>
                         <div>
-                           Dish Name {{dishDetails.name}}
+                            Dish Name: {{dishDetails.name}}
 
                         </div>
                         <div>
-                           Dish Price {{dishDetails.price}}
+                            Dish QTY:{{dishDetails.inCart}}
+
+                        </div>
+                        <div>
+                            Dish unit Price: {{dishDetails.price|currency:'USD'}}
+                        </div>
+                        <div>
+                            Total Price: {{dishDetails.price*dishDetails.inCart|currency:'USD'}}
                         </div>
                     </div>
                 </div>
-                    <div>
-                    </div>
-
-                <mat-icon  class="cancel-icon"  (click)="cancelOnlineOrder(dish.key)"> cancel</mat-icon>
-
+                <div>
                 </div>
+
+                <mat-icon class="cancel-icon" (click)="cancelOnlineOrder(dish.key)"> cancel</mat-icon>
 
             </div>
 
         </div>
+
+    </div>
 </div>

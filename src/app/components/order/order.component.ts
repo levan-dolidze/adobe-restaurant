@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy} from '@angular/core';
 import { distinct, from,Observable, of, toArray } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -9,7 +9,8 @@ import { DishModel } from 'src/app/models/dishModel';
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class OrderComponent implements OnInit {
 

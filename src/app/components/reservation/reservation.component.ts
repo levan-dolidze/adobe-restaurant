@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -7,12 +7,14 @@ import { DateRestriction, GuestTime, ReserveModel } from 'src/app/models/reserve
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { fade } from 'src/app/shared/animations';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.scss'],
-  animations: [fade]
+  animations: [fade],
+  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 
 export class ReservationComponent implements OnInit {
@@ -35,6 +37,7 @@ export class ReservationComponent implements OnInit {
     private auth: AuthService,
     private http: HttpService,
     public loader: LoaderService,
+    private sharedService:SharedService
 
   ) {
 
@@ -59,9 +62,9 @@ export class ReservationComponent implements OnInit {
     if (reserve.status === false) {
       return
     } else {
-      this.viewMode = 'reserve'
-      this.reserveInfo.time = reserve.time
-      this.reserveInfo.place = reserve.place
+      this.viewMode = 'reserve';
+      this.reserveInfo.time = reserve.time;
+      this.reserveInfo.place = reserve.place;
       this.reserve = reserve;
     }
   };
@@ -124,7 +127,10 @@ export class ReservationComponent implements OnInit {
   };
 
   addReservation(reservation: any) {
-    this.http.completeReservation(reservation).subscribe((res) => {})
+    this.http.completeReservation(reservation).subscribe((res) => {
+      this.sharedService.notificationChange.next()
+
+    })
   };
 
 
