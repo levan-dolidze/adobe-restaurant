@@ -77,14 +77,14 @@ export class AdminProductComponent implements OnInit {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) {
         this.viewMode = this.adminList.employeeForm;
-        localStorage.setItem('adminMode', this.viewMode);
+        sessionStorage.setItem('adminMode', this.viewMode);
       };
     })
   };
 
 
   adminModeControl() {
-    let adminMode = localStorage.getItem('adminMode');
+    let adminMode = sessionStorage.getItem('adminMode');
     adminMode ? this.viewMode = adminMode : this.viewMode = this.adminList.employeeForm;
   };
 
@@ -285,21 +285,21 @@ export class AdminProductComponent implements OnInit {
   //admin mode controls
   menuView() {
     this.viewMode = this.adminList.menuForm;
-    localStorage.setItem('adminMode', this.viewMode)
+    sessionStorage.setItem('adminMode', this.viewMode)
   };
 
   employeeView() {
     this.viewMode = this.adminList.employeeForm;
-    localStorage.setItem('adminMode', this.viewMode);
+    sessionStorage.setItem('adminMode', this.viewMode);
   };
   timeView() {
     this.viewMode = this.adminList.timeForm;
-    localStorage.setItem('adminMode', this.viewMode);
+    sessionStorage.setItem('adminMode', this.viewMode);
   };
 
   dishView() {
     this.viewMode = this.adminList.dishForm;
-    localStorage.setItem('adminMode', this.viewMode);
+    sessionStorage.setItem('adminMode', this.viewMode);
   };
 
 
