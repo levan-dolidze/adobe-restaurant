@@ -2,12 +2,12 @@
     <div [ngSwitch]="viewMode" class="admin-inner">
 
 <!-- add employee -->
-        <form @menu class="employee-form" *ngSwitchCase="'form'" (ngSubmit)="addEmployee(employeeForm)"
+        <form @menu class="employee-form" *ngSwitchCase="adminList.employeeForm" (ngSubmit)="addEmployee(employeeForm)"
             #employeeForm="ngForm">
-            Add Employee <i  (click)="viewMode='menuForm'" 
+            Add Employee <i (click)='menuView()' 
                          class="fa-solid fa-angles-right"></i>
             
-            <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+            <i (click)="viewMode=adminList.colosedForm" class="fa-solid fa-angle-left"></i>
             <div>
                 <label>
                     <input [(ngModel)]="employee.name" 
@@ -42,9 +42,6 @@
             cols="30" rows="5">
   </textarea>
 
-            <!-- <div class="image-content">
-                <img [src]="imgURL">
-            </div> -->
             <div>
                 <label>
                     <input [(ngModel)]="employee.file" 
@@ -60,20 +57,18 @@
         </form>
 
         <div @menu *ngSwitchCase="'colosedForm'" class="closedEmployeeForm">
-            <i (click)="viewMode='form'" class="fa-solid fa-angle-right"></i>
+            <i (click)="viewMode=adminList.employeeForm" class="fa-solid fa-angle-right"></i>
             <div>
             </div>
         </div>
-
-    
 <!--add menu -->
-        <form @menu class="employee-form" *ngSwitchCase="'menuForm'" 
+        <form @menu class="employee-form" *ngSwitchCase="adminList.menuForm" 
              (ngSubmit)="addMenu(menuForm)"
               #menuForm="ngForm">
          Add Menu
-         <i  (click)="viewMode='form'" class="fa-solid fa-angles-left"></i>
-         <i  (click)="viewMode='timeForm'" class="fa-solid fa-angles-right"></i>
-        <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+         <i  (click)="employeeView()" class="fa-solid fa-angles-left"></i>
+         <i  (click)="timeView()" class="fa-solid fa-angles-right"></i>
+         <i (click)="viewMode=adminList.colosedForm" class="fa-solid fa-angle-left"></i>
      
         <div>
             <label>
@@ -105,13 +100,13 @@
         </form>
 
         <!-- add time -->
-        <form @menu class="employee-form" *ngSwitchCase="'timeForm'" 
+        <form @menu class="employee-form" *ngSwitchCase="adminList.timeForm" 
          (ngSubmit)="addTime(timeForm)"
          #timeForm="ngForm">
      Add Time
-    <i  (click)="viewMode='menuForm'" class="fa-solid fa-angles-left"></i>
-    <i  (click)="viewMode='dishForm'" class="fa-solid fa-angles-right"></i>
-    <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+    <i  (click)="menuView()" class="fa-solid fa-angles-left"></i>
+    <i  (click)="dishView()" class="fa-solid fa-angles-right"></i>
+    <i (click)="viewMode=adminList.colosedForm" class="fa-solid fa-angle-left"></i>
 
     <div>
         <label>
@@ -153,7 +148,7 @@
                }"
                style="cursor:pointer" 
                class="form-control"
-               #date="ngModel" 
+               #date="ngModel"
                placeholder="yyyy-mm-dd" 
                ngbDatepicker #d="ngbDatepicker" 
                (click)="d.toggle()">
@@ -164,15 +159,15 @@
     </div>
  
    <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Time</button>
-       </form>
+        </form>
 
        <!-- add Dish -->
-       <form @menu class="employee-form" *ngSwitchCase="'dishForm'" 
+       <form @menu class="employee-form" *ngSwitchCase="adminList.dishForm" 
        (ngSubmit)="addDish(dishForm)"
        #dishForm="ngForm">
    Add Dish
-  <i (click)="viewMode='timeForm'" class="fa-solid fa-angles-left"></i>
-  <i (click)="viewMode='colosedForm'" class="fa-solid fa-angle-left"></i>
+  <i (click)="timeView()" class="fa-solid fa-angles-left"></i>
+  <i (click)="viewMode=adminList.colosedForm" class="fa-solid fa-angle-left"></i>
 
   <div>
       <label>
@@ -257,11 +252,11 @@
   </div>
 
  <button class="employeeBtn" type="submit" mat-raised-button color="primary">Add Dish</button>
-     </form>
+       </form>
 
 <!-- lists -->
         <div @fade class="employee-inner" [ngSwitch]="viewMode">
-            <div *ngSwitchCase="'form'" >
+            <div *ngSwitchCase="adminList.employeeForm" >
                 <h3>Employee List</h3>
                 <div *ngIf="employeeList$" class="employee-list">
                     <div class="employee-list-inner" *ngFor="let employee of (employeeList$|async)">
@@ -286,8 +281,7 @@
                     </div>
                 </div>
             </div>
-
-            <div *ngSwitchCase="'menuForm'" >
+            <div *ngSwitchCase="adminList.menuForm" >
                  Menu list
                  <div *ngIf="menuList$" class="employee-list">
                  <div class="employee-list-inner" *ngFor="let menu of (menuList$|async)">
@@ -316,7 +310,7 @@
                  </div>
                  </div>
             </div>
-            <div *ngSwitchCase="'timeForm'" >
+            <div *ngSwitchCase="adminList.timeForm" >
                  Time list
                 <input style="padding:10px" [(ngModel)]="reserveModel.date" 
                 required name="date" 
@@ -351,13 +345,8 @@
                 </form>
 
 
-
-
-
-
-
             </div>
-            <div *ngSwitchCase="'dishForm'" >
+            <div *ngSwitchCase="adminList.dishForm" >
                  Dish list
                  <div *ngIf="dishList$" class="employee-list">
                     <div class="employee-list-inner" *ngFor="let dish of (dishList$|async)">
@@ -388,17 +377,8 @@
                  
 
 
-            </div>
-         
+            </div>  
         </div>
-
-
- 
-
     </div>
     
-
-
-
-
 </div>

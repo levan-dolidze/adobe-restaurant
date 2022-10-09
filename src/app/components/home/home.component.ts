@@ -10,7 +10,7 @@ import { ReservationComponent } from '../reservation/reservation.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [fade],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
 

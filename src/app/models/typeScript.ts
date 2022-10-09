@@ -2,6 +2,8 @@ export interface FixedFee {
     type: 'fixedFee',
     fixed: number;
 
+
+
 }
 
 export interface VariableFee {
@@ -26,5 +28,10 @@ export function countFee(fee: PaymentFee, itemPrice: any): any {
             break;
     }
 
+
+   
+
 }
+
+
 

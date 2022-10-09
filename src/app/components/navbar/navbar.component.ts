@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { forkJoin, Observable,shareReplay} from 'rxjs';
+import { forkJoin, Observable, shareReplay, Subscription } from 'rxjs';
 import { AdminPermission } from 'src/app/classes/admin-permission';
 import { LoginComponent } from 'src/app/login/login.component';
 import { PrivateDiningModel } from 'src/app/models/privateDiningModel';
@@ -19,7 +19,7 @@ import { ReservationComponent } from '../reservation/reservation.component';
   styleUrls: ['./navbar.component.scss'],
   animations: [fade]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   authStatusIsLoggedin: boolean;
   adminPermission: AdminPermission = new AdminPermission();
   adminPanel: boolean = false;
@@ -29,20 +29,21 @@ export class NavbarComponent implements OnInit {
   notificationObs$: Observable<any>
   notifications: Notifications = new Notifications();
   generalNotification: number;
+  subscriobtion$ = new Subscription();
 
   constructor(public modal: MatDialog,
     private httpAuth: AuthService,
     private http: HttpService,
     private httpAdmin: AdminService,
     private router: Router,
-    private sharedService:SharedService
+    private sharedService: SharedService
 
   ) { }
   privateDining$: Observable<PrivateDiningModel[]>
 
   ngOnInit(): void {
-    this.sharedService.notificationChange.subscribe(()=>{
-    this.returnNotifications();
+    this.subscriobtion$ = this.sharedService.notificationChange.subscribe(() => {
+      this.returnNotifications();
 
     })
     this.returnNotifications();
@@ -52,7 +53,7 @@ export class NavbarComponent implements OnInit {
     };
     this.returnToken();
     this.userIsLoggedIn();
-    this.http.cartChanges.subscribe((QTY) => {
+    this.subscriobtion$ = this.http.cartChanges.subscribe((QTY) => {
       this.itemQTY = QTY.length
     })
   };
@@ -67,7 +68,7 @@ export class NavbarComponent implements OnInit {
     }).pipe(
       shareReplay()
     )
-    this.observable$.subscribe((notifications) => {
+    this.subscriobtion$ =  this.observable$.subscribe((notifications) => {
       this.commonNotifications(notifications)
     })
   };
@@ -82,9 +83,9 @@ export class NavbarComponent implements OnInit {
     })
   };
 
-  commonNotifications(i:any) {
+  commonNotifications(i: any) {
     let arr = [];
-    let notifications: Array<Array<object>> = [i.event, i.table, i.orders,i.messages]
+    let notifications: Array<Array<object>> = [i.event, i.table, i.orders, i.messages]
     for (const n of notifications) {
       for (const i of n) {
         arr.push(i)
@@ -142,4 +143,9 @@ export class NavbarComponent implements OnInit {
   showCart() {
     this.router.navigate(['/cart'])
   };
+
+
+  ngOnDestroy(): void {
+    this.subscriobtion$.unsubscribe();
+  }
 };

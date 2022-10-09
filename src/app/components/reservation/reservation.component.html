@@ -5,7 +5,7 @@
                 <mat-icon mat-dialog-close style="float: right;cursor: pointer;" aria-hidden="false" fontIcon="close">
                 </mat-icon>
             </h3>
-           
+
             <div>
                 <label>
                     <select class="form-control" [(ngModel)]="reserveModel.people" name="people">
@@ -30,19 +30,12 @@
             </div>
 
             <div>
-                <input [(ngModel)]="reserveModel.date" 
-                       required 
-                       name="date"
-                       [minDate]="{year: currentDate.year, 
+                <input [(ngModel)]="reserveModel.date" required name="date" [minDate]="{year: currentDate.year, 
                                    month: currentDate.month, 
                                    day: currentDate.day
-                                  }"
-                       style="cursor:pointer" 
-                       class="form-control"
-                       #date="ngModel" 
-                       placeholder="yyyy-mm-dd" 
-                       ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-         </div>
+                                  }" style="cursor:pointer" class="form-control" #date="ngModel"
+                    placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            </div>
 
 
 
@@ -90,30 +83,21 @@
                     </select>
 
                 </label>
-                <input [(ngModel)]="reserveModel.date" 
-                       required name="date" 
-                       style="cursor:pointer" 
-                       class="form-control"
-                       #date="ngModel" 
-                       placeholder="yyyy-mm-dd" 
-                       [minDate]="{year: currentDate.year, 
+                <input [(ngModel)]="reserveModel.date" required name="date" style="cursor:pointer" class="form-control"
+                    #date="ngModel" placeholder="yyyy-mm-dd" [minDate]="{year: currentDate.year, 
                         month: currentDate.month, 
                         day: currentDate.day
-                       }"
-                       ngbDatepicker #d="ngbDatepicker" 
-                       (ngModelChange)="changeDate()"
-                       (click)="d.toggle()">
+                       }" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="changeDate()" (click)="d.toggle()">
             </div>
 
 
             <div class="time-content">
                 <div class="time-inner">
-    <mat-spinner  *ngIf="loader.isLoading|async"></mat-spinner>
+                    <mat-spinner *ngIf="loader.isLoading|async"></mat-spinner>
 
                     <form *ngFor="let time of (timeList$|async)">
-                        <div @fade [class.reserved]="time.status===false" 
-                             [class.available]="time.status===true"
-                             (click)="timeDetection(time)">
+                        <div @fade [class.reserved]="time.status===false" [class.available]="time.status===true"
+                            (click)="timeDetection(time)">
                             <div class="time-div">
                                 <div>
                                     {{time.time}}PM
@@ -169,60 +153,68 @@
             <h2>Complete Your Reservation</h2>
 
             <form (ngSubmit)="completeReservation(completeReservationForm)" #completeReservationForm="ngForm">
-            <div class="reservation-details-content">
-                <h3 class="reservation-details-title">Traveler's Table</h3>
+                <div class="reservation-details-content">
+                    <h3 class="reservation-details-title">Traveler's Table</h3>
+
+                    <div>
+                        {{reserveModel.people===1?'Guest':'Guests'}}:{{reserveModel.people}}
+                    </div>
+                    <div>
+                        Date: {{reserveModel.date|json}}
+                    </div>
+                    <div>
+                        Time: {{reserveInfo.time}}PM
+                    </div>
+                    <div>
+                        Place: {{reserveInfo.place}}
+                    </div>
+
+                </div>
+
+                <div class="cancelation-content">
+                    <h3 class="cancelation-title">Cancellation policy</h3>
+                    <ul class="cancelation-text">While you won't be charged if you need to cancel, we ask that you do so
+                        at
+                        least 24 hours in advance.</ul>
+
+                </div>
+
+
+                <div class="about-content">
+                    <h3 class="about-title">About</h3>
+                    <ul class="about-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eveniet
+                        quod
+                        mollitia iure et eos. Sed asperiores commodi ab rem eius dolore odit itaque, nobis mollitia
+                        error
+                        eligendi atque id ratione eos accusamus molestiae tempora dicta. Quibusdam similique minima quos
+                        id
+                        exercitationem debitis dignissimos est magni, eligendi, rem omnis a sit quidem obcaecati dolor
+                        quisquam. Neque quos, nesciunt possimus doloribus eos repellendus maxime minus ea nostrum, non
+                        voluptatem vel pariatur aperiam nam maiores iste. Vitae architecto quos veniam officia
+                        consequuntur
+                        nemo corporis tenetur, ad neque beatae earum fugiat molestiae placeat deserunt pariatur a eius
+                        commodi obcaecati sit molestias! Deleniti tempore rem animi aperiam corporis, accusantium
+                        architecto
+                        dolores? Perspiciatis, quo cum laborum, dolorum culpa eligendi beatae molestiae doloribusharum!.
+                    </ul>
+                </div>
+                <div class='marketing-consents-content'>
+                    <section class="example-section">
+                        <mat-checkbox (change)="onChange($event)" class="example-margin">Receive offers and other emails
+                            from this restaurant
+                        </mat-checkbox>
+                    </section>
+                </div>
 
                 <div>
-                    {{reserveModel.people===1?'Guest':'Guests'}}:{{reserveModel.people}}
+                    <button class="reserveBtn" type="submit" mat-raised-button color="primary">Reserve Now</button>
                 </div>
-                <div>
-                    Date: {{reserveModel.date|json}}
-                </div>
-                <div>
-                    Time: {{reserveInfo.time}}PM
-                </div>
-                <div>
-                    Place: {{reserveInfo.place}}
-                </div>
-
-            </div>
-
-            <div class="cancelation-content">
-                <h3 class="cancelation-title">Cancellation policy</h3>
-                <ul class="cancelation-text">While you won't be charged if you need to cancel, we ask that you do so at
-                    least 24 hours in advance.</ul>
-
-            </div>
-
-
-            <div class="about-content">
-                <h3 class="about-title">About</h3>
-                <ul class="about-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eveniet quod
-                    mollitia iure et eos. Sed asperiores commodi ab rem eius dolore odit itaque, nobis mollitia error
-                    eligendi atque id ratione eos accusamus molestiae tempora dicta. Quibusdam similique minima quos id
-                    exercitationem debitis dignissimos est magni, eligendi, rem omnis a sit quidem obcaecati dolor
-                    quisquam. Neque quos, nesciunt possimus doloribus eos repellendus maxime minus ea nostrum, non
-                    voluptatem vel pariatur aperiam nam maiores iste. Vitae architecto quos veniam officia consequuntur
-                    nemo corporis tenetur, ad neque beatae earum fugiat molestiae placeat deserunt pariatur a eius
-                    commodi obcaecati sit molestias! Deleniti tempore rem animi aperiam corporis, accusantium architecto
-                    dolores? Perspiciatis, quo cum laborum, dolorum culpa eligendi beatae molestiae doloribusharum!.
-                </ul>
-            </div>
-            <div class='marketing-consents-content'>
-                 <section class="example-section">
-                    <mat-checkbox (change)="onChange($event)" 
-                                  class="example-margin">Receive offers and other emails from this restaurant
-                    </mat-checkbox>
-                </section>
-            </div>
-
-            <div>
-                <button class="reserveBtn" type="submit" mat-raised-button color="primary">Reserve Now</button>
-            </div>
-        </form>
+            </form>
         </div>
 
         <div *ngSwitchCase="'reserveComplete'">
+            <mat-icon mat-dialog-close style="float: right;cursor: pointer;" aria-hidden="false" fontIcon="close">
+            </mat-icon>
             reservation is complete!
         </div>
 

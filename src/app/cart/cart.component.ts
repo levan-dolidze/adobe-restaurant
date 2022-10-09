@@ -84,9 +84,7 @@ export class CartComponent implements OnInit {
                 maxHeight: '90vh',
                 data: { name: this.orderModel.customerName },
               });
-              this.sharedService.notificationChange.next()
-
-
+              this.sharedService.notificationChange.next();
             })
           };
         };

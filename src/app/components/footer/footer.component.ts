@@ -14,7 +14,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.date=new Date();
-  }
+  };
 
   openSignup() {
     this.dialog.open(LoginComponent)

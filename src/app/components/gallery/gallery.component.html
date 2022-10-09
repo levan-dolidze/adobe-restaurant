@@ -1,5 +1,5 @@
-<ngb-carousel @fade *ngIf="images">
-    <ng-template ngbSlide *ngFor="let image of images">
+<ngb-carousel @fade *ngIf="images$">
+    <ng-template ngbSlide *ngFor="let image of (images$|async)">
         <div class="picsum-img-wrapper">
             <img [src]="image">
         </div>
@@ -8,7 +8,3 @@
             <p>description</p>
         </div>
     </ng-template>
-
-
-
-   

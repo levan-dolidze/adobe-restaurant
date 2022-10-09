@@ -1,5 +1,6 @@
-import { Component, OnInit,ChangeDetectionStrategy} from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+
+import { Observable, Subscription } from 'rxjs';
 import { SharedService } from 'src/app/services/shared.service';
 import { CustomerMessageModel } from '../../models/contact';
 import { AdminService } from '../../services/admin.service';
@@ -11,18 +12,18 @@ import { fade } from '../../shared/animations';
   templateUrl: './admin-contact.component.html',
   styleUrls: ['./admin-contact.component.scss'],
   animations: [fade],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class AdminContactComponent implements OnInit {
+export class AdminContactComponent implements OnInit, OnDestroy {
 
   constructor(private httpAdmin: AdminService,
     public loader: LoaderService,
-    private sharedService:SharedService
+    private sharedService: SharedService
 
   ) { }
   customerMessage$: Observable<CustomerMessageModel[]>
-
+  
   ngOnInit(): void {
     this.returnCustomerMessage();
   };
@@ -38,6 +39,8 @@ export class AdminContactComponent implements OnInit {
     })
   };
 
+  ngOnDestroy(): void {
 
-  
+  };
+
 };

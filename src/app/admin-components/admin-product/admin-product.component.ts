@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { finalize, Observable, of } from 'rxjs';
 import { employeeModel } from 'src/app/models/employee';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -8,17 +8,18 @@ import { HttpService } from 'src/app/services/http.service';
 import { Menu } from 'src/app/models/menu';
 import { DateRestriction, GuestTime, ReserveModel } from 'src/app/models/reserve';
 import { DishModel } from 'src/app/models/dishModel';
-import { Service } from 'src/app/models/shared';
+import { AdminList, Service } from 'src/app/models/shared';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AdminMessageComponent } from 'src/app/admin-message/admin-message.component';
 import { ReserveInputMessageComponent } from 'src/app/reserve-input-message/reserve-input-message.component';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-product',
   templateUrl: './admin-product.component.html',
   styleUrls: ['./admin-product.component.scss'],
   animations: [menu, fade],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminProductComponent implements OnInit {
 
@@ -26,9 +27,10 @@ export class AdminProductComponent implements OnInit {
     private httpAdmin: AdminService,
     private http: HttpService,
     private dialog: MatDialog,
+    private router: Router
+  ) {
 
-
-  ) { }
+  }
   employee: employeeModel = new employeeModel();
   dish: DishModel = new DishModel();
   menu: Menu = new Menu();
@@ -39,8 +41,10 @@ export class AdminProductComponent implements OnInit {
   selectedMenu: unknown;
   selectedDish: unknown;
 
+  adminList = AdminList;
+  viewMode: string;
 
-  viewMode: string = 'form'
+
   employeeList$: Observable<employeeModel[]>;
   dishList$: Observable<DishModel[]>;
   menuList$: Observable<Menu[]>;
@@ -50,24 +54,39 @@ export class AdminProductComponent implements OnInit {
 
   guestTime: GuestTime = new GuestTime();
   guestTimes: Array<GuestTime> = [];
-  modalRef: MatDialogRef<any>;
+  modalRef: MatDialogRef<unknown>;
   reserveModel: ReserveModel = new ReserveModel();
 
 
   ngOnInit(): void {
+    this.adminModeControl();
+    this.routerChanged()
     this.httpAdmin.getImageDetailList();
     this.httpAdmin.getMenuList();
     this.httpAdmin.getDishList();
     this.returnEmployees();
     this.returnDishList();
     this.returnMenus();
-    this.returnTimes()
+    this.returnTimes();
 
-  
     const d = new Date();
     this.reserveModel.date = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }
   };
 
+  routerChanged() {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationStart) {
+        this.viewMode = this.adminList.employeeForm;
+        localStorage.setItem('adminMode', this.viewMode);
+      };
+    })
+  };
+
+
+  adminModeControl() {
+    let adminMode = localStorage.getItem('adminMode');
+    adminMode ? this.viewMode = adminMode : this.viewMode = this.adminList.employeeForm;
+  };
 
   returnTimes() {
     this.timeList$ = this.http.getGuestTime();
@@ -78,9 +97,8 @@ export class AdminProductComponent implements OnInit {
           item.date?.year === this.reserveModel.date.year
       })
       this.timeList$ = of(filtred)
-
     })
-  }
+  };
 
 
   changeDate() {
@@ -92,14 +110,13 @@ export class AdminProductComponent implements OnInit {
           item.date?.year === this.reserveModel.date.year
       })
       this.timeList$ = of(filtred)
-
     })
-  }
+  };
 
 
   returnMenus() {
     this.menuList$ = this.http.getMenu();
-  }
+  };
 
   deleteMenu(key: any) {
     this.http.deleteMenu(key).subscribe((res) => {
@@ -262,10 +279,28 @@ export class AdminProductComponent implements OnInit {
         maxHeight: '90vh',
         data: { reserveDate: time },
       });
-
     }
+  };
 
-  }
+  //admin mode controls
+  menuView() {
+    this.viewMode = this.adminList.menuForm;
+    localStorage.setItem('adminMode', this.viewMode)
+  };
+
+  employeeView() {
+    this.viewMode = this.adminList.employeeForm;
+    localStorage.setItem('adminMode', this.viewMode);
+  };
+  timeView() {
+    this.viewMode = this.adminList.timeForm;
+    localStorage.setItem('adminMode', this.viewMode);
+  };
+
+  dishView() {
+    this.viewMode = this.adminList.dishForm;
+    localStorage.setItem('adminMode', this.viewMode);
+  };
 
 
 };

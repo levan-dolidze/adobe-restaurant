@@ -39,10 +39,10 @@ export class ContactComponent implements OnInit {
           width: '300px',
           maxHeight: '90vh',
           data: { name: this.contact },
-
         }
         )
       })
     };
   };
+  
 };
