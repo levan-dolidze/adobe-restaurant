@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { filter, from, Observable, of, toArray } from 'rxjs';
@@ -11,7 +11,7 @@ import { HttpService } from '../services/http.service';
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryComponent implements OnInit {
 
@@ -78,6 +78,13 @@ export class CategoryComponent implements OnInit {
     })
   };
 
+
+
+  trackByKey(dish: any) {
+    return dish ? dish.key : undefined
+  };
+
+  
 };
 
 
